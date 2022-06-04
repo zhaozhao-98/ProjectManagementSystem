@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.FilesMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.Files" autoMapping="true">
+    <id column="file_id" jdbcType="INTEGER" property="file_id" />
+    
+	    <association property="project_files"
+              javaType="com.dcc.ProjectManagementSystem.entity.Project">
+              <id column="pid" property="pid" />
+              <result column="services_num" property="services_num" />
+              <result column="od_num" property="od_num" />
+              <result column="contract_num" property="contract_num" />
+	    </association>
+	    <association property="personnel_files"
+              javaType="com.dcc.ProjectManagementSystem.entity.Personnel">
+              <id column="pid" property="pid" />
+              <result column="personnel_name" property="personnel_name" />
+	    </association>
+  </resultMap>
+  <insert id="insert_file" parameterType="com.dcc.ProjectManagementSystem.entity.Files">
+    INSERT INTO
+		promgsys.files
+			(file_name,
+			file_address,
+			file_pid,
+			file_tag,
+			file_pm_id,
+			file_valid,
+			create_date)
+		VALUES 
+			(#{file_name,jdbcType=VARCHAR},
+			#{file_address,jdbcType=VARCHAR},
+			#{file_pid,jdbcType=INTEGER},
+			#{file_tag,jdbcType=INTEGER},
+			#{file_pm_id,jdbcType=INTEGER},
+			#{file_valid,jdbcType=INTEGER},
+			#{create_date,jdbcType=INTEGER});
+  </insert>
+    <!-- 更新附件 -->
+   <update id="update_file" parameterType="com.dcc.ProjectManagementSystem.entity.Files">
+    update files set  file_valid = 0 and create_date=#{create_date,jdbcType=INTEGER}
+    where file_address=#{file_address,jdbcType=VARCHAR} 
+	    and file_pid= #{file_pid,jdbcType=INTEGER} 
+	    and file_tag= #{file_tag,jdbcType=INTEGER} 
+	    and file_pm_id= #{file_pm_id,jdbcType=INTEGER}
+  </update>
+   <select id="select_files"  resultMap="BaseResultMap">
+	select f.file_id,
+		f.file_name,
+		f.file_address,
+		f.file_pid,
+		f.file_tag,
+		f.file_pm_id,
+		f.file_valid,
+		pr.services_num,
+		pr.od_num,
+		pr.contract_num,
+		pe.personnel_name,
+		f.create_date
+	from files as f
+		INNER JOIN project as pr ON f.file_pid=pr.pid
+		INNER JOIN personnel as pe ON f.file_pm_id=pe.pid
+	<where>
+	    <if test="file_pm_id!=0">
+    		 file_pm_id = #{file_pm_id,jdbcType=VARCHAR}
+    	</if>
+    	<if test="file_valid!=0">
+    		and file_valid = #{file_valid,jdbcType=VARCHAR}
+    	</if>
+    	<if test="file_tag!=0">
+    		and file_tag = #{file_tag,jdbcType=VARCHAR}
+    	</if>
+	</where>
+  </select>
+</mapper>

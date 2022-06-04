@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文件</title>
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
+<style>
+.col-md-4{margin-top: 1%;}
+body{
+    opacity: 0;
+    animation: page-fade-in 1s forwards;
+}
+@keyframes page-fade-in {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+</style>
+</head>
+<body>
+<div class="col-md-12 row files">
+
+</div>
+
+<script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/moment-with-locales.js"></script>
+<script>
+$(function(){
+	var paras = location.search;            //search获得地址中的参数，内容为'?itemId=12'
+	var result = paras.match(/[^\?&]*=[^&]*/g);     //match是字符串中符合的字段一个一个取出来，result中的值为['login=xx','table=admin']
+	paras = {};                    //让paras变成没有内容的json对象
+	for(i in result){
+	    var temp = result[i].split('=');    //split()将一个字符串分解成一个数组,两次遍历result中的值分别为['itemId','xx']
+	    paras[temp[0]] = temp[1];
+	}
+	var user_index=paras.user_index
+	if(paras.contract_tag!=""&&paras.contract_tag!=null&&paras.contract_tag!=undefined){
+		var contract_tag=paras.contract_tag
+	}else{
+		var contract_tag=0
+	}
+	if(paras.sailing_notice!=""&&paras.sailing_notice!=null&&paras.sailing_notice!=undefined){
+		var sailing_notice=paras.sailing_notice
+	}else{
+		var sailing_notice=0
+	}
+	if(paras.gplot_tag!=""&&paras.gplot_tag!=null&&paras.gplot_tag!=undefined){
+		var gplot_tag=paras.gplot_tag
+	}else{
+		var gplot_tag=0
+	}
+	function formatDate(date) {
+	   var date = new Date(date);
+	   var YY = date.getFullYear() + '-';
+	   var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+	   var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+	   var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+	   var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+	   var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+	   return YY + MM + DD +" "+hh + mm + ss;
+	 }
+	if(contract_tag!=0){
+		/* 合同*****超级管理员和管理员全部查看   用户只能查看以自己为PM的项目合同 */
+		var file_tag=1;
+	 	$.ajax({
+			type:'post',
+			url:'../files_controller/select_files',
+			dataType:'json',
+			data:{
+				'file_tag':file_tag,
+				'user_index':user_index,
+			},
+			success:function(data){
+				var html=""
+				if(data.files_map.length!=0){
+					for(var i=0;i<data.files_map.length;i++){
+						if(data.files_map[i].file_valid==1){
+							var file_valid="有效";
+							var color="#092b9e"
+							var project_html='<a href="#" class="btn btn-primary open_project" tag="'+data.files_map[i].file_pid+'">了解更多<span>('+data.files_map[i].project_files.contract_num+')</span></a>';
+						}else{
+							var file_valid="无效";
+							var color="#dd103c"
+							var project_html='<p>'+data.files_map[i].project_files.contract_num+'</p>'
+						}
+						html+='<div class="col-md-4">'
+						+'<div class="card" style="width: 18rem;">'
+						+'<embed src="/project_contract_pdf/'+data.files_map[i].file_address+'" class="card-img-top" alt="..." style="height: 350px;">'
+						+'<div class="card-body">'
+						+'<a href="#"><h5 class="card-title">'+data.files_map[i].file_address+'</h5></a>'
+						+'<p class="card-text">'+formatDate(data.files_map[i].create_date)+'<span style="color:'+color+';font-weight: 700;">('+file_valid+')</span>'+'</p>'
+						+'<p class="card-text">创建人:'+data.files_map[i].personnel_files.personnel_name+'</p>'
+						+project_html
+						+'</div>'
+						+'</div>'
+					+'</div>';
+					}
+				}
+				$('.files').append(html);
+				$('.open_project').click(function(){
+					var tag=$(this).attr("tag");
+					window.open("/ProjectManagementSystem/promgsys/project_info.html?pid="+tag);
+				});
+			}
+		});
+	}else if(sailing_notice!=0){
+		var file_tag=2;
+	 	$.ajax({
+			type:'post',
+			url:'../files_controller/select_files',
+			dataType:'json',
+			data:{
+				'file_tag':file_tag,
+				'user_index':user_index,
+			},
+			success:function(data){
+				var html=""
+					if(data.files_map.length!=0){
+						for(var i=0;i<data.files_map.length;i++){
+							if(data.files_map[i].file_valid==1){
+								var file_valid="有效";
+								var color="#092b9e"
+								var project_html='<a href="#" class="btn btn-primary open_project" tag="'+data.files_map[i].file_pid+'">了解更多<span>('+data.files_map[i].project_files.services_num+')</span></a>';
+							}else{
+								var file_valid="无效";
+								var color="#dd103c"
+								var project_html='<p>'+data.files_map[i].project_files.services_num+'</p>'
+							}
+							html+='<div class="col-md-4">'
+							+'<div class="card" style="width: 18rem;">'
+							+'<embed src="/projetc_sailing_notice/'+data.files_map[i].file_address+'" class="card-img-top" alt="..." style="height: 350px;">'
+							+'<div class="card-body">'
+							+'<a href="#"><h5 class="card-title">'+data.files_map[i].file_address+'</h5></a>'
+							+'<p class="card-text">'+formatDate(data.files_map[i].create_date)+'<span style="color:'+color+';font-weight: 700;">('+file_valid+')</span>'+'</p>'
+							+'<p class="card-text">创建人:'+data.files_map[i].personnel_files.personnel_name+'</p>'
+							+project_html
+							+'</div>'
+							+'</div>'
+						+'</div>';
+						}
+					}
+					$('.files').append(html);
+					$('.open_project').click(function(){
+						var tag=$(this).attr("tag");
+						window.open("/ProjectManagementSystem/promgsys/project_info.html?pid="+tag);
+					});
+			}
+		});
+	}else if(gplot_tag!=0){
+		var file_tag=3;
+	 	$.ajax({
+			type:'post',
+			url:'../files_controller/select_files',
+			dataType:'json',
+			data:{
+				'file_tag':file_tag,
+				'user_index':user_index,
+			},
+			success:function(data){
+				var html=""
+					if(data.files_map.length!=0){
+						for(var i=0;i<data.files_map.length;i++){
+							if(data.files_map[i].file_valid==1){
+								var file_valid="有效";
+								var color="#092b9e"
+								var project_html='<a href="#" class="btn btn-primary open_project" tag="'+data.files_map[i].file_pid+'">了解更多<span>('+data.files_map[i].project_files.od_num+')</span></a>';
+							}else{
+								var file_valid="无效";
+								var color="#dd103c"
+								var project_html='<p>'+data.files_map[i].project_files.od_num+'</p>'
+							}
+							html+='<div class="col-md-4">'
+							+'<div class="card" style="width: 18rem;">'
+							+'<embed src="/project_gplot/'+data.files_map[i].file_address+'" class="card-img-top" alt="..." style="height: 350px;">'
+							+'<div class="card-body">'
+							+'<a href="#"><h5 class="card-title">'+data.files_map[i].file_address+'</h5></a>'
+							+'<p class="card-text">'+formatDate(data.files_map[i].create_date)+'<span style="color:'+color+';font-weight: 700;">('+file_valid+')</span>'+'</p>'
+							+'<p class="card-text">创建人:'+data.files_map[i].personnel_files.personnel_name+'</p>'
+							+project_html
+							+'</div>'
+							+'</div>'
+						+'</div>';
+						}
+					}
+					$('.files').append(html);
+					$('.open_project').click(function(){
+						var tag=$(this).attr("tag");
+						window.open("/ProjectManagementSystem/promgsys/project_info.html?pid="+tag);
+					});
+			}
+		});
+	}
+});
+
+</script>
+</body>
+</html>

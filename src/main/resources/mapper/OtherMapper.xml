@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.OtherMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.Other">
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+  </resultMap>
+  <select id="select_other_list"  resultMap="BaseResultMap">
+    select  oid,other_name,other_tag,other_color,other_back_color from other;
+  </select>
+</mapper>

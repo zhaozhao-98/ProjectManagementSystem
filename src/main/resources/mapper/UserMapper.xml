@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.User" autoMapping="true">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+        <association property="permission_i_d_u_s"
+                        javaType="com.dcc.ProjectManagementSystem.entity.Permission">
+                        <id column="permission_id" property="permission_id" />
+                        <result column="permission_insert" property="permission_insert" />
+                        <result column="permission_delete" property="permission_delete" />
+                        <result column="permission_select" property="permission_select" />
+                        <result column="permission_update" property="permission_update" />
+                        <result column="permission_operate_table_num" property="permission_operate_table_num" />
+                        <result column="permission_code" property="permission_code" />
+					    <association property="pointListing_list"
+								   javaType="com.dcc.ProjectManagementSystem.entity.PointListing">
+						    <id column="tid" property="tid" />
+						    <result column="personnel_name" property="personnel_name" />
+							<result column="t_name" property="t_name" />
+							<result column="t_name_chinese" property="t_name_chinese" />
+						</association>
+		</association>
+  </resultMap>
+  <select id="single_select_user"  resultType="user">
+	SELECT
+		uid,
+		uname,
+		email,
+		realname,
+		u.lockdoor,
+		permission,
+		permission_level
+	FROM
+		user AS u
+		INNER JOIN personnel AS ps ON ps.lock_door = u.lockdoor  and ps.personnel_email=u.email
+	WHERE
+		u.lockdoor = 1
+		AND u.email = #{email,jdbcType=VARCHAR}
+		AND u.upwd = #{upwd,jdbcType=VARCHAR}
+  </select>
+  <select id="single_select_user_permission"  resultMap="BaseResultMap">
+	SELECT
+		u.uname,
+		u.permission,
+		pe.permission_insert,
+		pe.permission_delete,
+		pe.permission_update,
+		pe.permission_select,
+		pe.permission_code,
+		pe.permission_operate_table_num
+	FROM
+		promgsys.user AS u
+		INNER JOIN permission AS pe ON pe.permission_code = u.permission
+	WHERE
+		u.lockdoor = 1
+		AND u.email = #{email,jdbcType=VARCHAR}
+		AND u.upwd = #{upwd,jdbcType=VARCHAR}
+  </select>
+  <select id="single_select_user_permission_big"  resultMap="BaseResultMap">
+	  SELECT
+		  permission_insert,
+		  permission_delete,
+		  permission_update,
+		  permission_select,
+		  permission_operate_table_num,
+		  t.t_name,
+		  t.t_name_chinese
+	  FROM
+		  promgsys.USER AS u
+			  INNER JOIN permission AS pe ON pe.permission_code = u.permission
+			  INNER JOIN pointlisting AS t ON pe.permission_operate_table_num = t.tid
+	  WHERE
+		  u.lockdoor = 1
+		AND u.email = #{email,jdbcType=VARCHAR}
+	</select>
+</mapper>

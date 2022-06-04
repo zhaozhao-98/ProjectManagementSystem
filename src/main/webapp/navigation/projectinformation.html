@@ -1,0 +1,2990 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>项目资料</title>
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/pdf_table.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/animate/animate.min.css">
+</head>
+
+    <style>
+		body{
+			opacity: 0;
+			animation: page-fade-in 1s forwards;
+		}
+		@keyframes page-fade-in {
+			0% {
+				opacity: 0
+			}
+
+			100% {
+				opacity: 1
+			}
+		}
+		@keyframes page-scale-down {
+			0% {
+				opacity: 0;
+				transform: scale(1.8)
+			}
+
+			100% {
+				opacity: 1;
+				transform: scale(1)
+			}
+		}
+
+		@keyframes page-slide-top {
+			0% {
+				opacity: 0;
+				transform: translateY(-100%)
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateY(0)
+			}
+		}
+
+		@keyframes page-slide-bottom {
+			0% {
+				opacity: 0;
+				transform: translateY(100%)
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateY(0)
+			}
+		}
+
+		@keyframes page-slide-left {
+			0% {
+				opacity: 0;
+				transform: translateX(-100%)
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateX(0)
+			}
+		}
+
+		@keyframes page-slide-right {
+			0% {
+				opacity: 0;
+				transform: translateX(100%)
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateX(0)
+			}
+		}
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      /* Custom page CSS
+	-------------------------------------------------- */
+	/* Not required for template or sticky footer method. */
+	
+	main > .container {
+	  padding: 40px 15px 0;
+	  width: 100%;
+      max-width: none;
+	}
+	
+	.footer {
+	  background-color: #f5f5f5;
+	}
+	
+	.footer > .container {
+	  padding-right: 15px;
+	  padding-left: 15px;
+	}
+	
+	code {
+	  font-size: 80%;
+	}
+    .btn-outline-primary:hover{
+    	background-color: #007bff;
+    	color: #fff;
+    }
+    .modal-dialog{
+    	max-width: none;
+    	margin: auto;
+    }
+    .modal-content{
+    	background-color:rgba(0,0,0,0);
+    }
+    .container2{
+    	float: left;
+    	padding: 0;
+    	margin-bottom: 28px;
+    }
+    .container3{
+    	float: left;
+    	padding: 0;
+    }
+    .container4{
+    	float: left;
+    	padding: 0;
+    	margin-bottom: 28px;
+    }
+    .container2  input{
+    	border: 0;
+    	transition:none;
+    }
+    label{
+    	margin-bottom: 0;
+    }
+    .mb-3 {
+    	margin-bottom: 0;
+    }
+    .container2  textarea{
+    	border: 0;
+    	transition:none;
+    	margin-bottom: 10px;
+    }
+     .container2 select{
+     	border:0;
+     	margin: auto;
+     	margin-top:8px;
+     	width:100%;
+     	height: 30px;
+     }
+    .container2  textarea:hover{
+    	cursor:pointer;
+    	border: 1px solid #ced4da;
+    }
+    .container2  input:hover{
+    	cursor:pointer;
+    	border: 1px solid #ced4da;
+    }
+    .container2 select:hover{
+    	cursor:pointer;
+    	border: 1px solid #ced4da;
+    }
+    
+     .container4  input{
+    	border: 0;
+    	transition:none;
+    }
+    .container4  input:hover{
+    	cursor:pointer;
+    	border: 1px solid #ced4da;
+    }
+    label{
+    	font-size:14px;
+    	font-weight: bold;
+    	color: #1733be;
+    }
+    .save_Information{
+    	float: right;
+    }
+    .save_Attachment{
+    	float: right;
+    }
+    .chat_text{
+	    height: 500px;
+	    overflow-y:scroll;
+    }
+   .chat_text::-webkit-scrollbar {
+		  /*滚动条整体样式*/
+		  width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+		  height: 0.5px;
+	}
+	.chat_text::-webkit-scrollbar-thumb {
+		  /*滚动条里面小方块*/
+		  border-radius: 2px;
+		  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+		  background   : transparent;
+	 }
+	.chat_text::-webkit-scrollbar-thumb:hover {
+		  /*滚动条里面小方块*/
+		  border-radius: 2px;
+		  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+		  background   : #F0F0F0;
+	 }
+	 .chat_text::-webkit-scrollbar-track {
+		  background   : transparent;
+	 }
+	 .attached_currency{
+	 	border: 0;
+	    margin: auto;
+	    margin-top: 8px;
+	    width: 100%;
+	    height: 30px;
+	 }
+	 h4{
+	 	font-weight: 700;
+    	color: #006e54c7;
+	 }
+	 .attached_project_body input{
+	 	border:1px rgb(0 0 0 / 25%) solid;
+	 }
+	  .modal {
+		  overflow-x: hidden;
+		  overflow-y: auto;
+	  }
+	 .file_click{
+	 	color: #007bff;
+	 	font-size: 16px;
+	 	font-weight: 800;
+	 }
+	 .file_click:hover{
+	 	cursor: pointer;
+     	text-decoration: underline;
+	 }
+	 .btn_dowload_delete{
+	 	 z-index: 1;
+		 display: flex;
+		 position: absolute;
+		 transform: translateY(-50%)!important;
+		 right: 0!important;
+	 }
+	 .btn_dowload_delete a{
+	 	 font-size: 16px;
+	 }
+	 .btn_dowload_delete button{
+	 	 font-size: 14px;
+	 }
+	 .hover-actions-trigger{
+	 	cursor: pointer;
+	 }
+	 .hover-actions-trigger:hover .windows_location_html_file{
+	 	color: #0056b3;
+    	text-decoration: underline;
+	 }
+	  .danger{
+		  color: #f00;
+		  font-size: 18px;
+		  font-weight: 700;
+	  }
+    </style>
+<body  class="d-flex flex-column h-100">
+    
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" >项目资料*</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href=""><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=""></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled"></a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+  </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+<span  class="springboot_title"></span>
+  <div class="container">
+	<h1 class="mt-5 title_big" ><span style="color:#dc5360;font-weight: 600;">*无权限*</span></h1>
+    <p class="lead" style="font-size:18px;">以下为订单详细信息，如需修改请<span style="color:#dc5360;font-weight: 600;">点击</span>文本框,并点击卡片下方<span style="color:#dc5360;font-weight: 600;">保存	</span>按钮
+    修改后点击下方<span style="color:#dc5360;font-weight: 600;">生成按钮</span>对应生成开通单PDF，点击<span style="color:#dc5360;font-weight: 600;">放大</span>可自定义修改内容，下载请点击<span style="color:#dc5360;font-weight: 600;">下载按钮</span></p>
+    <p style="color: teal;">（开通单生成后不会上载服务器，请自行上载。）</p>
+  </div>
+  <div class="container2  col-md-9">
+	 <div class="card" style="padding:12px;border-top: 3px solid #0d5d70;">
+		  <h4 class="mb-3">详细信息</h4>
+		  <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="od_num">项目编号</label>
+            <input type="text" class="form-control od_num" id="od_num" placeholder="" value="" required="">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="project_name">名称</label>
+            <input type="text" class="form-control project_name" id="project_name" placeholder="" value="" required="">
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="contract_num">合同编号</label>
+            <input type="text" class="form-control contract_num" id="contract_num" placeholder="" value="" required="">
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="services_num">服务编号</label>
+            <input type="text" class="form-control services_num" id="services_num" placeholder="" value="" required="">
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+           <div class="col-md-4 mb-3">
+            <label for="project_list">项目集</label>
+            <select id="project_list" class="project_list">
+            	<option value="2">测试订单</option>
+            	<option value="3">Remonte Hand</option>
+            	<option value="4">合作项目</option>
+            	<option value="5">正式订单</option>
+            	<option value="1"></option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="project_status">项目状态</label>
+            <select class="project_status"   id="project_status" >
+			 	
+			 </select>
+          </div>
+           <div class="col-md-4 mb-3" data-toggle="tooltip" data-placement="top" title='<b style="color:#dc5360;font-weight: 600;">*谨慎修改</b><p>修改后会同步更改OD编号，如需更改特定OD编号,联系管理员</p>'>
+            <label for="project_class">服务类别</label>
+            <select class="project_class"  id="project_class" >
+			 	
+			 </select>
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+          
+
+          <div class="col-md-6 mb-3">
+            <label for="customer">客户</label>
+            <select id="customer" class="customer"></select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="project_suppliers">供应商</label>
+            <select id="project_suppliers" class="project_suppliers"></select>
+          </div>
+		  <div class="col-md-4 mb-3">
+			  <label for="project_pm">项目经理</label>
+			  <select  id="project_pm" class="project_pm" ></select>
+		  </div>
+		  <div class="col-md-4 mb-3">
+			  <label for="project_market">销售</label>
+			  <select id="project_market" class="project_market" ></select>
+		  </div>
+		  <div class="col-md-4 mb-3">
+			  <label for="project_suppliers_chargeable_time">供应商计费日期</label>
+			  <input type="text" class="form-control project_date_list project_suppliers_chargeable_time" id="project_suppliers_chargeable_time"  placeholder=""  autocomplete="off"  value="" required="">
+		  </div>
+          <div class="col-md-12 mb-12"><hr/></div>
+          <div class="col-md-3 mb-3">
+            <label for="project_speed">带宽</label>
+            <input type="text" class="form-control project_speed" onkeyup="this.value=this.value.replace(/\D/g,'')"  id="project_speed" placeholder="" value="" required="">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="speed_unit">Gbps/Mbps</label>
+            <select class="speed_unit" id="speed_unit" ></select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="service_hours">服务期限</label>
+            <input type="text" class="form-control service_hours" id="service_hours" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder=""  autocomplete="off"  value="" required="">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="services_deadline">单位</label>
+            <select class="services_deadline" id="services_deadline" ></select>
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="project_startdate">启动日期</label>
+            <input type="text" class="form-control project_date_list project_startdate" id="project_startdate"  placeholder="" value="" required="">
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="project_expected_completion_date">预计完成日期</label>
+            <input type="text" class="form-control project_date_list project_expected_completion_date" id="project_expected_completion_date" placeholder="" value="" autocomplete="off"  required="">
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="project_actual_finishing_date">实际完成日期</label>
+            <input type="text" class="form-control project_date_list project_actual_finishing_date" id="project_actual_finishing_date" placeholder=""  autocomplete="off"  value="" required="">
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="project_billdate">计费日期</label>
+            <input type="text" class="form-control project_date_list project_billdate" id="project_billdate" placeholder=""  autocomplete="off"  value="" required="">
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="project_enddate">终止日期</label>
+            <input type="text" class="form-control project_date_list project_enddate" id="project_enddate"  placeholder=""  autocomplete="off"  value="" required="" data-toggle="tooltip" data-placement="right" title="<p>填写终止日期后，系统将按照合同到期或者线路终止日期发出终止提醒至OD邮箱</p><p>若不填写，则不会发出提醒</p><p>新建服务：合同到期前45天发出首次提醒，到期前一天发出第二次提醒；</p><p>普通终止：终止日期前3天发出首次提醒，终止当日发出第二次提醒；</p><p>测试服务：终止日期前1天发出首次提醒，终止当日发出第二次提醒。</p>">
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+           <div class="col-md-12 mb-3">
+            <label for="project_install_address">A端地址</label>
+            <input type="text" class="form-control project_install_address" id="project_install_address" placeholder="" value="" required="">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="project_install_address_b">B端地址</label>
+            <input type="text" class="form-control project_install_address_b" id="project_install_address_b" placeholder="" value="" required="">
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+           <div class="col-md-4 mb-3">
+            <label for="currency">币种</label>
+            <select class="currency" id="currency" ></select>
+          </div>
+           <div class="col-md-4 mb-3">
+            <label for="project_time_fee">一次性费用</label>
+            <input type="text" class="form-control project_time_fee" id="project_time_fee" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="" value="" required="">
+          </div>
+           <div class="col-md-4 mb-3">
+            <label for="project_moon_fee">月费</label>
+            <input type="text" class="form-control project_moon_fee" id="project_moon_fee"  onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="" value="" required="">
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+           <div class="col-md-6 mb-3">
+            <label for="project_contract_party">我司签约主体</label>
+            <select class="project_contract_party project_contract_party" id="project_contract_party" >
+	           
+            </select>
+          </div>
+           <div class="col-md-12 mb-12">
+            <label for="project_progress_plan">进度更新</label>
+            <textarea  class="form-control project_progress_plan"   id="project_progress_plan"   cols="10" rows="10"></textarea>
+          </div>
+          <div class="col-md-12 mb-12">
+                  <hr/>
+          </div>
+           <div class="col-md-12 mb-12">
+            <label for="project_remark">简述</label>
+            <textarea  class="form-control project_remark"   id="project_remark"  cols="10" rows="10"></textarea>
+          </div>
+          <div class="col-md-12 mb-12">
+             <a class="btn btn-outline-primary save_Information" >保存</a>
+          </div>
+         
+        </div>
+	</div>
+  </div>
+  <div class="container3  col-md-3">
+	 <div class="card" style="width: 85%;">
+		  <embed src="/ProjectManagementSystem/img/壹步宏景业务开通单.pdf"  id="embed_openasingle_primary" width="auto" height="450px;">
+		  <div class="card-body">
+		    <h5 class="card-title">开通单PDF</h5>
+		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		    <p class="card-text">
+		      <a href="#" class="stretched-link text-danger" style="position: relative;"><code></code></a>
+		    </p>
+		    <a class="btn btn-outline-primary htmltopdf" >生成</a>
+		    <a class="btn btn-outline-primary openasingle" >放大</a>
+		  </div>
+	</div>
+  </div>
+  <div class="container3  col-md-3">
+	 <div class="card" style="width: 85%;">
+		  <div class="card-body">
+		  	<div class="card-text chat_text">
+		  		
+		    </div>
+		    <p class="card-text">
+		     <input type="text" class="form-control" id="char_input"  placeholder="" value="" required="">
+		    </p>
+		    <a class="btn btn-outline-primary char_send" >发送</a>
+		  </div>
+	</div>
+  </div>
+  
+  
+      <div class="container3  col-md-3">
+  			<div class="card" style="width: 85%;">
+			  <embed src=""  id="openasingle_save" width="auto" height="450px;">
+			  <div class="card-body">
+			    <h5 class="card-title">开通单</h5>
+			    <p class="card-text">
+			      <a href="#" class="stretched-link text-danger" style="position: relative;"><code></code></a>
+			    </p>
+			    <a class="btn btn-outline-primary project_sailing_notice_select_file">选择文件</a>
+			    <a class="btn btn-outline-primary openasingle_amplification" >放大</a>
+			     <input type="file" class="form-control" id="project_sailing_notice" style="display:none;">
+			  </div>
+		</div>
+    </div>
+    
+    
+    <div class="container4  col-md-9">
+	 <div class="card" style="padding:12px;border-top: 3px solid #0d5d70;">
+	 <div class="row">
+		  <h4 class="mb-3 col-md-9">附属项目</h4>
+		  <button type="button" class="btn btn-outline-info add_attached_project_btn col-md-2" >新建</button>
+	 			<!--  附属模态框（Modal） -->
+				<div class="modal fade"  id="add_attached_projectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-dialog add_attached_dialog" style="background-color: #fff;width: 55%;top:3%;">
+				        <div class="modal-content add_attached_content">
+				            <div class="modal-header ">
+				                <h4 class="modal-title" id="add_attached_projectModalLabel">附属项目</h4>
+				            </div>
+				            <div class="modal-body add_attached_body">
+							  <div class="row">
+							  	 <div class="col-md-6"><label>附属项目名称<span class="danger">*</span></label><div><input type='text'  autocomplete="off" class="form-control attached_project_name" style = "width:100%" /></div></div>
+								  <div class="col-md-6"><label>项目状态<span class="danger">*</span></label>
+								 <div>
+								 <select class="attached_status" style="border-color: #ddd;text-align: center;margin: auto;float:right;margin-top:8px;width:100%;height: 30px;">
+								 	
+								 </select>
+								 </div>
+								 </div>
+							  	 <div class="col-md-12"><hr/></div>
+							     <div class="col-md-4"><label>启动日期<span class="danger">*</span></label><div><input type='text'  autocomplete="off" class="form-control  attached_time_list attached_start_time" style = "width:100%" /></div></div>
+								 <div class="col-md-4"><label>终止日期</label><div><input type="text"  autocomplete="off" class="form-control  attached_time_list attached_end_time"  style = "width:100%"></div></div>
+								 <div class="col-md-4"><label>计费日期</label><div><input type="text" autocomplete="off"   class="form-control  attached_time_list attached_bill_time"  style = "width:100%"></div></div>
+								 <div class="col-md-4"><label>预计完成日期</label><div><input type="text"  autocomplete="off"  class="form-control  attached_time_list attached_expected_completion_date"  style = "width:100%"></div></div>
+								 <div class="col-md-4"><label>实际完成日期</label><div><input type="text"  autocomplete="off"  class="form-control  attached_time_list attached_actual_finishing_date"  style = "width:100%"></div></div>
+								 
+								 <div class="col-md-12"><hr/></div>
+								 <div class="col-md-12"><label>A端地址</label><div><input type="text"   autocomplete="off" class="form-control  attached_address"></div></div>
+								 <div class="col-md-12"><label>B端地址</label><div><input type="text"   autocomplete="off" class="form-control  attached_b_address"></div></div>
+								 <div class="col-md-12"><hr/></div>
+								 <div class="col-md-4"><label>币种<span class="danger">*</span></label><div><select class="attached_currency" style="border: 1px rgb(0 0 0 / 25%) solid;text-align: center;margin: auto;float:right;margin-top:8px;width:100%;height: 30px;"><option value="1">RMB</option><option value="2">USD</option></select></div></div>
+								 <div class="col-md-4"><label>一次性费用<span class="danger">*</span></label><div><input type="text"  autocomplete="off"  onkeyup="this.value=this.value.replace(/\D/g,'')" class="form-control  attached_time_fee"></div></div>
+								 <div class="col-md-4"><label>月费<span class="danger">*</span></label><div><input type="text"  autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  class=" form-control  attached_moon_fee"></div></div>
+								 <div class="col-md-12"><hr/></div>
+								 <div class="col-md-12"><label>备注</label><textarea rows="8" cols="80%"  class="form-control attached_remark"></textarea></div>
+								 
+							  </div>
+							</div>
+				            <div class="modal-footer add_attached_footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				                <button type="button" class="btn btn-primary add_attached">提交</button>
+				            </div>
+				        </div><!-- /.modal-content -->
+				    </div><!-- /.modal -->
+				</div>
+	 </div>
+	</div>
+	<div class="card">
+	  <div class="card-body Attached_list">
+	  
+
+	  </div>
+	</div>
+  </div>
+     <div class="container3  col-md-3">
+		 <div class="card" style="width: 85%;">
+			  <embed src=""  id="contract_save" width="auto" height="450px;">
+			  <div class="card-body">
+			    <h5 class="card-title">合同</h5>
+			    <p class="card-text">
+			      <a href="#" class="stretched-link text-danger" style="position: relative;"><code></code></a>
+			    </p>
+			    <a class="btn btn-outline-primary project_contract_pdf_select_file">选择文件</a>
+			    <a class="btn btn-outline-primary contract_amplification" >放大</a>
+			     <input type="file" class="form-control" id="project_contract_pdf" style="display:none;">
+			  </div>
+		</div>
+    </div>
+    <div class="container3  col-md-3">
+ 			<div class="card" style="width: 85%;">
+				  <img src=""  id="gplot_save" width="auto" height="450px;">
+				  <div class="card-body">
+				    <h5 class="card-title">拓扑图</h5>
+				    <p class="card-text">
+				      <a href="#" class="stretched-link text-danger" style="position: relative;"><code></code></a>
+				    </p>
+				    <a class="btn btn-outline-primary project_gplot_select_file">选择文件</a>
+				    <a class="btn btn-outline-primary gplot_amplification" >放大</a>
+				     <input type="file" class="form-control" id="project_gplot" style="display:none;">
+				  </div>
+			</div>
+    </div>
+    <div class="container3  col-md-3">
+  			<div class="card" style="width: 85%;">
+  			 		<div class="card-body project_other_list_html">
+						
+					  </div>
+					  <div class="card-body" style="z-index: 1;">
+					    <h5 class="card-title">其他文件</h5>
+					    <p class="card-text">
+					      <a href="#" class="stretched-link text-danger" style="position: relative;"><code></code></a>
+					    </p>
+					    <a class="btn btn-outline-primary other_select_file">选择文件</a>
+					     <input type="file" class="form-control" id="project_other" style="display:none;">
+					  </div>
+				</div>
+    </div>
+
+  <!-- 放大Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog exampleModal_dialog">
+    <div class="modal-content exampleModal_content">
+      <div class="modal-body exampleModal_body">
+       	<embed src=""  id="embed_openasingle">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- 保存订单信息后   确认信息的Modal -->
+<div class="modal fade" id="saveInfo" tabindex="-1"  aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog saveInfo_dialog" style="top: 3%;">
+    <div class="modal-content saveInfo_content" style="background-color: #fff;width: 40%;margin: 0 auto;">
+    <div class="modal-body saveInfo_body"  style="background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;width: 100%;">
+     	  <div class="container">
+		    <h1 class="mt-5" >确认以下信息</h1>
+		    <p class="lead" style="font-size:18px;">以下为订单前后信息对比<span style="color:#dc5360;font-weight: 600;">点击保存</span>即可保存</p>
+		    <p class="lead" style="font-size:18px;">若没有出现任何字段<span style="color:#dc5360;font-weight: 600;">即无更改</span></p>
+		  </div>
+		  <div class="container" id="info_modal" >
+		    
+		  </div>
+	</div>
+	<div class="modal-footer saveInfo_footer" style="background-color: #ffffffc7;margin: 0 auto;width: 100%;">
+	        <button type="button" class="btn btn-primary save_info" >保存</button>
+	</div>
+	</div>
+	</div>
+</div>
+<!--  -->
+<div class="modal fade" id="saveinfo_attached_project" tabindex="-1"  aria-labelledby="exampleModalLabel1" aria-hidden="true">
+	<div class="modal-dialog saveinfo_attached_project_dialog" style="top: 3%;">
+		<div class="modal-content saveinfo_attached_project_content" style="background-color: #fff;margin: 0 auto;">
+			<div class="modal-body saveinfo_attached_project_body"  style="background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;width: 100%;">
+				<div class="container">
+					<h1 class="mt-5" >确认以下信息</h1>
+					<p class="lead" style="font-size:18px;">以下为订单前后信息对比<span style="color:#dc5360;font-weight: 600;">点击保存</span>即可保存</p>
+					<p class="lead" style="font-size:18px;">若没有出现任何字段<span style="color:#dc5360;font-weight: 600;">即无更改</span></p>
+				</div>
+				<div class="container" id="info_modal2" >
+
+				</div>
+			</div>
+			<div class="modal-footer saveinfo_attached_project_footer" style="background-color: #ffffffc7;margin: 0 auto;width: 100%;">
+				<button type="button" class="btn btn-primary save_info2">保存</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Automatic_Modal -->
+<div class="modal fade" id="Automatic_Modal" tabindex="-1" aria-labelledby="Automatic_Modal_exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body ">
+	      	<div class="row">
+	      		<div class="col-md-6" style="background-color: #fff;">
+						<div class="container row">
+						<div class="col-md-3"><img src="/ProjectManagementSystem/temporary_pdf/ybhj_title.png"></img></div>
+						<div  class="col-md-12"><h5>壹步宏景业务开通单</h5></div>
+						</div>
+						<table >
+						<tbody id="table_pdf">
+							<tr>
+								<td colspan="1"  rowspan="2" class="title">服务细节</td>
+								<td colspan="5"  rowspan="2"><input type="text" class="project_name_modal"></td>
+								<td colspan="1"  class="title">订单号码</td>
+								<td  colspan="5" ><input type="text" class="project_contract_num_modal"></td>
+							</tr>
+							<tr>
+								<td colspan="1"  class="title">发送日期</td>
+								<td  colspan="5"><input type="text" class="send_time"></td>
+							</tr>
+							<tr>
+								<td colspan="1"  class="title">服务编号</td>
+								<td colspan="11"><input type="text" class="project_service_num_modal"></td>
+							</tr>
+							<tr>
+								<td colspan="1"  class="title">技术联系人</td>
+								<td  colspan="1"><input type="text" class="technology"></td>
+								<td colspan="1"  class="title">联系方式</td>
+								<td  colspan="3"><input type="text" class="technology_phone"></td>
+								<td colspan="1"  class="title">服务开通日</td>
+								<td  colspan="5"><input type="text" class="Opening_time"></td>
+							</tr>
+							<tr>
+								<td colspan="1"  class="title">业务联系人</td>
+								<td   colspan="1" ><input type="text" class="business"></td>
+								<td colspan="1"  class="title">联系方式</td>
+								<td   colspan="3" ><input type="text" class="business_phone"></td>
+								<td colspan="1"  class="title">开始计费日期</td>
+								<td   colspan="5" ><input type="text" class="bill_time"></td>
+							</tr>
+							<tr>
+								<td  colspan="12"   class="title_A_Z"  style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;background-color: #418ddc3b;"  tag="1">AC 接入端信息<button type="button" class="btn btn-light jian" style="margin-left: 12px;margin-right: 12px;font-weight: 700">-</button><button type="button" class="btn btn-light jia" style="font-weight: 700">+</button></td>
+							</tr>
+							<tr>
+								<td  rowspan="3" class="title"><input type='text' class="address_tag0" style="height: 30%;width: 20%;"> end</td>
+								<td  rowspan="1" class="title">接入地址</td>
+     							<td colspan="10" ><input type="text" class="address0"></td>
+							</tr>
+							<tr>
+								<td class="title">对接模块</td>
+								<td   colspan="10" ><input type="text" class="module0"></td>
+							</tr>
+							<tr>
+								<td class="title">端口模式</td>
+								<td  colspan="10" ><input type="text" class="module_type0"></td>
+							</tr>
+							<tr>
+				    		 <td  rowspan="1" class="title">服务备注</td>
+				    		 <td  colspan="11"><input type="text" class="services_remark0"></td>
+				    		</tr>
+							<tr>
+								<td  colspan="12"   style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;background-color: #418ddc3b;">用户申明 Customer Declaration</td>
+							</tr>
+							<tr>
+								<td  colspan="12" >
+										1.请贵司代表人或授权人员在此表格上签名和加盖公司印章，并在三个工作日内将此签名及加盖公司印章的扫描件以邮件的方式发送至 {orderdesk@dcconnect.cn}；并请您将此盖章签字的纸质原件尽快邮寄至：深圳市南山区科苑路 16 号东方科技大厦 1211，郑西芸，电话：+86 13600418953。<br> 
+										2. 在我司发出此表格后如您没有在三个工作日内进行回复，我司将视为贵司默认同意此表格“开通计费时间”一栏的日期。 <br> 
+										3. 对于服务开始日期后的故障报告，请联系我们的24 x 7 网络运营中心（NOC）。+ 86 400-006-8890（仅限中国大陆地区）或电邮至 noc@dcconnect.cn。 <br> 
+										4.以上服务如在服务期间需提前终止或届满时续签，请提前 45 天以书面形式提出申请。<br> 
+								</td>
+							</tr>
+							</tbody>
+						</table>
+						<table  id="table_pdf2">
+								<tr>
+								<td  colspan="6" ><input type="text" class="customer_modal">签名及公司印章</td>
+								<td  colspan="6" ><input type="text" class="this_company">销售员签名和公司印章</td>
+							</tr>
+							<tr>
+								<td  colspan="6"  class="seal"></td>
+								<td  colspan="6"  class="seal"></td>
+							</tr>
+							<tr>
+								<td  colspan="1" >名称：</td>
+								<td  colspan="5" ></td>
+								<td  colspan="1" >名称：</td>
+								<td  colspan="5" ></td>
+							</tr>
+							<tr>
+								<td  colspan="1" >职位：</td>
+								<td  colspan="2" ></td>
+								<td  colspan="1" >日期：</td>
+								<td  colspan="2" ></td>
+								<td  colspan="1" >职位：</td>
+								<td  colspan="2" ></td>
+								<td  colspan="1" >日期：</td>
+								<td  colspan="2" ></td>
+							</tr>
+						</table>
+						
+						<div class="col-md-12 creagte_pdf"><a class="btn btn-outline-primary htmltopdf_two" style="width: 100%;margin-top: 28px;margin-bottom : 28px;">生成</a></div>
+					
+				</div>
+	      		<div class="col-md-6"><embed id="Automatic_Modal_openasingle" src="/ProjectManagementSystem/img/壹步宏景业务开通单.pdf" ></div>
+	      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- 常用模态框 -->
+<div class="modal fade" id="commonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog commonModal_modal-dialog" style="background: #fff;width: 18%;margin-top: 8%;">
+    <div class="modal-content commonModal_content">
+      <div class="modal-body commonModal_body" style="font-size: 18px;font-weight: bold;">
+        请确认删除
+      </div>
+      <div class="modal-footer commonModal_footer">
+        <button type="button" class="btn btn-warning" id="del_att_project">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 弹框 -->
+<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+    <div class="toast-header">
+      <strong class="mr-auto">springboot</strong>
+      <small style="margin-left: 12px;">just now</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">*/
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body" style="color: #d23677;font-weight: bold;font-size: 16px;">
+      
+    </div>
+  </div>
+</div>
+ <script src="/ProjectManagementSystem/js/jquery.js"></script>
+ <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+ <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+ <script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
+ <script src="/ProjectManagementSystem/bootstrap/js/bootstrap.min.js"></script>
+ <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+ <script src="/ProjectManagementSystem/bootstrap/js/moment-with-locales.js"></script>
+ <script>
+ $(function(){
+			 $('[data-toggle="tooltip"]').tooltip({
+				 html:true
+			 });
+				$('.container4').height($('body').height()*0.5);
+				//session
+				$.ajax({
+					type:'post',
+					url:'../user_controller/login_session',
+					dataType:'json',
+					success:function(data){
+						$(".springboot_title").attr("uid",data.personnel[0].pid);
+						$(".springboot_title").attr("lockdoor",data.personnel[0].lockdoor);
+						$(".springboot_title").attr("realname",data.personnel[0].personnel_name);
+					}
+				});
+				$('.char_send').click(function(){
+					 var paras = location.search;            //search获得地址中的参数，内容为'?itemId=12'
+					 var result = paras.match(/[^\?&]*=[^&]*/g);     //match是字符串中符合的字段一个一个取出来，result中的值为['login=xx','table=admin']
+					 paras = {};                    //让paras变成没有内容的json对象
+					 for(i in result){
+					     var temp = result[i].split('=');    //split()将一个字符串分解成一个数组,两次遍历result中的值分别为['itemId','xx']
+					     paras[temp[0]] = temp[1];
+					 }
+					 var pid = paras.pid;
+					 var chat_name=$(".springboot_title").attr("realname");
+					 var chat_text=$("#char_input").val();
+					 $('#char_input').val("");
+					 if(chat_text!=""){
+							$.ajax({
+								type:'post',
+								url:'../chat_controller/insert_chat_one_list',
+								dataType:'json',
+								data:{
+									'chat_text':chat_text,
+									'chat_name':chat_name,
+									'chat_tag':pid
+								},
+								success:function(data){
+									$('.chat_text').empty();
+									$.ajax({
+										type:'post',
+										url:'../chat_controller/select_chat_one_list',
+										dataType:'json',
+										data:{'chat_tag':pid},
+										success:function(data){
+											var html="";
+											for (var i =0 ;i<data.list_chat_one.length;i++){
+												var chat_time=new Date(data.list_chat_one[i].chat_time);
+												html+='<div>'
+														     	+'<p>'
+														     	+'<span style="margin-right: 12px; font-weight: 600;font-size: 14px;">'+data.list_chat_one[i].chat_name+'</span>'
+														     	+'<span  style="font-size: 12px;color: #08c"><i class="fa fa-clock-o header_i" aria-hidden="true"></i>'+chat_time.getFullYear()+'/'+(chat_time.getMonth()+1)+'/'+chat_time.getDate()+'</span>'
+														     	+'<span style="font-weight: 600;">:</span>'
+														     	+'<span  style="font-size: 12px;">'+data.list_chat_one[i].chat_text+'</span>'
+														     	+'</p>'
+														     	+'</div>'
+											}
+											$('.chat_text').append(html);
+										}
+									});
+								}
+							});
+					 }
+				});
+			//获得传过来的login与在数据库中对应的表单
+			 var paras = location.search;            //search获得地址中的参数，内容为'?itemId=12'
+			 var result = paras.match(/[^\?&]*=[^&]*/g);     //match是字符串中符合的字段一个一个取出来，result中的值为['login=xx','table=admin']
+			 paras = {};                    //让paras变成没有内容的json对象
+			 for(i in result){
+			     var temp = result[i].split('=');    //split()将一个字符串分解成一个数组,两次遍历result中的值分别为['itemId','xx']
+			     paras[temp[0]] = temp[1];
+			 }
+			 var pid = paras.pid;     //根据参数名"itemId"，获取参数值
+			//聊天
+			$.ajax({
+				type:'post',
+				url:'../chat_controller/select_chat_one_list',
+				dataType:'json',
+				data:{'chat_tag':pid},
+				success:function(data){
+					var html="";
+					for (var i =0 ;i<data.list_chat_one.length;i++){
+						var chat_time=new Date(data.list_chat_one[i].chat_time);
+						html+='<div>'
+								     	+'<p>'
+								     	+'<span style="margin-right: 12px; font-weight: 600;font-size: 14px;">'+data.list_chat_one[i].chat_name+'</span>'
+								     	+'<span  style="font-size: 12px;color: #08c"><i class="fa fa-clock-o header_i" aria-hidden="true"></i>'+chat_time.getFullYear()+'/'+(chat_time.getMonth()+1)+'/'+chat_time.getDate()+'</span>'
+								     	+'<span style="font-weight: 600;">:</span>'
+								     	+'<span  style="font-size: 12px;">'+data.list_chat_one[i].chat_text+'</span>'
+								     	+'</p>'
+								     	+'</div>'
+					}
+					$('.chat_text').append(html);
+				}
+			});
+			 attached_project();
+			 $('#del_att_project').click(function(){
+				    //删除附属项目
+				    attachedid=$(this).attr('attachedid');
+					$.ajax({
+						type:'post',
+						url:'../attached_project_controller/del_attached',
+						dataType:'json',
+						data:{'attachedid':attachedid,
+								 'pid':pid},
+						success:function(data){
+							if(data.msg!="success"){
+								$('#commonModal').modal("hide");
+								$('.toast-body').text('账户权限受限');
+								$('#liveToast').toast('show');
+							}else{
+								$('#commonModal').modal("hide");
+								$('.toast-body').text('删除成功');
+								$('#liveToast').toast('show');
+								$('.Attached_list').empty();
+								attached_project();
+							}
+
+						}
+				  });
+			 });
+			 /*新建附属按钮*/
+			 $('.add_attached_project_btn').click(function(){
+				 $('.add_attached_content').width("initial");
+			     $('.add_attached_dialog').attr("style","background-color: #fff;width: 55%;top:3%;");
+			     $('.add_attached_footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;");
+				 $('.add_attached_body input').attr("style","border: 1px solid #615b5b80;");
+				 $('.attached_status').html($('#project_status').html());
+				 $('.attached_currency').html($('#currency').html());
+				 //添加附属项目
+				 $('#add_attached_projectModal').modal("show");
+				 $('.attached_time_list').datetimepicker({
+				    	language: 'zh-CN',
+				        format: 'yyyy-mm-dd',
+				        minView: "month",//设置只显示到月份
+				        autoclose: true,//选中自动关闭
+				        todayBtn: true,//显示今日按钮
+				        locale: moment.locale('zh-CN')
+				});
+			 });
+			$('.add_attached').click(function(){
+				//提交信息
+				var attached_project_name=$('.attached_project_name').val();
+				if($('.attached_start_time').val()==undefined || $('.attached_start_time').val()==''){
+					var attached_start_time='';
+				}else{
+					var attached_start_time=Date.parse(new Date($('.attached_start_time').val()));
+				}
+				if($('.attached_end_time').val()==undefined || $('.attached_end_time').val()==''){
+					var attached_end_time='';
+				}else{
+					var attached_end_time=Date.parse(new Date($('.attached_end_time').val()));
+				}
+				if($('.attached_bill_time').val()==undefined || $('.attached_bill_time').val()==''){
+					var attached_bill_time='';
+				}else{
+					var attached_bill_time=Date.parse(new Date($('.attached_bill_time').val()));
+				}
+				if($('.attached_expected_completion_date').val()==undefined || $('.attached_expected_completion_date').val()==''){
+					var attached_expected_completion_date='';
+				}else{
+					var attached_expected_completion_date=Date.parse(new Date($('.attached_expected_completion_date').val()));
+				}
+				if($('.attached_actual_finishing_date').val()==undefined || $('.attached_actual_finishing_date').val()==''){
+					var attached_actual_finishing_date='';
+				}else{
+					var attached_actual_finishing_date=Date.parse(new Date($('.attached_actual_finishing_date').val()));
+				}
+				var attached_status=$('.attached_status').val();
+				var attached_address=$('.attached_address').val();
+				var attached_currency=$('.attached_currency').val();
+				var attached_time_fee=$('.attached_time_fee').val();
+				var attached_moon_fee=$('.attached_moon_fee').val();
+				var attached_remark=$('.attached_remark').val();
+				var attached_b_address=$('.attached_b_address').val();
+				var myDate = new Date;
+				var year = myDate.getFullYear(); //获取当前年
+				var mon = myDate.getMonth() + 1; //获取当前月
+				var date = myDate.getDate(); //获取当前日
+				var create_time=Date.parse(new Date(year+"-"+mon+"-"+date));
+				var attached_json={
+						'attached_project_name':attached_project_name,
+						'attached_start_time':attached_start_time,
+						'attached_end_time':attached_end_time,
+						'attached_bill_time':attached_bill_time,
+						'attached_expected_completion_date':attached_expected_completion_date,
+						'attached_actual_finishing_date':attached_actual_finishing_date,
+						'attached_status':attached_status,
+						'attached_address':attached_address,
+						'attached_currency':attached_currency,
+						'attached_time_fee':attached_time_fee,
+						'attached_moon_fee':attached_moon_fee,
+						'attached_remark':attached_remark,
+						'project_pid':pid,
+						'attached_b_address':attached_b_address,
+						'create_time':create_time
+				}
+				$.ajax({
+					type:'post',
+					url:'../attached_project_controller/insert_attached',
+					dataType:'json',
+					contentType: 'application/json;charset=UTF-8',
+					data:JSON.stringify(attached_json),
+					success:function(data){
+						if(data.msg=="success"){
+							$('#add_attached_projectModal').modal("hide");
+							$('.toast-body').text('添加成功');
+							$('#liveToast').toast('show');
+							$('.Attached_list').empty();
+							attached_project();
+						}else{
+							$('#add_attached_projectModal').modal("hide");
+							$('.toast-body').text('账户权限受限制');
+							$('#liveToast').toast('show');
+						}
+					}
+				});
+			});
+			 function attached_project(){
+						$.ajax({
+							type: "post",
+					        url: "../other_controller/select_other_list",
+					        dataType:'json',
+					        success: function(data) {
+					        	var Attached_html_status="";
+					        	var Attached_html_class="";
+					        	var Attached_html_speed="";
+					        	var Attached_html_service_deadline="";
+					        	var Attached_html_currency="";
+					        	var Attached_html_contract_party="";
+					        	for(var i=0;i<data.list_other.length;i++){
+					        		if(data.list_other[i].other_tag==1){
+					        			Attached_html_status+="<option status-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+					        		}else if(data.list_other[i].other_tag==2){
+					        			Attached_html_class+="<option class-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+					        		}else if(data.list_other[i].other_tag==3){
+					        			Attached_html_speed+="<option speed-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+					        		}else if(data.list_other[i].other_tag==4){
+					        			Attached_html_service_deadline+="<option service-deadline-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+					        		}else if(data.list_other[i].other_tag==5){
+					        			Attached_html_currency+="<option currency-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+					        		}else if(data.list_other[i].other_tag==6){
+					        			Attached_html_contract_party+="<option currency-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+					        		}
+					        	}
+				        	//附属项目
+							$.ajax({
+								type:'post',
+								url:'../attached_project_controller/select_attached',
+								dataType:'json',
+								data:{'pid':pid},
+								success:function(data){
+									if(data.msg!="success"){
+										$('.toast-body').text('账户权限受限制');
+										$('#liveToast').toast('show');
+										setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									}else{
+										var Attached_html_list="";
+										for(var a=0;a<data.attached_list.length;a++){
+											if(data.attached_list[a].status_other!=null){
+												var attached_status_back_color=data.attached_list[a].status_other.other_back_color;//要截取@到.之间的内容
+												var str2=attached_status_back_color.substring(attached_status_back_color.indexOf("/")+1,attached_status_back_color.indexOf(")"));
+												attached_status_back_color=attached_status_back_color.replace(str2,"100%");
+												var status_text_color="#"+data.attached_list[a].status_other.other_color
+												var status_text_display=data.attached_list[a].status_other.other_name
+											}else{
+												var status_back_color="rgb(49 51 48 / 35%)"
+												var status_text_color="#0d0d0dd1"
+												var status_text_display="未匹配"
+											}
+
+											if(data.attached_list[a].attached_start_time==null || data.attached_list[a].attached_start_time=="" || data.attached_list[a].attached_start_time==undefined){
+												var attached_start_time=""
+											}else{
+												var attached_start_time=new Date(data.attached_list[a].attached_start_time);
+												attached_start_time=attached_start_time.getFullYear()+'-'+(attached_start_time.getMonth()+1)+'-'+attached_start_time.getDate();
+											}
+
+											if(data.attached_list[a].attached_end_time==null || data.attached_list[a].attached_end_time=="" || data.attached_list[a].attached_end_time==undefined){
+												var attached_end_time=""
+											}else{
+												var attached_end_time=new Date(data.attached_list[a].attached_end_time);
+												attached_end_time=attached_end_time.getFullYear()+'-'+(attached_end_time.getMonth()+1)+'-'+attached_end_time.getDate();
+											}
+
+											if(data.attached_list[a].attached_expected_completion_date==null || data.attached_list[a].attached_expected_completion_date=="" || data.attached_list[a].attached_expected_completion_date==undefined){
+												var attached_expected_completion_date=""
+											}else{
+												var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+												attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'-'+(attached_expected_completion_date.getMonth()+1)+'-'+attached_expected_completion_date.getDate();
+											}
+
+											if(data.attached_list[a].attached_actual_finishing_date==null || data.attached_list[a].attached_actual_finishing_date=="" || data.attached_list[a].attached_actual_finishing_date==undefined){
+												var attached_actual_finishing_date=""
+											}else{
+												var attached_actual_finishing_date=new Date(data.attached_list[a].attached_actual_finishing_date);
+												attached_actual_finishing_date=attached_actual_finishing_date.getFullYear()+'-'+(attached_actual_finishing_date.getMonth()+1)+'-'+attached_actual_finishing_date.getDate();
+											}
+
+											if(data.attached_list[a].attached_bill_time==null || data.attached_list[a].attached_bill_time=="" || data.attached_list[a].attached_bill_time==undefined){
+												var attached_bill_time=""
+											}else{
+												var attached_bill_time=new Date(data.attached_list[a].attached_bill_time);
+												attached_bill_time=attached_bill_time.getFullYear()+'-'+(attached_bill_time.getMonth()+1)+'-'+attached_bill_time.getDate();
+											}
+
+											if(data.attached_list[a].attached_moon_fee==null||data.attached_list[a].attached_moon_fee==""){
+												data.attached_list[a].attached_moon_fee=""
+											}
+											if(data.attached_list[a].attached_time_fee==null||data.attached_list[a].attached_time_fee==""){
+												data.attached_list[a].attached_time_fee=""
+											}
+											Attached_html_list='<div class="accordion" id="accordionExample'+a+'">'
+													+'<div class="card">'
+													+'<div class="card-header row" id="headingOne">'
+													+'<h2 class="mb-0 col-md-8">'
+													+' <button class="btn btn-link btn-block text-left" id="atta_btn'+a+'" type="button" data-toggle="collapse" data-target="#collapse'+a+'" aria-controls="collapse'+a+'">'
+													+data.attached_list[a].attached_project_name+'#<span class="badge badge-primary attached_title_span'+a+'" style="color:#fff;background-color:'+attached_status_back_color+';border-radius: 12px;font-size:14px;"></span>'
+													+' </button>'
+													+'</h2>'
+													+'<button type="button" class="btn btn-outline-danger  del_attached_project_btn'+a+' col-md-4" attachedid="'+data.attached_list[a].attached_id+'">删除</button>'
+													+'</div>'
+													+'</div>'
+													+'</div>'
+													+'<div id="collapse'+a+'" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample'+a+'">'
+													+'<div class="card-body">'
+													+'<div class="row">'
+													+'<div class="col-md-6 mb-3">'
+													+'<label for="attached_project_name'+a+'">附属项目名称</label>'
+													+'<input type="text" class="form-control" id="attached_project_name'+a+'" placeholder="" value="'+data.attached_list[a].attached_project_name+'" required="">'
+													+'</div>'
+													+'<div class="col-md-6 mb-3">'
+													+'<label for="attached_services_num'+a+'">服务编号</label>'
+													+'<input type="text" class="form-control" id="attached_services_num'+a+'" placeholder="" value="'+data.attached_list[a].attached_services_num+'" required="">'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+'<hr/>'
+													+'</div>'
+													+'<div class="col-md-2 mb-3">'
+													+'<label for="attached_start_time'+a+'">启动时间</label>'
+													+'<input type="text" class="form-control attached_time_list_2" id="attached_start_time'+a+'" placeholder="" value="'+attached_start_time+'" required="">'
+													+'</div>'
+													+'<div class="col-md-2 mb-3">'
+													+'<label for="attached_end_time'+a+'">终止日期</label>'
+													+'<input type="text" class="form-control attached_time_list_2" id="attached_end_time'+a+'" placeholder="" value="'+attached_end_time+'" required="">'
+													+'</div>'
+													+'<div class="col-md-2 mb-3">'
+													+'<label for="attached_bill_time'+a+'">计费时间</label>'
+													+'<input type="text" class="form-control attached_time_list_2" id="attached_bill_time'+a+'" placeholder="" value="'+attached_bill_time+'" required="">'
+													+'</div>'
+													+'<div class="col-md-2 mb-3">'
+													+'<label for="attached_expected_completion_date'+a+'">预计完成时间</label>'
+													+'<input type="text" class="form-control attached_time_list_2" id="attached_expected_completion_date'+a+'" placeholder="" value="'+attached_expected_completion_date+'" required="">'
+													+' </div>'
+													+'<div class="col-md-2 mb-3">'
+													+'<label for="attached_actual_finishing_date'+a+'">实际完成时间</label>'
+													+'<input type="text" class="form-control attached_time_list_2" id="attached_actual_finishing_date'+a+'" placeholder="" value="'+attached_actual_finishing_date+'" required="">'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+' <hr/>'
+													+'</div>'
+													+'<div class="col-md-3 mb-3">'
+													+'<label for="attached_status'+a+'">项目状态</label>'
+													+'<select  class="attached_status'+a+'" style="border-color: #ddd;text-align: center;margin: auto;float:right;margin-top:8px;width:100%;height: 30px;">'
+													+Attached_html_status
+													+' </select>'
+													+'</div>'
+													+'<div class="col-md-3 mb-3">'
+													+'<label for="attached_currency'+a+'">币种</label>'
+													+'<select class="attached_currency" id="attached_currency'+a+'">'+Attached_html_currency+'</select>'
+													+'</div>'
+													+'<div class="col-md-3 mb-3">'
+													+'<label for="attached_time_fee'+a+'">一次性费用</label>'
+													+'<input type="text" class="form-control" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" id="attached_time_fee'+a+'" placeholder="" value="'+data.attached_list[a].attached_time_fee+'" required="">'
+													+'</div>'
+													+'<div class="col-md-3 mb-3">'
+													+'<label for="attached_moon_fee'+a+'">月费</label>'
+													+'<input type="text" class="form-control" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" id="attached_moon_fee'+a+'" placeholder="" value="'+data.attached_list[a].attached_moon_fee+'" required="">'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+'<hr/>'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+'<label for="attached_address'+a+'">A端地址</label>'
+													+'<input type="text" class="form-control" id="attached_address'+a+'" placeholder="" value="'+data.attached_list[a].attached_address+'" required="">'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+'<label for="attached_b_address'+a+'">B端地址</label>'
+													+'<input type="text" class="form-control" id="attached_b_address'+a+'" placeholder="" value="'+data.attached_list[a].attached_b_address+'" required="">'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+' <label for="attached_remark'+a+'">备注</label>'
+													+'<textarea class="form-control" id="attached_remark'+a+'" cols="10" rows="10">'+data.attached_list[a].attached_remark+'</textarea>'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+' <hr/>'
+													+'</div>'
+													+'<div class="col-md-12 mb-12">'
+													+' <a class="btn btn-outline-primary save_att_project'+a+'" style="float: right;" tag="'+a+'" atta_tag='+data.attached_list[a].attached_id+'>保存附属项目</a>'
+													+'</div>'
+													+'</div>'
+													+' </div>'
+													+' </div>';
+											$('.Attached_list').append(Attached_html_list);
+											$('.attached_status'+a).val(data.attached_list[a].attached_status);
+											$('.attached_title_span'+a).text($('#project_status [value='+data.attached_list[a].attached_status+']').text())
+
+											$('#attached_currency'+a).val(data.attached_list[a].attached_currency);
+											$('.del_attached_project_btn'+a).click(function(){
+												$('.commonModal_content').width("initial");
+												$('#commonModal').modal("show");
+												$('.commonModal_dialog').attr("style","background: #fff;width: 30%;margin-top: 8%;");
+												$('.commonModal_content').attr("style","width: initial;");
+												$('.commonModal_body').attr("style","font-size: 18px;font-weight: bold;border:0;");
+												$('.commonModal_footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;border:0;padding: 0;");
+												$('#del_att_project').attr('attachedid',$(this).attr('attachedid'));
+											});
+											//修改附属项目
+											$('.save_att_project'+a).click(function(){
+												$('.saveinfo_attached_project_dialog').width("36%");
+												$('.saveinfo_attached_project_content').height("auto");
+												$('.saveinfo_attached_project_body').height("100%");
+												var attachedid=$(this).attr('atta_tag');
+												var tag=$(this).attr('tag');
+												$.ajax({
+													type:'post',
+													url:'../attached_project_controller/select_attached_forattaid',
+													dataType:'json',
+													data:{'attachedid':attachedid},
+													success:function(data){
+														if(data.msg!="success"){
+															$('.toast-body').text('账户权限受限制');
+															$('#liveToast').toast('show');
+															setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+														}else{
+															$('#info_modal2').empty();
+															var fields={
+																"fields_info": {
+																	0:{'field':'attached_address','field_name':'附属项目A端地址'},
+																	1:{'field':'attached_project_name','field_name':'附属项目名称'},
+																	2:{'field':'attached_status','field_name':'附属项目状态'},
+																	3:{'field':'attached_bill_time','field_name':'附属项目计费时间'},
+																	4:{'field':'attached_end_time','field_name':'附属项目终止日期'},
+																	5:{'field':'attached_start_time','field_name':'附属项目启动时间'},
+																	6:{'field':'attached_expected_completion_date','field_name':'附属项目预计完成时间'},
+																	7:{'field':'attached_actual_finishing_date','field_name':'附属项目实际完成时间'},
+																	8:{'field':'attached_time_fee','field_name':'附属项目一次性费用'},
+																	9:{'field':'attached_moon_fee','field_name':'附属项目月费'},
+																	10:{'field':'attached_currency','field_name':'附属项目币种'},
+																	11:{'field':'attached_remark','field_name':'附属项目备注'},
+																	12:{'field':'attached_b_address','field_name':'附属项目B端地址'},
+																	13:{'field':'attached_services_num','field_name':'附属项目服务编号'}
+																},
+																"length":14
+															};
+															var atta_json_one=[];
+															var fields_count=0;
+															for(var i=0;i<fields.length;i++){
+																if(fields["fields_info"][i]["field"]=="attached_bill_time" || fields["fields_info"][i]["field"]=="attached_end_time"|| fields["fields_info"][i]["field"]=="attached_start_time"|| fields["fields_info"][i]["field"]=="attached_expected_completion_date"|| fields["fields_info"][i]["field"]=="attached_actual_finishing_date"){
+																	if(data.attached_one[fields["fields_info"][i]["field"]]!="" && data.attached_one[fields["fields_info"][i]["field"]]!=null){
+																		var time=new Date(data.attached_one[fields["fields_info"][i]["field"]]);
+																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																		OriginalValue=time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
+																	}else{
+																		var OriginalValue=""
+																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																	}
+																}else if(fields["fields_info"][i]["field"]=="attached_currency"){
+																	var OriginalValue=$('#currency [value='+data.attached_one[fields["fields_info"][i]["field"]]+']').text();
+																	var ChangeValue=$('#currency [value='+$('#'+fields["fields_info"][i]["field"]+tag).val()+']').text();
+																}else if(fields["fields_info"][i]["field"]=="attached_status"){
+																	var OriginalValue=$('#project_status [value='+data.attached_one[fields["fields_info"][i]["field"]]+']').text();
+																	var ChangeValue=$('#project_status [value='+$('.'+fields["fields_info"][i]["field"]+tag).val()+']').text();
+																}else{
+																	if(data.attached_one[fields["fields_info"][i]["field"]]!="" && data.attached_one[fields["fields_info"][i]["field"]]!="null"){
+																		var OriginalValue=data.attached_one[fields["fields_info"][i]["field"]];
+																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																	}else{
+																		var OriginalValue="";
+																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																	}
+																}
+																var html_info=""
+																if(OriginalValue!=ChangeValue){
+																	fields_count++;
+																	var field_name_ajax=fields["fields_info"][i]["field"] ;
+
+																	html_info='<div class="row" style="width: 100%;">'
+																			+'<div class="col-md-12 mb-12">'
+																			+'<label style="font-size: 18px;">'+fields["fields_info"][i]["field_name"]+'</label>'
+																			+'<p><span style="font-size: 18px;font-weight: 800;">'+ OriginalValue+'</span>'
+																			+'<span style="margin: 12px;">></span>'
+																			+'<span style="font-size: 18px;color: #dc5360;font-weight: 800;">'+ChangeValue+'</span></p>'
+																			+'</div>'
+																			+'</div>'
+																	$('#info_modal2').append(html_info);
+																	if(fields["fields_info"][i]["field"] =="attached_status"){
+																		ChangeValue=$('.'+fields["fields_info"][i]["field"]+tag).val();
+																	}else if(fields["fields_info"][i]["field"] =="attached_currency"){
+																		ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																	}
+																	var field_arry={
+																		"key":field_name_ajax,
+																		"value":ChangeValue
+																	}
+																	atta_json_one.push(field_arry);
+																}
+															}
+															$('#saveinfo_attached_project').modal("show");
+															if(fields_count>0){
+																$('.save_info2').attr("disabled",false);
+																//点击更新基本信息
+																$('.save_info2').click(function(){
+																	var ajax_str={'attachedid':attachedid,'change_value_ajax':atta_json_one,'fields_count':fields_count}
+																	if(fields_count!=0){
+																		$.ajax({
+																			type:'post',
+																			url:'../attached_project_controller/update_attached_project_one',
+																			dataType:'json',
+																			data:{"ajax_str":JSON.stringify(ajax_str)},
+																			success:function(data){
+																				if(data.msg=="RestrictedPermission"){
+																					$('#saveinfo_attached_project').modal("hide");
+																					$('.toast-body').text('账户权限受限制');
+																					$('#liveToast').toast('show');
+																					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+																				}else if(data.msg=="ThereIsNoUpdateOrRestrictedPermission"){
+																					$('#saveinfo_attached_project').modal("hide");
+																					$('.toast-body').text('账户权限受限制或无更新');
+																					$('#liveToast').toast('show');
+																					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+																				}else if(data.msg=="service_num_repetition"){
+																					$('#saveinfo_attached_project').modal("hide");
+																					$('.toast-body').text('服务编号重复，请重新填写');
+																					$('#liveToast').toast('show');
+																					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+																				}else{
+																					$('#atta_btn'+tag).html($('#attached_project_name'+tag).val()+"#");
+																					if($('.attached_status'+tag).val()==1){
+																						var project_status="待启动"
+																						var back_color="#CCCCCC"
+																					}else if($('.attached_status'+tag).val()==2){
+																						var  project_status="进行中"
+																						var back_color="#1bd5e8d6"
+																					}else if($('.attached_status'+tag).val()==3){
+																						var  project_status="已部署"
+																						var back_color="#3366CC"
+																					}else if($('.attached_status'+tag).val()==4){
+																						var project_status="已完成"
+																						var back_color="#33CC33"
+																					}else if($('.attached_status'+tag).val()==5){
+																						var project_status="已取消"
+																						var back_color="#FF0000"
+																					}else if($('.attached_status'+tag).val()==6){
+																						var project_status="未完成"
+																						var back_color="#FF3300"
+																					}else{
+																						var project_status="未匹配"
+																						var back_color="#0d0d0dd1"
+																					}
+																					$('#atta_btn'+tag).append('<span class="badge badge-primary attached_title_span'+tag+'" style="color:#fff;background-color:'+back_color+';border-radius: 12px;font-size:14px;">'+$('.attached_status'+tag+' [value='+$('.attached_status'+tag).val()+']').text()+'</span>');
+
+																					$('#saveinfo_attached_project').modal("hide");
+																					$('.toast-body').text('更新完成');
+																					$('#liveToast').toast('show');
+																					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+																					fields_count=0;
+																					atta_json_one=[];
+																				}
+																			}
+																		});
+																	}else{
+																		$('#saveInfo').modal("hide");
+																		$('.toast-body').text('无更新');
+																		$('#liveToast').toast('show');
+																		setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+																	}
+																});
+															}else{
+																$('.save_info2').attr("disabled",true);
+															}
+														}
+													}
+												});
+											});
+											$('.attached_time_list_2').datetimepicker({
+												language: 'zh-CN',
+												format: 'yyyy-mm-dd',
+												minView: "month",//设置只显示到月份
+												autoclose: true,//选中自动关闭
+												todayBtn: true,//显示今日按钮
+												locale: moment.locale('zh-CN')
+											});
+										}
+									}
+								}
+							});
+					        }
+					    });
+			}
+			 $('.project_sailing_notice_select_file').click(function(){
+				 var old_files_address=$('#openasingle_save').attr("tag");
+				 $('#project_sailing_notice').click();
+				 $('.project_sailing_notice_select_file').attr("old_file",$('#project_other').val());
+				 var v="";
+				 $('#project_sailing_notice').change(function(){
+					 var new_file=$('#project_sailing_notice').val();
+					 var old_file=$('.project_sailing_notice_select_file').attr("old_file");
+					 $('.project_sailing_notice_select_file').attr("old_file",$('#project_sailing_notice').val());
+					 if(old_file!=new_file&&new_file!=null&&new_file!=undefined&&new_file!=""){
+						   $('.project_sailing_notice_select_file').empty();
+					       $('.project_sailing_notice_select_file').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+					       $(".project_sailing_notice_select_file").attr('disabled',true);
+					       v="notice";
+						   save_Attachment(v,old_files_address);
+					 }
+				 });
+			 });
+			 $('.project_contract_pdf_select_file').click(function(){
+				 var old_files_address=$('#contract_save').attr("tag");
+				 $('#project_contract_pdf').click();
+				 $('.project_contract_pdf_select_file').attr("old_file",$('#project_other').val());
+				 $('#project_contract_pdf').change(function(){
+					 var new_file=$('#project_contract_pdf').val();
+					 var old_file=$('.project_contract_pdf_select_file').attr("old_file");
+					 $('.project_contract_pdf_select_file').attr("old_file",$('#project_contract_pdf').val());
+					 if(old_file!=new_file&&new_file!=null&&new_file!=undefined&&new_file!=""){
+						   $('.project_contract_pdf_select_file').empty();
+					       $('.project_contract_pdf_select_file').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+					       $(".project_contract_pdf_select_file").attr('disabled',true);
+					       v="contract";
+						   save_Attachment(v,old_files_address);
+					 }
+				 });
+			 });
+			 $('.project_gplot_select_file').click(function(){
+				 var old_files_address=$('#gplot_save').attr("tag");
+				 $('#project_gplot').click();
+				 $('.project_gplot_select_file').attr("old_file",$('#project_gplot').val());
+				 $('#project_gplot').change(function(){
+					 var new_file=$('#project_gplot').val();
+					 var old_file=$('.project_gplot_select_file').attr("old_file");
+					 $('.project_gplot_select_file').attr("old_file",$('#project_gplot').val());
+					 if(old_file!=new_file&&new_file!=null&&new_file!=undefined&&new_file!=""){
+						   $('.project_gplot_select_file').empty();
+					       $('.project_gplot_select_file').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+					       $(".project_gplot_select_file").attr('disabled',true);
+					       v="gplot";
+						   save_Attachment(v,old_files_address);
+					 }
+				 });
+			 });
+			 $('.other_select_file').click(function(){
+				 $('#project_other').click();
+				 $('.other_select_file').attr("old_file",$('#project_other').val());
+				 $('#project_other').change(function(){
+					 var new_file=$('#project_other').val();
+					 var old_file=$('.other_select_file').attr("old_file");
+					 $('.other_select_file').attr("old_file",$('#project_other').val());
+					 if(old_file!=new_file&&new_file!=null&&new_file!=undefined&&new_file!=""){
+						   $('.other_select_file').empty();
+					       $('.other_select_file').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+					       $(".other_select_file").attr('disabled',true);
+					       v="other";
+						   save_Attachment(v);
+					 }
+				 });
+			 });
+			 
+			//上传开通单，合同，拓扑等附件
+			function save_Attachment(v){
+			     var paras = location.search;            //search获得地址中的参数，内容为'?itemId=12'
+				 var result = paras.match(/[^\?&]*=[^&]*/g);     //match是字符串中符合的字段一个一个取出来，result中的值为['login=xx','table=admin']
+				 paras = {};                    //让paras变成没有内容的json对象
+				 for(i in result){
+				     var temp = result[i].split('=');    //split()将一个字符串分解成一个数组,两次遍历result中的值分别为['itemId','xx']
+				     paras[temp[0]] = temp[1];
+				 }
+			   var pid = paras.pid;
+			   if(v=="contract"){
+				   var contract = $('#project_contract_pdf')[0].files[0];
+		       }else if(v=="notice"){
+		    	   var notice = $('#project_sailing_notice')[0].files[0];
+		       }else if(v=="gplot"){
+		    	   var gplot = $('#project_gplot')[0].files[0];
+		       }else if(v=="other"){
+		    	   var other = $('#project_other')[0].files[0];
+		       }
+		       var formData = new FormData();
+		        
+		       $('.save_Attachment').empty();
+		       $('.save_Attachment').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+		       $(".save_Attachment").attr('disabled',true);
+	    	   
+		       formData.append('contract', contract);
+		       formData.append('notice', notice);
+		       formData.append('gplot', gplot);
+		       formData.append('other', other);
+		       formData.append('pid', pid);
+		       $.ajax({
+		           url: "../project_controller/upload_file_pdf",
+		           type: "post",
+		           data: formData,
+		           cache: false,
+		           contentType: false,
+		           processData: false,
+		           success: function(data) {
+					   if(v=="contract"){
+						   var msg=data.msg_contract
+						   var msg_select=data.msg_contract_select
+					   }else if(v=="notice"){
+						   var msg=data.msg_sailing
+						   var msg_select=data.msg_sailing_select
+					   }else if(v=="gplot"){
+						   var msg=data.msg_gplot
+						   var msg_select=data.msg_gplot_select
+					   }else if(v=="other"){
+						   var msg=data.msg_other
+						   var msg_select=data.msg_other_select
+					   }
+					   if(msg_select=="RestrictedPermission"){
+						   $('.toast-body').text('账户权限受限制');
+						   $('#liveToast').toast('show');
+						   setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+					   }else{
+						   if(msg=="RestrictedPermission"){
+							   $('.toast-body').text('账户权限受限制');
+							   $('#liveToast').toast('show');
+							   setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+						   }else{
+							   $.ajax({
+								   type:'post',
+								   url:'../project_controller/select_project_pid_one',
+								   dataType:'json',
+								   data:{'pid':pid},
+								   success:function(data){
+									   if(data.project_one.length!=0){
+										   if(data.project_one.project_contract_pdf==null || data.project_one.project_contract_pdf==""){
+											   var project_contract_pdf="";
+										   }else{
+											   var project_contract_pdf= "/project_contract_pdf/"+data.project_one.project_contract_pdf
+										   }
+										   if(data.project_one.project_sailing_notice==null|| data.project_one.project_sailing_notice==""){
+											   var project_sailing_notice="";
+										   }else{
+											   var project_sailing_notice= "/project_sailing_notice/"+data.project_one.project_sailing_notice
+										   }
+										   if(data.project_one.project_gplot==null|| data.project_one.project_gplot==""){
+											   var project_gplot="";
+										   }else{
+											   var project_gplot= "/project_gplot/"+data.project_one.project_gplot
+										   }
+										   if(data.project_one.project_other==null|| data.project_one.project_other==""){
+											   var project_other="";
+										   }else{
+											   var project_other= "/project_other/"+data.project_one.project_other
+										   }
+										   setTimeout(function(){
+													   if(v=="contract"){
+														   $('#contract_save').attr("src",project_contract_pdf);
+														   $('#contract_save').attr("tag",project_contract_pdf);
+														   $('.project_contract_pdf_select_file').empty();
+														   $('.project_contract_pdf_select_file').append('选择文件');
+														   $(".project_contract_pdf_select_file").attr('disabled',false);
+													   }else if(v=="notice"){
+														   $('#openasingle_save').attr("src",project_sailing_notice);
+														   $('#openasingle_save').attr("tag",project_sailing_notice);
+														   $('.project_sailing_notice_select_file').empty();
+														   $('.project_sailing_notice_select_file').append('选择文件');
+														   $(".project_sailing_notice_select_file").attr('disabled',false);
+													   }else if(v=="gplot"){
+														   $('#gplot_save').attr("src",project_gplot);
+														   $('#gplot_save').attr("tag",project_gplot);
+														   $('.project_gplot_select_file').empty();
+														   $('.project_gplot_select_file').append('选择文件');
+														   $(".project_gplot_select_file").attr('disabled',false);
+													   }else if(v=="other"){
+														   var project_other_list=(data.project_one.project_other).split("|");
+														   var project_other= "/project_other/"+data.project_one.project_other
+														   $('.project_other_list_html').empty();
+														   var html_project_other="";
+														   //系统当前时间start
+														   function getNow(s) {
+															   return s < 10 ? '0' + s : s;
+														   };
+														   var myDate = new Date();
+														   var year = myDate.getFullYear();        //获取当前年
+														   var month = myDate.getMonth() + 1;   	//获取当前月
+														   var date = myDate.getDate();            //获取当前日
+														   var h = myDate.getHours();              //获取当前小时数(0-23)
+														   var m = myDate.getMinutes();         	//获取当前分钟数(0-59)
+														   var s = myDate.getSeconds();
+														   var now = 	year + '-' +
+																   getNow(month) + "-" +
+																   getNow(date) + " " +
+																   getNow(h) + ':' +
+																   getNow(m) + ":" +
+																   getNow(s);
+														   for(var po=0;po<project_other_list.length;po++){
+															   html_project_other+='<div class="d-flex align-items-center mb-3" >'
+																	   +'<div class="ms-3 flex-shrink-1 flex-grow-1 hover-actions-trigger" other-p="'+po+'" tag="/project_other/'+project_other_list[po]+'">'
+																	   +'<h6 class="mb-1"><a class="text-900 fw-semi-bold windows_location_html_file">'+project_other_list[po]+'</a></h6>'
+																	   +'<div class="fs--1">'
+																	   +'<span style="font-size: 12px;padding-right: 12px;color: #00000078;font-weight: 800;">'+year+"/"+month+"/"+date+'</span>'
+																	   +'<span style="font-size: 12px;color: #00000078;font-weight: 800;">'+h+":"+m+":"+s+'</span>'
+
+																	   +'</div>'
+																	   +'</div>'
+																	   +'<div class="btn_dowload_delete" other-p-btn="'+po+'">'
+																	   +'<a role="button" tabindex="0" href="/project_other/'+project_other_list[po]+'" download="/project_other/'+project_other_list[po]+'" class="border-300 me-1 text-600 btn btn-light btn-sm"><i class="fa fa-cloud-download"></i></a>'
+																	   +'<button type="button" class="border-300 text-600 btn btn-light btn-sm del_file_other" data-tag-other="'+po+'" tag_add="'+project_other_list[po]+'"><i class="fa fa-trash-o fa-lg"></i></button>'
+																	   +'</div>'
+																	   +'</div>'
+																	   +'<hr class="bg-200"  other-p-hr="'+po+'">'
+														   }
+														   $('.project_other_list_html').append(html_project_other);
+														   $('.del_file_other').click(function(){
+															   var tag_add=$(this).attr('tag_add');
+															   $('[other-p='+$(this).attr('data-tag-other')+']').remove();
+															   $('[other-p-hr='+$(this).attr('data-tag-other')+']').remove();
+															   $('[other-p-btn='+$(this).attr('data-tag-other')+']').remove();
+															   $.ajax({
+																   type:'post',
+																   url:'../project_controller/del_file',
+																   dataType:'json',
+																   data:{
+																	   'pid':pid,
+																	   'tag_add':tag_add
+																   },
+																   success:function(data){
+																	   $('.toast-body').text('删除成功');
+																	   $('#liveToast').toast('show');
+																	   setTimeout(
+																			   function()
+																			   {
+																				   $('#liveToast').toast('hide')
+																			   }, 3000);
+																   }
+															   });
+														   });
+														   $('.hover-actions-trigger').click(function(){
+															   var html_address=$(this).attr("tag");
+															   window.open(html_address);
+														   });
+
+
+														   $('.other_select_file').empty();
+														   $('.other_select_file').append('选择文件');
+														   $(".other_select_file").attr('disabled',false);
+													   }
+												   }, 5000);
+
+									   }
+								   }
+							   });
+						   }
+					   }
+	          		 }
+	      		 });
+			}
+		  //时间控件
+	 	 $('.project_date_list').datetimepicker({
+	    	language: 'zh-CN',
+	        format: 'yyyy-mm-dd',
+	        minView: "month",//设置只显示到月份
+	        autoclose: true,//选中自动关闭
+	        todayBtn: true,//显示今日按钮
+	        locale: moment.locale('zh-CN')
+	    });
+	    //生成PDF  首先生成html传给后台
+	    $('.htmltopdf').click(function(){
+	    	$('.htmltopdf').empty();
+	    	$('.htmltopdf').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+	    	$(".htmltopdf").attr('disabled',true);
+	       	 $.ajax({
+	    		 type:'post',
+	    		 url:'../project_controller/select_project_pid_one',
+	    		 dataType:'json',
+	    		 data:{'pid':pid},
+	    		 success:function(data){
+	    			 if(data.project_one.length!=0){
+	    		         var today_time=new Date();
+	    		         var html_table=""
+	    		         var a_z=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	    		         var Attached_project_len=$('.Attached_list .accordion').length;
+	    		         var Attached_project_list_html="";
+	    		         for(var t=0;t<Attached_project_len;t++){
+	    		        	 Attached_project_list_html+='<tr>'
+															+'<td  rowspan="3" class="title">'+a_z[i]+' end</td>'
+															+'<td  rowspan="1" class="title">接入地址</td>'
+															+'<td  colspan="10" >'+$('#attached_address'+t).val()+'</td>'
+														+'</tr>'
+														+'<tr>'
+															+'<td class="title">对接模块</td>'
+															+'<td   colspan="10" ></td>'
+														+'</tr>'
+														+'<tr>'
+															+'<td class="title">端口模式</td>'
+															+'<td  colspan="10" ></td>'
+														+'</tr>'
+	    		         }
+	    		         html_table='<table >'
+	    		    		+'<tr>'
+	    		    		+'	<td colspan="1"  rowspan="2" class="title">服务细节</td>'
+	    		    			+'<td colspan="5"  rowspan="2">'+data.project_one.project_name+'</td>'
+	    		    			+'<td colspan="1"  class="title">订单号码</td>'
+	    		    			+'<td  colspan="5" >'+data.project_one.contract_num+'</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td colspan="1"  class="title">发送日期</td>'
+	    		    			+'<td  colspan="5">'+today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate()+'</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td colspan="1"  class="title">服务编号</td>'
+	    		    			+'<td  colspan="11">'+data.project_one.services_num+'</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td colspan="1"  class="title">技术联系人</td>'
+	    		    			+'<td  colspan="1">NOC</td>'
+	    		    			+'<td colspan="1"  class="title">联系方式</td>'
+	    		    			+'<td  colspan="3">noc@dcconnect.cn</td>'
+	    		    			+'<td colspan="1"  class="title">服务开通日</td>'
+	    		    			+'<td  colspan="5">'+today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate()+'</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td colspan="1"  class="title">业务联系人</td>'
+	    		    			+'<td   colspan="1" >'+$('.select_project_market [value='+$('.select_project_market').val()+']').text()+'</td>'
+	    		    			+'<td colspan="1"  class="title">联系方式</td>'
+	    		    			+'<td   colspan="3" >'+$('.select_project_market [value='+$('.select_project_market').val()+']').attr('email')+'</td>'
+	    		    			+'<td colspan="1"  class="title">开始计费日期</td>'
+	    		    			+'<td   colspan="5" >'+today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate()+'</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="12"   style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;;background-color: #418ddc3b;">AC 接入端信息</td>'
+	    		    		+'</tr>'
+	    		    		+Attached_project_list_html
+	    		    		+'<tr>'
+	    		    		+' <td  rowspan="1" class="title">服务备注</td>'
+	    		    		+' <td  colspan="11">'+$('#project_remark').val()+'</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="12"   style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;background-color: #418ddc3b;">用户申明 Customer Declaration</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="12" >'
+	    		    					+'1.请贵司代表人或授权人员在此表格上签名和加盖公司印章，并在三个工作日内将此签名及加盖公司印章的扫描件以邮件的方式发送至 {orderdesk@dcconnect.cn}；并请您将此盖章签字的纸质原件尽快邮寄至：深圳市南山区科苑路 16 号东方科技大厦 1211，郑西芸，电话：+86 13600418953。<br>' 
+	    		    					+'2. 在我司发出此表格后如您没有在三个工作日内进行回复，我司将视为贵司默认同意此表格“开通计费时间”一栏的日期。 <br> '
+	    		    					+'3. 对于服务开始日期后的故障报告，请联系我们的24 x 7 网络运营中心（NOC）。+ 86 400-006-8890（仅限中国大陆地区）或电邮至 noc@dcconnect.cn。 <br> '
+	    		    					+'4.以上服务如在服务期间需提前终止或届满时续签，请提前 45 天以书面形式提出申请。<br> '
+	    		    			+'</td>'
+	    		    		+'</tr>'
+	    		    		+'</table>'
+	    		    		+'<table>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="6" >'+$('#customer [value='+data.project_one.customer+']').html().trim()+'签名及公司印章</td>'
+	    		    			+'<td  colspan="6" >'+$('#project_contract_party [value='+data.project_one.project_contract_party+']').html().trim()+'销售员签名和公司印章</td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="6"  class="seal"></td>'
+	    		    			+'<td  colspan="6"  class="seal"></td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="1" >名称：</td>'
+	    		    			+'<td  colspan="5" ></td>'
+	    		    			+'<td  colspan="1" >名称：</td>'
+	    		    			+'<td  colspan="5" ></td>'
+	    		    		+'</tr>'
+	    		    		+'<tr>'
+	    		    			+'<td  colspan="1" >职位：</td>'
+	    		    			+'<td  colspan="2" ></td>'
+	    		    			+'<td  colspan="1" >日期：</td>'
+	    		    			+'<td  colspan="2" ></td>'
+	    		    			+'<td  colspan="1" >职位：</td>'
+	    		    			+'<td  colspan="2" ></td>'
+	    		    			+'<td  colspan="1" >日期：</td>'
+	    		    			+'<td  colspan="2" ></td>'
+	    		    		+'</tr>'
+	    		    	+'</table>'
+	    		    	
+	    		    	var html="";
+	    			    html='<!DOCTYPE html>'
+	    			    	+'<html>'
+	    			    	+'<head>'
+	    			    	+'<meta charset="UTF-8">'
+	    			    	+'<title>HTML</title>'
+	    			    	+'<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/temporary_pdf/bootstrap.min.css">'
+	    			    	+'</head>'
+	    			    	+'<style>'
+	    			    		+'table{'
+	    			    		  +'  border-spacing: 0;/*把单元格间隙设置为0*/'
+	    			    		+'}'
+	    			    	    +'table,table tr td { '
+	    			    	      +'  border:1px solid #636366; '
+	    			    	   +' }'
+	    			    		+'body{'
+	    			    			+'font-family: "等线";'
+	    			    		+'}'
+	    			    		+'table{'
+	    			    			+'margin: 0 auto;'
+	    			    			+'margin-top: 28px;'
+	    			    			+'width:1000px;'
+	    			    		+'}'
+	    			    		+'tr td{'
+	    			    			+'width: 100px;'
+	    			    			+'height: 28px;'
+	    			    		+'}'
+	    			    		+'.title{'
+	    			    			+'font-size: 16px;'
+	    			    			+'font-weight: bold;'
+	    			    			+'text-align: center;'
+	    			    		+'}'
+	    			    		+'.seal{'
+	    			    			+'height:258px;'
+	    			    		+'}'
+	    			    		+'.row{'
+	    			    		+'margin: 0 auto;'
+	    			    		+'display: flex;'
+	    			    		+'	}'
+	    			    		+'h5{ line-height: 100%;text-align: center;}'
+	    			    		+'.col-md-3{flex:none;max-width: none;}'
+	    			    		+'.col-md-9{flex:none;max-width: none;width: 100%;}'
+	    			    	+'</style>'
+	    			    	+'<body>'
+	    			    	+'<div class="container row">'
+			    			    	+'<div class="col-md-3"><img src="/ProjectManagementSystem/temporary_pdf/ybhj_title.png"></img></div>'
+			    			    	+'<div  class="col-md-9"><h5>'+$('#project_contract_party [value='+data.project_one.project_contract_party+']').html().trim()+'</h5></div>'
+			    			   + '</div>'
+	    			    	+html_table
+	    			    	+'<'+'/body>'
+	    			    	+'<'+'/html>'
+	    			       	 $.ajax({
+	    			    		 type:'post',
+	    			    		 url:'../project_controller/html_to_pdf',
+	    			    		 dataType:'json',
+	    			    		 data:{'html_pdf':html},
+	    			    		 success:function(data){
+	    			    			if(data.msg=="success"){
+	    			    				$('#embed_openasingle').attr("src","/temporary_pdf/"+data.uuid+".pdf");
+	    			    				$('#embed_openasingle_primary').attr("src","/temporary_pdf/"+data.uuid+".pdf");
+	    			    				
+	    			    				$('.htmltopdf').empty();
+	    			    		    	$('.htmltopdf').append('生成');
+	    			    		    	$(".htmltopdf").attr('disabled',false);
+	    			    		    	
+	    			    		       $('.toast-body').empty();
+	    			 		    	   $('.toast-body').text('生成完成，尽快下载哦，附件只保留半小时');
+	    			 		    	   $('#liveToast').toast('show');
+	    			 		    	   setTimeout(
+	    			  		        		  function()
+	    			  		        		  {
+	    			  		        			 $('#liveToast').toast('hide')
+	    			  		        		  }, 5000);
+	    			    			}
+	    			    		 }
+	    			    	 });
+	    			    	
+	    			 }
+	    		 }
+	    	 });
+	    });
+	    
+	    //模态框内实时生成PDF
+	    $('.htmltopdf_two').click(function(){
+		var tr_ACend="";
+		var tag=$('.title_A_Z').attr('tag');
+	    	for(var i=0;i<tag;i++){
+	    		tr_ACend+='<tr>'
+									+'<td  rowspan="3" class="title">'+$('.address_tag'+i).val()+' end</td>'
+										+'<td  class="title">接入地址</td>'
+										+'<td  colspan="10">'+$('.address'+i).val()+'</td>'
+									+'</tr>'
+									+'<tr>'
+										+'<td class="title">对接模块</td>'
+										+'<td   colspan="10" >'+$('.module'+i).val()+'</td>'
+									+'</tr>'
+									+'<tr>'
+										+'<td class="title">端口模式</td>'
+										+'<td  colspan="10" >'+$('.module_type'+i).val()+'</td>'
+									+'</tr>'
+	    	}
+	    	
+	    	
+	    	$('.htmltopdf_two').empty();
+	    	$('.htmltopdf_two').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+	    	$(".htmltopdf_two").attr('disabled',true);
+	    	var today_time=new Date();
+	        var html_table_modal=""
+	        	html_table_modal='<table>'
+	    		+'<tr>'
+	    		+'	<td colspan="1"  rowspan="2" class="title">服务细节</td>'
+	    			+'<td colspan="5"  rowspan="2">'+$('.project_name_modal').val()+'</td>'
+	    			+'<td colspan="1"  class="title">订单号码</td>'
+	    			+'<td  colspan="5" >'+$('.project_contract_num_modal').val()+'</td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td colspan="1"  class="title">发送日期</td>'
+	    			+'<td  colspan="5">'+today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate()+'</td>'
+	    		+'</tr>'
+	    		+'<tr>'
+    				+'<td colspan="1"  class="title">服务编号</td>'
+    				+'<td  colspan="11">'+$('.project_service_num_modal').val()+'</td>'
+    			+'</tr>'
+	    		+'<tr>'
+	    			+'<td colspan="1"  class="title">技术联系人</td>'
+	    			+'<td  colspan="1">'+$('.technology').val()+'</td>'
+	    			+'<td colspan="1"  class="title">联系方式</td>'
+	    			+'<td  colspan="3">'+$('.technology_phone').val()+'</td>'
+	    			+'<td colspan="1"  class="title">服务开通日</td>'
+	    			+'<td  colspan="5">'+$('.Opening_time').val()+'</td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td colspan="1"  class="title">业务联系人</td>'
+	    			+'<td   colspan="1" >'+$('.business').val()+'</td>'
+	    			+'<td colspan="1"  class="title">联系方式</td>'
+	    			+'<td   colspan="3" > '+$('.business_phone').val()+'</td>'
+	    			+'<td colspan="1"  class="title">开始计费日期</td>'
+	    			+'<td   colspan="5" >'+$('.bill_time').val()+'</td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td  colspan="12"   style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;;background-color: #418ddc3b;">AC 接入端信息</td>'
+	    		+'</tr>'
+	    		+tr_ACend
+	    		+'<tr>'
+	    			+'<td  colspan="12"   style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;background-color: #418ddc3b;">用户申明 Customer Declaration</td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td  colspan="12" >'
+	    					+'1.请贵司代表人或授权人员在此表格上签名和加盖公司印章，并在三个工作日内将此签名及加盖公司印章的扫描件以邮件的方式发送至 {orderdesk@dcconnect.cn}；并请您将此盖章签字的纸质原件尽快邮寄至：深圳市南山区科苑路 16 号东方科技大厦 1211，郑西芸，电话：+86 13600418953。<br>' 
+	    					+'2. 在我司发出此表格后如您没有在三个工作日内进行回复，我司将视为贵司默认同意此表格“开通计费时间”一栏的日期。 <br> '
+	    					+'3. 对于服务开始日期后的故障报告，请联系我们的24 x 7 网络运营中心（NOC）。+ 86 400-006-8890（仅限中国大陆地区）或电邮至 noc@dcconnect.cn。 <br> '
+	    					+'4.以上服务如在服务期间需提前终止或届满时续签，请提前 45 天以书面形式提出申请。<br> '
+	    			+'</td>'
+	    		+'</tr>'
+	    		+'</table>'
+	    		+'<table>'
+	    		+'<tr>'
+	    			+'<td  colspan="6" >'+$('.customer_modal').val()+'签名及公司印章</td>'
+	    			+'<td  colspan="6" >'+$('.this_company').val()+'销售员签名和公司印章</td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td  colspan="6"  class="seal"></td>'
+	    			+'<td  colspan="6"  class="seal"></td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td  colspan="1" >名称：</td>'
+	    			+'<td  colspan="5" ></td>'
+	    			+'<td  colspan="1" >名称：</td>'
+	    			+'<td  colspan="5" ></td>'
+	    		+'</tr>'
+	    		+'<tr>'
+	    			+'<td  colspan="1" >职位：</td>'
+	    			+'<td  colspan="2" ></td>'
+	    			+'<td  colspan="1" >日期：</td>'
+	    			+'<td  colspan="2" ></td>'
+	    			+'<td  colspan="1" >职位：</td>'
+	    			+'<td  colspan="2" ></td>'
+	    			+'<td  colspan="1" >日期：</td>'
+	    			+'<td  colspan="2" ></td>'
+	    		+'</tr>'
+	    	+'</table>'
+	    	
+	    	var html_modal="";
+	    	html_modal='<!DOCTYPE html>'
+		    	+'<html>'
+		    	+'<head>'
+		    	+'<meta charset="UTF-8">'
+		    	+'<title>HTML</title>'
+		    	+'<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/temporary_pdf/bootstrap.min.css">'
+		    	+'</head>'
+		    	+'<style>'
+		    		+'table{'
+		    		  +'  border-spacing: 0;/*把单元格间隙设置为0*/'
+		    		+'}'
+		    	    +'table,table tr td { '
+		    	      +'  border:1px solid #636366; '
+		    	   +' }'
+		    		+'body{'
+		    			+'font-family: "等线";'
+		    		+'}'
+		    		+'table{'
+		    			+'margin: 0 auto;'
+		    			+'margin-top: 28px;'
+		    			+'width:1000px;'
+		    		+'}'
+		    		+'tr td{'
+		    			+'width: 100px;'
+		    			+'height: 28px;'
+		    		+'}'
+		    		+'.title{'
+		    			+'font-size: 16px;'
+		    			+'font-weight: bold;'
+		    			+'text-align: center;'
+		    		+'}'
+		    		+'.seal{'
+		    			+'height:258px;'
+		    		+'}'
+		    		+'.row{'
+		    		+'margin: 0 auto;'
+		    		+'display: flex;'
+		    		+'	}'
+		    		+'h5{ line-height: 100%;text-align: center;}'
+		    		+'.col-md-3{flex:none;max-width: none;}'
+		    		+'.col-md-9{flex:none;max-width: none;width: 100%;}'
+		    	+'</style>'
+		    	+'<body>'
+		    	+'<div class="container row">'
+   			    	+'<div class="col-md-3"><img src="/ProjectManagementSystem/temporary_pdf/ybhj_title.png"></img></div>'
+   			    	+'<div  class="col-md-9"><h5>'+$('.this_company').val()+'业务开通单</h5></div>'
+   			   + '</div>'
+		    	+html_table_modal
+		    	+'<'+'/body>'
+		    	+'<'+'/html>'
+	       	 $.ajax({
+	    		 type:'post',
+	    		 url:'../project_controller/html_to_pdf',
+	    		 dataType:'json',
+	    		 data:{'html_pdf':html_modal},
+	    		 success:function(data){
+	    			if(data.msg=="success"){
+	    				$('#Automatic_Modal_openasingle').attr("src","/temporary_pdf/"+data.uuid+".pdf")
+	    				
+	    				$('.htmltopdf_two').empty();
+	    		    	$('.htmltopdf_two').append('生成');
+	    		    	$(".htmltopdf_two").attr('disabled',false);
+	    		    	
+	    		       $('.toast-body').empty();
+	 		    	   $('.toast-body').text('生成完成，尽快下载哦，附件只保留半小时');
+	 		    	   $('#liveToast').toast('show');
+	 		    	   setTimeout(
+	  		        		  function() 
+	  		        		  {
+	  		        			 $('#liveToast').toast('hide')
+	  		        		  }, 5000);
+	    			}
+	    		 }
+	    	 });
+	    });
+
+	    main_project_one();
+	    function main_project_one(){
+	    	//同时加载分类，状态，客户等集合
+			$.ajax({
+				type: "post",
+		        url: "../personnel_controller/select_personnel_list",
+		        dataType:'json',
+		        success: function(data) {
+		            $('#project_status').empty();
+		            $('#project_class').empty();
+		            $('#speed_unit').empty();
+		            $('#services_deadline').empty();
+		            $('#currency').empty();
+		            $('#project_contract_party').empty();
+		        	var html_status="";
+		        	var html_class="";
+		        	var html_speed="";
+		        	var html_service_deadline="";
+		        	var html_currency="";
+		        	var html_contract_party="";
+		        	for(var i=0;i<data.list_other.length;i++){
+		        		if(data.list_other[i].other_tag==1){
+			        		html_status+="<option status-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+		        		}else if(data.list_other[i].other_tag==2){
+			        		html_class+="<option class-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+		        		}else if(data.list_other[i].other_tag==3){
+		        			html_speed+="<option speed-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+		        		}else if(data.list_other[i].other_tag==4){
+		        			html_service_deadline+="<option service-deadline-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+		        		}else if(data.list_other[i].other_tag==5){
+		        			html_currency+="<option currency-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+		        		}else if(data.list_other[i].other_tag==6){
+		        			html_contract_party+="<option currency-tag="+data.list_other[i].other_tag+" value='"+data.list_other[i].oid+"'>"+data.list_other[i].other_name+"</option>"
+		        		}
+		        	}
+		            $('#project_status').append(html_status);
+		            $('#project_class').append(html_class);
+		            $('#speed_unit').append(html_speed);
+		            $('#services_deadline').append(html_service_deadline);
+		            $('#currency').append(html_currency);
+		            $('#project_contract_party').append(html_contract_party);
+		            
+		            
+		            
+		            $('#project_market').empty();
+		            $('#project_pm').empty();
+		            $('#customer').empty();
+		        	var html_personnel="";
+		        	var html_customer="";
+		        	for(var i=0;i<data.list_personnel.length;i++){
+		        		if(data.list_personnel[i].personnel_name==null){
+		        			data.list_personnel[i].personnel_name="";
+		        		}
+		        		html_personnel+="<option email="+data.list_personnel[i].personnel_email+" value='"+data.list_personnel[i].pid+"'>"+data.list_personnel[i].personnel_name+"</option>"
+		        	}
+		        	for(var j=0;j<data.list_customer.length;j++){
+		        		if(data.list_customer[j].customer_name==null){
+		        			data.list_customer[j].customer_name="";
+		        		}
+		        		html_customer+="<option value='"+data.list_customer[j].cid+"'>"+data.list_customer[j].customer_name+"</option>"
+		        	}
+		            $('#project_market').append(html_personnel);
+		            $('#project_pm').append(html_personnel);
+		            $('#customer').append(html_customer);
+		            $('#project_suppliers').append(html_customer);
+		            $('#project_market').val("888");
+		            $('#project_pm').val("888");
+		            $('#customer').val("888");
+		            $('#project_suppliers').val("888");
+					$('#project_list').val("888");
+					$('#project_status').val("888");
+					$('#project_class').val("888");
+					$('#speed_unit').val("888");
+					$('#currency').val("888");
+					$('#project_contract_party').val("888");
+					$('#services_deadline').val("888");
+		            project_info_one();
+		        }
+		    });
+	    }
+		/*随机数*/
+		 function _getRandomString(len) {
+			 len = len || 32;
+			 var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+			 var maxPos = $chars.length;
+			 var pwd = '';
+			 for (i = 0; i < len; i++) {
+				 pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+			 }
+			 return pwd;
+		 }
+
+	    function project_info_one(){
+		    //基础信息
+	      	 $.ajax({
+	    		 type:'post',
+	    		 url:'../project_controller/select_project_pid_one',
+	    		 dataType:'json',
+	    		 data:{'pid':pid},
+	    		 success:function(data){
+					 if(data.list_projectfields!=null){
+						 if(data.list_projectfields.length!=0){
+							 for(var i=0;i<data.list_projectfields.length;i++){
+								if(data.list_projectfields[i].fields_update!=1){
+									$('.'+data.list_projectfields[i].table_fields).attr('disabled',true)
+								}
+							 	if(data.list_projectfields[i].fields_select!=1){
+								 $('.'+data.list_projectfields[i].table_fields).attr('disabled',true)
+							 	}
+							 }
+							 if(data.project_one.length!=0){
+								 if(data.project_one.project_startdate!=null && data.project_one.project_startdate!=""&& data.project_one.project_startdate!=0&& data.project_one.project_startdate!=-1){
+									 var project_startdate=new Date(data.project_one.project_startdate);
+									 var project_startdate_display=project_startdate.getFullYear()+'-'+(project_startdate.getMonth()+1)+'-'+project_startdate.getDate()
+								 }else{
+									 var project_startdate_display=""
+									 $('[for=project_startdate]').append("*");
+									 $('[for=project_startdate]').css("color","#dc5360");
+								 }
+
+								 if(data.project_one.project_expected_completion_date!=null && data.project_one.project_expected_completion_date!="" && data.project_one.project_expected_completion_date!=0&& data.project_one.project_expected_completion_date!=-1){
+									 var project_expected_completion_date=new Date(data.project_one.project_expected_completion_date);
+									 var project_expected_completion_date_display=project_expected_completion_date.getFullYear()+'-'+(project_expected_completion_date.getMonth()+1)+'-'+project_expected_completion_date.getDate()
+								 }else{
+									 var project_expected_completion_date_display=""
+									 $('[for=project_expected_completion_date]').append("*");
+									 $('[for=project_expected_completion_date]').css("color","#dc5360");
+								 }
+
+								 if(data.project_one.project_actual_finishing_date!=null && data.project_one.project_actual_finishing_date!="" && data.project_one.project_actual_finishing_date!=0&& data.project_one.project_actual_finishing_date!=-1){
+									 var project_actual_finishing_date=new Date(data.project_one.project_actual_finishing_date);
+									 var project_actual_finishing_date_display=project_actual_finishing_date.getFullYear()+'-'+(project_actual_finishing_date.getMonth()+1)+'-'+project_actual_finishing_date.getDate()
+								 }else{
+									 var project_actual_finishing_date_display=""
+									 $('[for=project_actual_finishing_date]').append("*");
+									 $('[for=project_actual_finishing_date]').css("color","#dc5360");
+								 }
+
+								 if(data.project_one.project_billdate!=null && data.project_one.project_billdate!="" && data.project_one.project_billdate!=0&& data.project_one.project_billdate!=-1){
+									 var project_billdate=new Date(data.project_one.project_billdate);
+									 var project_billdate_display=project_billdate.getFullYear()+'-'+(project_billdate.getMonth()+1)+'-'+project_billdate.getDate()
+								 }else{
+									 var project_billdate_display=""
+									 $('[for=project_billdate]').append("*");
+									 $('[for=project_billdate]').css("color","#dc5360");
+								 }
+
+								 if(data.project_one.project_enddate!=null && data.project_one.project_enddate!="" && data.project_one.project_enddate!=0&& data.project_one.project_enddate!=-1){
+									 var project_enddate=new Date(data.project_one.project_enddate);
+									 var project_enddate_display=project_enddate.getFullYear()+'-'+(project_enddate.getMonth()+1)+'-'+project_enddate.getDate()
+								 }else{
+									 var project_enddate_display=""
+									 $('[for=project_enddate]').append("*");
+									 $('[for=project_enddate]').css("color","#dc5360");
+								 }
+
+								 if(data.project_one.project_suppliers_chargeable_time!=null && data.project_one.project_suppliers_chargeable_time!="" && data.project_one.project_suppliers_chargeable_time!=0&& data.project_one.project_suppliers_chargeable_time!=-1){
+									 var project_suppliers_chargeable_time=new Date(data.project_one.project_suppliers_chargeable_time);
+									 var project_suppliers_chargeable_time_display=project_suppliers_chargeable_time.getFullYear()+'-'+(project_suppliers_chargeable_time.getMonth()+1)+'-'+project_suppliers_chargeable_time.getDate()
+								 }else{
+									 var project_suppliers_chargeable_time_display=""
+									 $('[for=project_suppliers_chargeable_time]').append("*");
+									 $('[for=project_suppliers_chargeable_time]').css("color","#dc5360");
+								 }
+
+								 if(data.project_one.od_num.trim()!=null && data.project_one.od_num.trim()!="" &&data.project_one.od_num.trim()!="null"&&data.project_one.od_num.trim()!="NullPointerValue"){
+									 var od_num=data.project_one.od_num.trim()
+								 }else{
+									 var od_num=""
+									 $('[for=od_num]').append("*");
+									 $('[for=od_num]').css("color","#dc5360");
+								 }
+								 $('#od_num').val(od_num);
+								 if(data.project_one.project_name!=null && data.project_one.project_name!="" &&data.project_one.project_name!="null"&&data.project_one.project_name!="NullPointerValue"){
+									 var project_name=data.project_one.project_name
+								 }else{
+									 var project_name=""
+									 $('[for=project_name]').append("*");
+									 $('[for=project_name]').css("color","#dc5360");
+								 }
+								 $('#project_name').val(project_name);
+								 if(data.project_one.contract_num!=null && data.project_one.contract_num!="" &&data.project_one.contract_num!="null"&&data.project_one.contract_num!="NullPointerValue"){
+									 var contract_num=data.project_one.contract_num
+								 }else{
+									 var contract_num=""
+									 $('[for=contract_num]').append("*");
+									 $('[for=contract_num]').css("color","#dc5360");
+								 }
+								 $('#contract_num').val(contract_num);
+								 if(data.project_one.services_num!=null && data.project_one.services_num!="" &&data.project_one.services_num!="null"&&data.project_one.services_num!="NullPointerValue"){
+									 var services_num=data.project_one.services_num
+								 }else{
+									 var services_num=""
+									 $('[for=services_num]').append("*");
+									 $('[for=services_num]').css("color","#dc5360");
+								 }
+								 $('#services_num').val(services_num);
+								 if(data.project_one.project_speed!=0 &&data.project_one.project_speed!=null &&data.project_one.project_speed!=""&&data.project_one.project_speed!=-1&&data.project_one.project_speed!="NullPointerValue"){
+									 var project_speed=data.project_one.project_speed
+								 }else{
+									 var project_speed=""
+									 $('[for=project_speed]').append("*");
+									 $('[for=project_speed]').css("color","#dc5360");
+								 }
+								 $('#project_speed').val(project_speed);
+								 $('#project_startdate').val(project_startdate_display);
+								 $('#project_expected_completion_date').val(project_expected_completion_date_display);
+								 $('#project_actual_finishing_date').val(project_actual_finishing_date_display);
+								 $('#project_billdate').val(project_billdate_display);
+								 $('#project_enddate').val(project_enddate_display);
+								 $('#project_suppliers_chargeable_time').val(project_suppliers_chargeable_time_display);
+								 if(data.project_one.project_status!=0 && data.project_one.project_status!=null && data.project_one.project_status!=-1){
+									 var project_status=data.project_one.project_status
+								 }else{
+									 var project_status=0
+									 $('[for=project_status]').append("*");
+									 $('[for=project_status]').css("color","#dc5360");
+								 }
+								 $('#project_status').val(project_status);
+								 if(data.project_one.project_class!=0 && data.project_one.project_class!=null&& data.project_one.project_class!=-1){
+									 var project_class=data.project_one.project_class
+								 }else{
+									 var project_class=0
+									 $('[for=project_class]').append("*");
+									 $('[for=project_class]').css("color","#dc5360");
+								 }
+								 $('#project_class').val(project_class);
+								 if(data.project_one.project_install_address!="" && data.project_one.project_install_address!=null && data.project_one.project_install_address!="null"&& data.project_one.project_install_address!="NullPointerValue"){
+									 var project_install_address=data.project_one.project_install_address
+								 }else{
+									 var project_install_address=""
+									 $('[for=project_install_address]').append("*");
+									 $('[for=project_install_address]').css("color","#dc5360");
+								 }
+								 $('#project_install_address').val(project_install_address);
+								 if(data.project_one.project_install_address_b!="" && data.project_one.project_install_address_b!=null && data.project_one.project_install_address_b!="null"&& data.project_one.project_install_address_b!="NullPointerValue"){
+									 var project_install_address_b=data.project_one.project_install_address_b
+								 }else{
+									 var project_install_address_b=""
+									 $('[for=project_install_address_b]').append("*");
+									 $('[for=project_install_address_b]').css("color","#dc5360");
+								 }
+								 $('#project_install_address_b').val(project_install_address_b);
+								 if(data.project_one.currency!=0 && data.project_one.currency!=null&& data.project_one.currency!=-1){
+									 var currency=data.project_one.currency
+								 }else{
+									 var currency=0
+									 $('[for=currency]').append("*");
+									 $('[for=currency]').css("color","#dc5360");
+								 }
+								 $('#currency').val(currency);
+								 if(data.project_one.project_time_fee!=0 && data.project_one.project_time_fee!=null && data.project_one.project_time_fee!=-1){
+									 var project_time_fee=data.project_one.project_time_fee
+								 }else{
+									 var project_time_fee=0
+									 $('[for=project_time_fee]').append("*");
+									 $('[for=project_time_fee]').css("color","#dc5360");
+									 $('#project_time_fee').attr("type","password");
+								 }
+								 $('#project_time_fee').val(project_time_fee);
+								 if(data.project_one.project_moon_fee!=0 && data.project_one.project_moon_fee!=null && data.project_one.project_moon_fee!=-1 ){
+									 var project_moon_fee=data.project_one.project_moon_fee
+								 }else{
+									 var project_moon_fee=0
+									 $('[for=project_moon_fee]').append("*");
+									 $('[for=project_moon_fee]').css("color","#dc5360");
+									 $('#project_moon_fee').attr("type","password");
+								 }
+								 $('#project_moon_fee').val(project_moon_fee);
+								 if(data.project_one.project_contract_party!=0 && data.project_one.project_contract_party!=null&& data.project_one.project_contract_party!=-1){
+									 var project_contract_party=data.project_one.project_contract_party
+								 }else{
+									 var project_contract_party=0
+									 $('[for=project_contract_party]').append("*");
+									 $('[for=project_contract_party]').css("color","#dc5360");
+								 }
+								 $('#project_contract_party').val(project_contract_party);
+								 if(data.project_one.project_progress_plan!="" && data.project_one.project_progress_plan!=null && data.project_one.project_progress_plan!="null"&&data.project_one.project_progress_plan!="NullPointerValue"){
+									 var project_progress_plan=data.project_one.project_progress_plan
+								 }else{
+									 var project_progress_plan=""
+									 $('[for=project_progress_plan]').append("*");
+									 $('[for=project_progress_plan]').css("color","#dc5360");
+								 }
+								 $('#project_progress_plan').val(project_progress_plan);
+								 if(data.project_one.project_remark!="" && data.project_one.project_remark!=null && data.project_one.project_remark!="null"&& data.project_one.project_remark!="NullPointerValue"){
+									 var project_remark=data.project_one.project_remark
+								 }else{
+									 var project_remark=""
+									 $('[for=project_remark]').append("*");
+									 $('[for=project_remark]').css("color","#dc5360");
+								 }
+								 $('#project_remark').val(project_remark);
+								 if(data.project_one.project_market!=0 && data.project_one.project_market!=null&& data.project_one.project_market!=-1){
+									 var project_market=data.project_one.project_market
+								 }else{
+									 var project_market=""
+									 $('[for=project_market]').append("*");
+									 $('[for=project_market]').css("color","#dc5360");
+								 }
+								 $('#project_market').val(project_market);
+								 if(data.project_one.project_pm!=0 && data.project_one.project_pm!=null&& data.project_one.project_pm!=-1){
+									 var project_pm=data.project_one.project_pm
+								 }else{
+									 var project_pm=""
+									 $('[for=project_pm]').append("*");
+									 $('[for=project_pm]').css("color","#dc5360");
+								 }
+								 $('#project_pm').val(project_pm);
+								 if(data.project_one.customer!=0 && data.project_one.customer!=null&& data.project_one.customer!=-1){
+									 var customer=data.project_one.customer
+								 }else{
+									 var customer=""
+									 $('[for=customer]').append("*");
+									 $('[for=customer]').css("color","#dc5360");
+								 }
+								 $('#customer').val(customer);
+								 if(data.project_one.project_suppliers!=0 && data.project_one.project_suppliers!=null&& data.project_one.project_suppliers!=-1){
+									 var project_suppliers=data.project_one.project_suppliers
+								 }else{
+									 var project_suppliers=""
+									 $('[for=project_suppliers]').append("*");
+									 $('[for=project_suppliers]').css("color","#dc5360");
+								 }
+								 $('#project_suppliers').val(project_suppliers);
+								 if(data.project_one.project_list!=0 && data.project_one.project_list!=null&& data.project_one.project_list!=-1){
+									 var project_list=data.project_one.project_list
+								 }else{
+									 var project_list=""
+									 $('[for=project_list]').append("*");
+									 $('[for=project_list]').css("color","#dc5360");
+								 }
+								 $('#project_list').val(project_list);
+								 if(data.project_one.speed_unit!=0 && data.project_one.speed_unit!=null&& data.project_one.speed_unit!=-1){
+									 var speed_unit=data.project_one.speed_unit
+								 }else{
+									 var speed_unit=""
+									 $('[for=speed_unit]').append("*");
+									 $('[for=speed_unit]').css("color","#dc5360");
+								 }
+								 $('#speed_unit').val(speed_unit);
+								 if(data.project_one.service_hours!="0" && data.project_one.service_hours!=null &&data.project_one.service_hours!="null"&& data.project_one.service_hours!="NullPointerValue"){
+									 var service_hours=data.project_one.service_hours
+								 }else{
+									 var service_hours=""
+									 $('[for=service_hours]').append("*");
+									 $('[for=service_hours]').css("color","#dc5360");
+								 }
+								 $('#service_hours').val(service_hours);
+								 if(data.project_one.services_deadline!=0 && data.project_one.services_deadline!=null&& data.project_one.services_deadline!=-1){
+									 var services_deadline=data.project_one.services_deadline
+								 }else{
+									 var services_deadline=""
+									 $('[for=services_deadline]').append("*");
+									 $('[for=services_deadline]').css("color","#dc5360");
+								 }
+								 $('#services_deadline').val(services_deadline);
+
+								 $('.title_big').text(data.project_one.od_num.trim()+"@"+$('#project_pm [value='+data.project_one.project_pm+']').text());
+
+								 if(data.project_one.project_contract_pdf==null || data.project_one.project_contract_pdf=="" || data.project_one.project_contract_pdf=="null" ||data.project_one.project_contract_pdf=="NullPointerValue"){
+									 var project_contract_pdf="";
+								 }else{
+									 var project_contract_pdf= "/project_contract_pdf/"+data.project_one.project_contract_pdf
+								 }
+								 if(data.project_one.project_sailing_notice==null || data.project_one.project_sailing_notice=="" || data.project_one.project_sailing_notice=="null"|| data.project_one.project_sailing_notice=="NullPointerValue"){
+									 var project_sailing_notice="";
+								 }else{
+									 var project_sailing_notice= "/project_sailing_notice/"+data.project_one.project_sailing_notice
+								 }
+								 if(data.project_one.project_gplot==null|| data.project_one.project_gplot=="" || data.project_one.project_gplot=="null" || data.project_one.project_gplot=="NullPointerValue"){
+									 var project_gplot="";
+								 }else{
+									 var project_gplot= "/project_gplot/"+data.project_one.project_gplot
+								 }
+								 if(data.project_one.project_other==null || data.project_one.project_other=="" || data.project_one.project_other=="null" || data.project_one.project_other=="NullPointerValue"){
+									 var project_other="";
+								 }else{
+									 $('.project_other_list_html').empty();
+									 var project_other_list=(data.project_one.project_other).split("|");
+									 var project_other= "/project_other/"+data.project_one.project_other
+									 var html_project_other="";
+									 //系统当前时间start
+									 function getNow(s) {
+										 return s < 10 ? '0' + s : s;
+									 };
+									 var myDate = new Date();
+									 var year = myDate.getFullYear();        //获取当前年
+									 var month = myDate.getMonth() + 1;   	//获取当前月
+									 var date = myDate.getDate();            //获取当前日
+									 var h = myDate.getHours();              //获取当前小时数(0-23)
+									 var m = myDate.getMinutes();         	//获取当前分钟数(0-59)
+									 var s = myDate.getSeconds();
+									 var now = 	year + '-' +
+											 getNow(month) + "-" +
+											 getNow(date) + " " +
+											 getNow(h) + ':' +
+											 getNow(m) + ":" +
+											 getNow(s);
+									 for(var po=0;po<project_other_list.length;po++){
+										 html_project_other+='<div class="d-flex align-items-center mb-3 ">'
+												 +'<div class="ms-3 flex-shrink-1 flex-grow-1 hover-actions-trigger" other-p="'+po+'" tag="/project_other/'+project_other_list[po]+'">'
+												 +'<h6 class="mb-1"><a class="text-900 fw-semi-bold windows_location_html_file" >'+project_other_list[po]+'</a></h6>'
+												 +'<div class="fs--1">'
+												 +'<span style="font-size: 12px;padding-right: 12px;color: #00000078;font-weight: 800;">'+year+"/"+month+"/"+date+'</span>'
+												 +'<span style="font-size: 12px;color: #00000078;font-weight: 800;">'+h+":"+m+":"+s+'</span>'
+
+												 +'</div>'
+												 +'</div>'
+												 +'<div class="btn_dowload_delete" other-p-btn="'+po+'">'
+												 +'<a role="button" tabindex="0" href="/project_other/'+project_other_list[po]+'" download="/project_other/'+project_other_list[po]+'" class="border-300 me-1 text-600 btn btn-light btn-sm"><i class="fa fa-cloud-download"></i></a>'
+												 +'<button type="button" class="border-300 text-600 btn btn-light btn-sm del_file_other" data-tag-other="'+po+'" tag_add="'+project_other_list[po]+'"><i class="fa fa-trash-o fa-lg"></i></button>'
+												 +'</div>'
+												 +'</div>'
+												 +'<hr class="bg-200" other-p-hr="'+po+'">'
+									 }
+									 $('.project_other_list_html').append(html_project_other);
+
+
+
+									 $('.del_file_other').click(function(){
+										 var tag_add=$(this).attr('tag_add');
+										 $('[other-p='+$(this).attr('data-tag-other')+']').remove();
+										 $('[other-p-hr='+$(this).attr('data-tag-other')+']').remove();
+										 $('[other-p-btn='+$(this).attr('data-tag-other')+']').remove();
+										 $.ajax({
+											 type:'post',
+											 url:'../project_controller/del_file',
+											 dataType:'json',
+											 data:{
+												 'pid':pid,
+												 'tag_add':tag_add
+											 },
+											 success:function(data){
+												 $('.toast-body').text('删除成功');
+												 $('#liveToast').toast('show');
+												 setTimeout(
+														 function()
+														 {
+															 $('#liveToast').toast('hide')
+														 }, 3000);
+											 }
+										 });
+									 });
+									 $('.hover-actions-trigger').click(function(){
+										 var html_address=$(this).attr("tag");
+										 window.open(html_address);
+									 });
+								 }
+								 $('#contract_save').attr("src",project_contract_pdf);
+								 $('#openasingle_save').attr("src",project_sailing_notice);
+								 $('#gplot_save').attr("src",project_gplot);
+
+
+								 $('#contract_save').attr("tag",project_contract_pdf);
+								 $('#openasingle_save').attr("tag",project_sailing_notice);
+								 $('#gplot_save').attr("tag",project_gplot);
+
+								 $('.project_class').change(function(){
+									 var rand_num=_getRandomString(7);
+									 $('.od_num').val(rand_num);
+								 });
+							 }
+						 }else{
+							 $("body button").attr("disabled",true);
+							 $("body a").attr("disabled","true");
+							 $("body input").attr("disabled",true);
+							 $("body select").attr("disabled","disabled");
+							 $("body textarea").attr("disabled","disabled");
+						 }
+					 }else{
+						 $("body button").attr("disabled",true);
+						 $("body a").attr("disabled","true");
+						 $("body input").attr("disabled",true);
+						 $("body select").attr("disabled","disabled");
+						 $("body textarea").attr("disabled","disabled");
+					 }
+	    		 }
+	    	 });
+	    }
+
+
+
+	 //放大开通单
+	 $('.openasingle').click(function(){
+		 var Attached_project_len=$('.Attached_list .accordion').length;
+		 var openasingle=$('#embed_openasingle_primary').attr('src');
+		 var a_z=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+		 $('#Automatic_Modal').modal("show");
+		 $('#Automatic_Modal_openasingle').attr("src",openasingle);
+		 
+		 $('.modal-dialog').attr("style","top: 3%;");
+		 $('.modal-content').attr("style","background-color: #fff;margin: 0 auto;width:85%");
+		 $('.modal-body').attr("style","background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;width: 100%;");
+		 $('.modal-footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;");
+		 $('#Automatic_Modal_openasingle').attr('style','width:100%;height:100%;');
+		 $('#iframe_table').attr('style','width:100%;height:100%;');
+		
+		 $('.jian').click(function(){
+			 jian();
+		   });
+		 function jian(){
+				   var tag=$('.title_A_Z').attr('tag');
+				   if(tag!=1){
+					   tag=parseInt(tag)-1;
+					   $('.title_A_Z').attr('tag',tag);
+					   $('#table_pdf').find('tr').eq(9+((tag-1)*3)).remove();
+					   $('#table_pdf').find('tr').eq(9+((tag-1)*3)).remove();
+					   $('#table_pdf').find('tr').eq(9+((tag-1)*3)).remove();
+				   }
+		 }
+		 $('.jia').click(function(){
+			 jia();
+		  });
+		 function jia(){
+			 var tag=$('.title_A_Z').attr('tag');
+			   tag=parseInt(tag)+1;
+			   $('.title_A_Z').attr('tag',tag);
+			   var insertHtml="";
+			   insertHtml="<tr>"
+			     +"<td rowspan='3' class='title'><input type='text' class='address_tag"+(parseInt(tag)-1)+"'style='height: 30%;width: 20%;'> end</td>"
+			     +"<td class='title'>接入地址</td>"
+			     +"<td colspan='10' ><input type='text' class='address"+(parseInt(tag)-1)+"'></td>"
+			     +"</tr>"
+			     +"<tr>"
+			     +" <td  class='title'>对接模块</td>"
+			     +" <td colspan='10'><input type='text' class='module"+(parseInt(tag)-1)+"'></td>"
+			     +" </tr>"
+			     +" <tr>"
+			     +" <td class='title'>端口模式</td>"
+			     +" <td colspan='10'><input type='text' class='module_type"+(parseInt(tag)-1)+"'></td>"
+			     +"</tr>"
+			   $('#table_pdf').find('tr').eq(8+((tag-2)*3)).after(insertHtml);
+		   }
+		 for(var o=0;o<(Attached_project_len-1);o++){
+			 jian();
+		 }
+		 for(var o=0;o<(Attached_project_len-1);o++){
+			 $('.address_tag'+o).val(a_z[o]);
+			 $('.address'+o).val($('#attached_address'+o).val());
+			 jia();
+		 }
+		 if(Attached_project_len==0){
+			 $('.address_tag0').val(a_z[0]);
+			 $('.address0').val($('#attached_address0'));
+		 }else{
+			 $('.address_tag'+(Attached_project_len-1)).val(a_z[(Attached_project_len-1)]);
+			 $('.address'+(Attached_project_len-1)).val($('#attached_address'+(Attached_project_len-1)).val());
+		 }
+		   $('.project_name_modal').val($('#project_name').val());
+		   $('.project_contract_num_modal').val($('#contract_num').val());
+		   var today_time=new Date();
+		   $('.send_time').val(today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate());
+		   $('.Opening_time').val(today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate());
+		   $('.bill_time').val(today_time.getFullYear()+'.'+(today_time.getMonth()+1)+'.'+today_time.getDate());
+		   $('.project_service_num_modal').val($('#services_num').val());
+		   $('.technology').val("NOC");
+		   $('.technology_phone').val("noc@dcconnect.cn");
+		   $('.business').val($('.select_project_market [value='+$('.select_project_market').val()+']').text());
+		   $('.business_phone').val($('.select_project_market [value='+$('.select_project_market').val()+']').attr('email'));
+		   $('.services_remark0').val($('#project_remark').val());
+		   $('.customer_modal').val($('.select_customer [value='+$('.select_customer').val()+']').text());
+		   $('.this_company').val($('.project_contract_party [value='+$('.project_contract_party').val()+']').text());
+		   $('#table_pdf input').css("color","#0012ff");
+		   $('#table_pdf2 input').css("color","#0012ff");
+	 });
+	 //保存基本信息
+	 $('.save_Information').click(function(){
+		 $('#saveInfo').modal("show");
+		 $('#saveInfo').width("100%");
+		 $('#saveInfo').height("100%");
+		 $('.saveInfo_dialog').attr("style","top: 3%;");
+		 $('.saveInfo_content').attr("style","background-color: #fff;margin: 0 auto;width:40%");
+		 $('.saveInfo_body').attr("style","background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;width: 100%;");
+		 $('.saveInfo_footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;");
+		 var fields_count=0;
+		 var change_value_ajax=[];
+       	 $.ajax({
+    		 type:'post',
+    		 url:'../project_controller/select_project_pid_one',
+    		 dataType:'json',
+    		 data:{'pid':pid},
+    		 success:function(data){
+    			 $('#info_modal').empty();
+    			 var html_info=""
+    			 var fields={
+    					 "fields_info": {
+    						 0:{'field':'od_num','field_name':'项目编号'},
+    						 1:{'field':'project_name','field_name':'项目名称'},
+    						 2:{'field':'project_list','field_name':'项目集合'},
+    						 3:{'field':'customer','field_name':'客户'},
+    						 4:{'field':'project_pm','field_name':'项目经理'},
+    						 5:{'field':'project_market','field_name':'销售'},
+    						 6:{'field':'contract_num','field_name':'合同编号'},
+    						 7:{'field':'services_num','field_name':'服务编号'},
+    						 8:{'field':'project_speed','field_name':'带宽'},
+    						 9:{'field':'project_startdate','field_name':'启动时间'},
+    						 10:{'field':'project_billdate','field_name':'计费日期'},
+    						 11:{'field':'project_enddate','field_name':'终止日期'},
+    						 12:{'field':'project_expected_completion_date','field_name':'预计完成日期'},
+    						 13:{'field':'project_actual_finishing_date','field_name':'实际完成日期'},
+    						 14:{'field':'project_status','field_name':'项目状态'},
+    						 15:{'field':'project_class','field_name':'项目类别'},
+    						 16:{'field':'project_install_address','field_name':'A端地址'},
+    						 17:{'field':'currency','field_name':'币种'},
+    						 18:{'field':'project_time_fee','field_name':'一次性费用'},
+    						 19:{'field':'project_moon_fee','field_name':'月费'},
+    						 20:{'field':'project_contract_party','field_name':'我司签约主体'},
+    						 21:{'field':'project_progress_plan','field_name':'计划更新'},
+    						 22:{'field':'project_remark','field_name':'备注'},
+    						 23:{'field':'speed_unit','field_name':'Gbps/Mbps'},
+    						 24:{'field':'service_hours','field_name':'服务期限'},
+    						 25:{'field':'services_deadline','field_name':'单位'},
+    						 26:{'field':'project_install_address_b','field_name':'B端地址'},
+    						 27:{'field':'project_suppliers','field_name':'供应商'},
+    						 28:{'field':'project_suppliers_chargeable_time','field_name':'供应商计费日期'}
+    					 },
+    					 "length":29
+    			 };
+
+    			 for (var i =0;i<fields.length;i++){
+					 if($("."+fields["fields_info"][i]["field"]).attr("disabled")!=""&&$("."+fields["fields_info"][i]["field"]).attr("disabled")!=undefined){
+						 /*不做对比*/
+						 $(".save_info").attr("disabled",true);
+					 }else{
+						 var OriginalValue="";
+						 var ChangeValue="";
+						 if(data.project_one[fields["fields_info"][i]["field"]]==""&&data.project_one[fields["fields_info"][i]["field"]]!=0){
+							 OriginalValue=null
+						 }else{
+							 //如果是时间
+							 if(fields["fields_info"][i]["field"]=="project_startdate" || fields["fields_info"][i]["field"]=="project_billdate"|| fields["fields_info"][i]["field"]=="project_enddate"|| fields["fields_info"][i]["field"]=="project_expected_completion_date"|| fields["fields_info"][i]["field"]=="project_actual_finishing_date"|| fields["fields_info"][i]["field"]=="project_suppliers_chargeable_time"){
+								 if(data.project_one[fields["fields_info"][i]["field"]]!=""&&data.project_one[fields["fields_info"][i]["field"]]!=null&&data.project_one[fields["fields_info"][i]["field"]]!=-1){
+									 var time=new Date(data.project_one[fields["fields_info"][i]["field"]]);
+									 OriginalValue=time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
+								 }else{
+									 OriginalValue=null
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_contract_party"){
+								 OriginalValue=$('#project_contract_party [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="currency"){
+								 OriginalValue=$('#currency [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_class"){
+								 OriginalValue=$('#project_class [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_status"){
+								 OriginalValue=$('#project_status [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_pm"){
+								 OriginalValue=$('#project_pm [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_market"){
+								 OriginalValue=$('#project_market [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_list"){
+								 OriginalValue=$('#project_list [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="customer"){
+								 OriginalValue=$('#customer [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_suppliers"){
+								 OriginalValue=$('#project_suppliers [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="speed_unit"){
+								 OriginalValue=$('#speed_unit [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="services_deadline"){
+								 OriginalValue=$('#services_deadline [value='+data.project_one[fields["fields_info"][i]["field"]]+']').text();
+								 if(OriginalValue==""||OriginalValue==0){
+									 OriginalValue=null;
+								 }
+							 }else{
+								 if(fields["fields_info"][i]["field"]=="project_progress_plan" || fields["fields_info"][i]["field"]=="project_remark"){
+									 if(data.project_one[fields["fields_info"][i]["field"]]!=null && data.project_one[fields["fields_info"][i]["field"]]!=""&&  data.project_one[fields["fields_info"][i]["field"]]!="null"){
+										 OriginalValue=data.project_one[fields["fields_info"][i]["field"]].trim().replace(/\s/g,"").replace(/\n\r/g,"");
+									 }else{
+										 OriginalValue=null
+									 }
+								 }else{
+									 if(fields["fields_info"][i]["field"]=="project_time_fee" || fields["fields_info"][i]["field"]=="projetc_moon_fee"){
+										 OriginalValue=data.project_one[fields["fields_info"][i]["field"]]
+									 }else{
+										 if(data.project_one[fields["fields_info"][i]["field"]]!=null && data.project_one[fields["fields_info"][i]["field"]]!="" &&data.project_one[fields["fields_info"][i]["field"]]!="null"){
+											 OriginalValue=data.project_one[fields["fields_info"][i]["field"]]
+										 }else{
+											 OriginalValue=null
+										 }
+									 }
+								 }
+							 }
+						 }
+						 if($('#'+fields["fields_info"][i]["field"]).val()==""){
+							 ChangeValue_display=null
+						 }else{
+							 if(fields["fields_info"][i]["field"]=="project_progress_plan" || fields["fields_info"][i]["field"]=="project_remark"){
+								 if($('#'+fields["fields_info"][i]["field"]).val()!=null && $('#'+fields["fields_info"][i]["field"]).val()!="" && $('#'+fields["fields_info"][i]["field"]).val()!="null"){
+									 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+									 ChangeValue_display=$('#'+fields["fields_info"][i]["field"]).val().trim().replace(/\s/g,"").replace(/\n\r/g,"");
+								 }else{
+									 ChangeValue_display=null
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_contract_party"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_contract_party [value='+$('#project_contract_party').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="currency"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#currency [value='+$('#currency').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_class"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_class [value='+$('#project_class').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_status"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_status [value='+$('#project_status').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_pm"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_pm [value='+$('#project_pm').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_market"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_market [value='+$('#project_market').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_list"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_list [value='+$('#project_list').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="customer"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#customer [value='+$('#customer').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_suppliers"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#project_suppliers [value='+$('#project_suppliers').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="speed_unit"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#speed_unit [value='+$('#speed_unit').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="services_deadline"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#services_deadline [value='+$('#services_deadline').val()+']').text();
+								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else{
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=$('#'+fields["fields_info"][i]["field"]).val();
+							 }
+						 }
+						 if(OriginalValue!=ChangeValue_display){
+							 fields_count++;
+							 var field_name_ajax=fields["fields_info"][i]["field"];
+							 var field_arry={
+								 "key":field_name_ajax,
+								 "value":ChangeValue
+							 }
+							 change_value_ajax.push(field_arry);
+							 html_info+='<div class="row" style="width: 100%;">'
+									 +'<div class="col-md-12 mb-12">'
+									 +'<label style="font-size: 18px;">'+fields["fields_info"][i]["field_name"]+'</label>'
+									 +'<p><span style="font-size: 18px;font-weight: 800;">'+ OriginalValue+'</span>'
+									 +'<span style="margin: 12px;">></span>'
+									 +'<span style="font-size: 18px;color: #dc5360;font-weight: 800;">'+ChangeValue_display+'</span></p>'
+									 +'</div>'
+									 +'</div>'
+						 }
+					 }
+    			 }
+    			 $('#info_modal').append(html_info);
+				 if(html_info!=""){
+					 $(".save_info").attr("disabled",false);
+					 //点击更新基本信息
+					 $('.save_info').click(function(){
+						 var ajax_str={'pid':pid,'change_value_ajax':change_value_ajax,'fields_count':fields_count}
+						 if(fields_count!=0){
+							 $.ajax({
+								 type:'post',
+								 url:'../project_controller/update_project_one',
+								 dataType:'json',
+								 data:{"ajax_str":JSON.stringify(ajax_str)},
+								 success:function(data){
+									 if(data.msg=="RestrictedPermission"){
+										 $(".save_Information").attr("disabled","disabled");
+										 $('#saveInfo').modal("hide");
+										 $('.toast-body').text('账户权限受限制');
+										 $('#liveToast').toast('show');
+										 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									 }else if(data.msg=="od_num_not_conform_to_the_rules"){
+										 $(".save_Information").attr("disabled","disabled");
+										 $('#saveInfo').modal("hide");
+										 $('.toast-body').text('常规订单不可修改为测试订单,修改订单类型后会自动生成测试单号');
+										 $('#liveToast').toast('show');
+										 setTimeout(function(){$('#liveToast').toast('hide')}, 6000);
+									 }else if(data.msg=="ThereIsNoUpdateOrRestrictedPermission"){
+										 $(".save_Information").attr("disabled","disabled");
+										 $('#saveInfo').modal("hide");
+										 $('.toast-body').text('账户权限受限制或无更新');
+										 $('#liveToast').toast('show');
+										 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									 }else if(data.msg=="service_num_repetition"){
+										 $(".save_Information").attr("disabled","disabled");
+										 $('#saveInfo').modal("hide");
+										 $('.toast-body').text('服务编号重复，请重新填写');
+										 $('.services_num').focus();
+										 $('#liveToast').toast('show');
+										 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									 }else if(data.msg=="od_num_repetition"){
+										 $(".save_Information").attr("disabled","disabled");
+										 $('#saveInfo').modal("hide");
+										 $('.toast-body').text('OD编号重复，请重新填写');
+										 $('.od_num').focus();
+										 $('#liveToast').toast('show');
+										 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									 }else{
+										 $('.title_big').text($('#od_num').val()+"@"+$('#project_pm [value='+$('#project_pm').val()+']').text());
+										 $('#saveInfo').modal("hide");
+										 $('.toast-body').text('更新完成');
+										 $('#liveToast').toast('show');
+										 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+										 fields_count=0;
+										 change_value_ajax=[];
+									 }
+								 }
+							 })
+						 }else{
+							 $('#saveInfo').modal("hide");
+							 $('.toast-body').text('无更新');
+							 $('#liveToast').toast('show');
+							 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+						 }
+					 })
+				 }else{
+					 $(".save_info").attr("disabled",true);
+				 }
+    		 }
+       	 });
+	 })
+	 $('.openasingle_amplification').click(function(){
+		 var openasingle_amplification=$('#openasingle_save').attr("tag");
+		 $('#exampleModal').modal("show");
+		 $('#embed_openasingle').attr("src",openasingle_amplification);
+		 $('.exampleModal_dialog').attr("style","top: 3%;");
+		 $('.exampleModal_content').attr("style","background-color: #fff;margin: 0 auto;width:85%");
+		 $('.exampleModal_body').attr("style","background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;width: 100%;");
+		 $('.exampleModal_footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;");
+		 $('.exampleModal_content').width($(window).width()-100);
+		 $('.exampleModal_content').height($(window).height()-100);
+		 $('#embed_openasingle').width("100%");
+		 $('#embed_openasingle').height("100%");
+	 });
+	 $('.contract_amplification').click(function(){
+		 var contract_amplification=$('#contract_save').attr("tag");
+		 $('#exampleModal').modal("show");
+		 $('#embed_openasingle').attr("src",contract_amplification);
+		 $('.exampleModal_dialog').attr("style","top: 3%;");
+		 $('.exampleModal_content').attr("style","background-color: #fff;margin: 0 auto;width:85%");
+		 $('.exampleModal_body').attr("style","background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;width: 100%;");
+		 $('.exampleModal_footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;");
+		 $('.exampleModal_content').width($(window).width()-100);
+		 $('.exampleModal_content').height($(window).height()-100);
+		 $('#embed_openasingle').width("100%");
+		 $('#embed_openasingle').height("100%");
+	 });
+	 $('.gplot_amplification').click(function(){
+		 var gplot_amplification=$('#gplot_save').attr("tag");
+		 $('#exampleModal').modal("show");
+		 $('#embed_openasingle').attr("src",gplot_amplification);
+		 $('.exampleModal_dialog').attr("style","top: 3%;");
+		 $('.exampleModal_content').attr("style","background-color: #fff;margin: 0 auto;width:85%");
+		 $('.exampleModal_body').attr("style","background-color: #ffffffc7;justify-content: space-evenly;margin: 0 auto;");
+		 $('.exampleModal_footer').attr("style","background-color: #ffffffc7;margin: 0 auto;width: 100%;");
+		 $('.exampleModal_content').width($(window).width()-100);
+		 $('.exampleModal_content').height($(window).height()-100);
+		 $('#embed_openasingle').width("100%");
+		 $('#embed_openasingle').height("100%");
+	 });
+ })
+ </script>
+</body>
+</html>

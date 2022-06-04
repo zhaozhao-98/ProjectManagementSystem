@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.ProjectMapper">
+<resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.Project" autoMapping="true">
+<id column="pid" jdbcType="INTEGER" property="pid" />
+
+<association property="customer_list"
+					javaType="com.dcc.ProjectManagementSystem.entity.Customer">
+					<id column="cid" property="cid" />
+					<result column="customer_name" property="customer_name" />
+</association>
+
+<association property="personnel_list"
+					javaType="com.dcc.ProjectManagementSystem.entity.Personnel">
+					<id column="pid" property="pid" />
+					<result column="personnel_name" property="personnel_name" />
+</association>
+
+<association property="class_other"
+					javaType="com.dcc.ProjectManagementSystem.entity.Other">
+					<id column="class_oid" property="oid" />
+					<result column="class_name" property="other_name" />
+					<result column="class_tag" property="other_tag" />
+					<result column="class_color" property="other_color" />
+					<result column="class_back_color" property="other_back_color" />
+</association>
+<association property="status_other"
+					javaType="com.dcc.ProjectManagementSystem.entity.Other">
+					<id column="status_oid" property="oid" />
+					<result column="status_name" property="other_name" />
+					<result column="status_tag" property="other_tag" />
+					<result column="status_color" property="other_color" />
+					<result column="status_back_color" property="other_back_color" />
+</association>
+</resultMap>
+<!--主界面展示项目 -->
+<select id="list_select_project_main"  resultMap="BaseResultMap">
+select PR.pid,
+		CU.customer_name,
+		PE.personnel_name,
+		PR.od_num,
+		PR.project_class,
+		PR.project_status,
+		PR.contract_num,
+		PR.services_num,
+		PR.project_name,
+		PR.customer,
+		PR.project_pm,
+		PR.project_startdate,
+		PR.project_expected_completion_date,
+		PR.project_actual_finishing_date,
+		PR.create_date,
+		class_other.oid as class_oid,
+		class_other.other_tag as class_tag,
+		class_other.other_name as class_name,
+		class_other.other_color as class_color,
+		class_other.other_back_color as class_back_color,
+		status_other.oid as status_oid,
+		status_other.other_tag as status_tag,
+		status_other.other_name as status_name,
+		status_other.other_color as status_color,
+		status_other.other_back_color as status_back_color
+	FROM
+		project AS PR
+		LEFT JOIN customer AS CU ON PR.customer = CU.cid
+		INNER JOIN personnel AS PE ON PR.project_pm = PE.pid
+		INNER JOIN other AS class_other ON PR.project_class = class_other.oid
+		INNER JOIN other AS status_other ON PR.project_status = status_other.oid
+order by PR.pid desc  limit  #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER};
+</select>
+<!--主界面搜索框 -->
+<select id="search_project"  resultMap="BaseResultMap">
+ SELECT
+			PR.pid,
+			PR.od_num,
+			PR.contract_num,
+			PR.services_num,
+			PR.project_name,
+			CU.customer_name,
+			PE.personnel_name
+		FROM project AS PR
+		LEFT JOIN customer AS CU ON PR.customer = CU.cid
+		INNER JOIN personnel AS PE ON  PR.project_pm=PE.pid
+</select>
+<!-- ifearm 界面展示项目 -->
+<select id="list_select_project_mod_all"  resultMap="BaseResultMap">
+		 SELECT
+			PR.pid,
+			PR.od_num,
+			PR.contract_num,
+			PR.services_num,
+			PR.project_name,
+			PR.project_startdate,
+			PR.project_expected_completion_date,
+			PR.project_actual_finishing_date,
+			PR.project_status,
+			PR.project_class,
+			PR.project_soon,
+			CU.customer_name,
+			PE.personnel_name,
+			class_other.oid as class_oid,
+			class_other.other_tag as class_tag,
+			class_other.other_name as class_name,
+			class_other.other_color as class_color,
+			class_other.other_back_color as class_back_color,
+			status_other.oid as status_oid,
+			status_other.other_tag as status_tag,
+			status_other.other_name as status_name,
+			status_other.other_color as status_color,
+			status_other.other_back_color as status_back_color
+		FROM project AS PR
+		LEFT JOIN customer AS CU ON PR.customer = CU.cid
+		INNER JOIN personnel AS PE ON  PR.project_pm=PE.pid
+		INNER JOIN other AS class_other ON  PR.project_class=class_other.oid
+		INNER JOIN other AS status_other ON  PR.project_status=status_other.oid
+	<if test="project_list!=0">
+		 AND PR.project_list=#{project_list,jdbcType=INTEGER}
+	</if>
+	<if test="project_pm!=0">
+		 AND PR.project_pm=#{project_pm,jdbcType=INTEGER}
+	</if>
+	<if test="stat_tag!=null">
+		 AND PR.stat_tag=#{stat_tag,jdbcType=VARCHAR}
+	</if>
+	ORDER BY PR.od_num desc
+	LIMIT #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER};
+</select>
+<!-- 查询关于我进行中的项目 -->
+<select id="select_About_me_conduct_project" resultMap="BaseResultMap">
+	select pid,od_num,services_num,contract_num,customer.customer_name,project_startdate,project_expected_completion_date
+	from project,customer
+	where project_pm=#{project_pm,jdbcType=VARCHAR}
+	and project_status=3
+	and project.customer=customer.cid
+</select>
+	<!--查询超时项目-->
+<select id="select_timeout_project" resultMap="BaseResultMap">
+	SELECT
+		PR.pid,
+		PR.od_num,
+		PR.contract_num,
+		PR.services_num,
+		PR.project_name,
+		PR.project_startdate,
+		PR.project_expected_completion_date,
+		PR.project_actual_finishing_date,
+		PR.project_status,
+		PR.project_class,
+		PR.project_soon,
+		CU.customer_name,
+		PE.personnel_name,
+		class_other.oid as class_oid,
+		class_other.other_tag as class_tag,
+		class_other.other_name as class_name,
+		class_other.other_color as class_color,
+		class_other.other_back_color as class_back_color,
+		status_other.oid as status_oid,
+		status_other.other_tag as status_tag,
+		status_other.other_name as status_name,
+		status_other.other_color as status_color,
+		status_other.other_back_color as status_back_color
+	 FROM project AS PR
+	 LEFT JOIN customer AS CU ON PR.customer = CU.cid
+	 INNER JOIN personnel AS PE ON  PR.project_pm=PE.pid
+	 INNER JOIN other AS class_other ON  PR.project_class=class_other.oid
+	 INNER JOIN other AS status_other ON  PR.project_status=status_other.oid
+	and project_pm=#{project_pm,jdbcType=VARCHAR}
+	and project_class!=4
+	and <![CDATA[project_expected_completion_date< #{today_time,jdbcType=VARCHAR}]]>
+	LIMIT #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER};
+</select>
+<!-- 全字段模糊查询 -->
+<select id="list_project_fuzzy_query_mod_all" resultMap="BaseResultMap">
+ select
+			PR.pid,
+			PR.od_num,
+			PR.customer,
+			PR.project_status,
+			PR.project_class,
+			PR.project_pm,
+			PR.contract_num,
+			PR.services_num,
+			PR.project_name,
+			PR.project_soon,
+			PR.project_startdate,
+			PR.project_expected_completion_date,
+			PR.project_actual_finishing_date,
+			CU.customer_name,
+			PE.personnel_name,
+			class_other.oid AS class_oid,
+			class_other.other_tag AS class_tag,
+			class_other.other_name AS class_name,
+			class_other.other_color AS class_color,
+			class_other.other_back_color AS class_back_color,
+			status_other.oid AS status_oid,
+			status_other.other_tag AS status_tag,
+			status_other.other_name AS status_name,
+			status_other.other_color AS status_color,
+			status_other.other_back_color AS status_back_color
+		FROM
+			project AS PR
+			LEFT JOIN customer AS CU ON PR.customer = CU.cid
+			INNER JOIN personnel AS PE ON PR.project_pm = PE.pid
+			INNER JOIN other AS class_other ON PR.project_class = class_other.oid
+			INNER JOIN other AS status_other ON PR.project_status = status_other.oid
+			and concat(ifnull(PR.contract_num,''),
+			  ifnull(PR.services_num,''),
+			  ifnull(PR.project_remark,''),
+			  ifnull(PR.project_progress_plan,''),
+			  ifnull(PR.project_name,'')
+			  )
+		 like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%');
+</select>
+<!-- 查询行数 -->
+<select id="selectRows" resultType="java.lang.Long">
+select count(*) from project;
+</select>
+<!-- 查询已使用的num -->
+<select id="selectNums" resultMap="BaseResultMap">
+	select od_num from project;
+</select>
+<select id="selectServiceNum" resultMap="BaseResultMap">
+	select services_num from project;
+</select>
+<select id="selectNumsCount" resultType="java.lang.Long">
+	select count(od_num) from project where project.od_num=#{od_num,jdbcType=INTEGER};
+</select>
+<select id="selectRowsByid" resultType="java.lang.Long">
+select count(1) from project
+<where>
+	 <if test="project_list!=0">
+			project_list=#{project_list,jdbcType=INTEGER}
+	</if>
+	<if test="project_pm!=0">
+			 AND project.project_pm=#{project_pm,jdbcType=INTEGER}
+	</if>
+	<if test="services_num!=null">
+		AND project.services_num=#{services_num,jdbcType=INTEGER}
+	</if>
+</where>;
+</select>
+<!-- 查询行数 -->
+<select id="selectCount_createdate" resultType="java.lang.Long">
+select count(create_date)  from project
+where <![CDATA[create_date>=#{start_datetime,jdbcType=INTEGER}]]>
+and   <![CDATA[create_date<=#{end_datetime,jdbcType=INTEGER}]]>
+<if test="project_class==0">
+	and 1=1;
+</if>
+<if test="project_class==1">
+	and project_class!=10;
+</if>
+<if test="project_class==10">
+	and project_class=#{project_class,jdbcType=INTEGER};
+</if>
+</select>
+<!--查询单条数据  -->
+<select id="select_project_pid_one"   resultMap="BaseResultMap">
+	select  od_num,project_name,contract_num,services_num,project_speed,
+		project_market,customer,project_pm,project_market,project_startdate,
+		project_expected_completion_date,project_actual_finishing_date,project_billdate,
+		project_enddate,project_status,project_class,project_install_address,currency,
+		project_time_fee,project_moon_fee,project_contract_party,project_progress_plan,
+		project_remark,project_list,project_contract_pdf,project_sailing_notice,project_gplot,
+		project_soon,speed_unit,service_hours,project_other,services_deadline,
+		project_install_address_b,project_suppliers,project_suppliers_chargeable_time  from project
+	where project.pid=#{pid,jdbcType=INTEGER}
+</select>
+<!-- 添加 -->
+<insert id="insert_project" parameterType="com.dcc.ProjectManagementSystem.entity.Project">
+INSERT INTO
+	promgsys.project
+		(od_num,
+		contract_num,
+		services_num,
+		project_name,
+		customer,
+		project_market,
+		project_pm,
+		project_startdate,
+		project_billdate,
+		project_enddate,
+		project_completion_date,
+		project_expected_completion_date,
+		project_actual_finishing_date,
+		create_date,
+		project_status,
+		project_speed,
+		project_unresolved_task,
+		project_unresolved_problem,
+		project_class,
+		project_install_address,
+		project_contract_pdf,
+		project_sailing_notice,
+		project_soon,
+		project_time_fee,
+		project_moon_fee,
+		project_contract_party,
+		project_progress_plan,
+		project_gplot,
+		project_remark,
+		currency,
+		project_list,
+		speed_unit,
+		service_hours,
+		services_deadline,
+		project_install_address_b,
+		project_suppliers,
+		project_suppliers_chargeable_time,
+		stat_tag)
+	VALUES
+		(#{od_num,jdbcType=VARCHAR},
+		#{contract_num,jdbcType=VARCHAR},
+		#{services_num,jdbcType=VARCHAR},
+		#{project_name,jdbcType=VARCHAR},
+		#{customer,jdbcType=INTEGER},
+		#{project_market,jdbcType=INTEGER},
+		#{project_pm,jdbcType=INTEGER},
+		#{project_startdate,jdbcType=INTEGER},
+		#{project_billdate,jdbcType=INTEGER},
+		#{project_enddate,jdbcType=INTEGER},
+		#{project_completion_date,jdbcType=INTEGER},
+		#{project_expected_completion_date,jdbcType=INTEGER},
+		#{project_actual_finishing_date,jdbcType=INTEGER},
+		#{create_date,jdbcType=INTEGER},
+		#{project_status,jdbcType=INTEGER},
+		#{project_speed,jdbcType=VARCHAR},
+		#{project_unresolved_task,jdbcType=VARCHAR},
+		#{project_unresolved_problem,jdbcType=VARCHAR},
+		#{project_class,jdbcType=INTEGER},
+		#{project_install_address,jdbcType=VARCHAR},
+		#{project_contract_pdf,jdbcType=VARCHAR},
+		#{project_sailing_notice,jdbcType=VARCHAR},
+		#{project_soon,jdbcType=VARCHAR},
+		#{project_time_fee,jdbcType=INTEGER},
+		#{project_moon_fee,jdbcType=INTEGER},
+		#{project_contract_party,jdbcType=INTEGER},
+		#{project_progress_plan,jdbcType=VARCHAR},
+		#{project_gplot,jdbcType=VARCHAR},
+		#{project_remark,jdbcType=VARCHAR},
+		#{currency,jdbcType=VARCHAR},
+		#{project_list,jdbcType=INTEGER},
+		#{speed_unit,jdbcType=INTEGER},
+		#{service_hours,jdbcType=VARCHAR},
+		#{services_deadline,jdbcType=VARCHAR},
+		#{project_install_address_b,jdbcType=VARCHAR},
+		#{project_suppliers,jdbcType=INTEGER},
+		#{project_suppliers_chargeable_time,jdbcType=INTEGER},
+		#{stat_tag,jdbcType=VARCHAR});
+</insert>
+
+<!-- 更新附件 -->
+<update id="update_Attachment" parameterType="com.dcc.ProjectManagementSystem.entity.Project">
+update project
+<set>
+	<if test="project_contract_pdf!=null">
+		 project_contract_pdf = #{project_contract_pdf,jdbcType=VARCHAR},
+	</if>
+	<if test="project_sailing_notice!=null">
+		project_sailing_notice = #{project_sailing_notice,jdbcType=VARCHAR},
+	</if>
+	<if test="project_gplot!=null">
+		 project_gplot = #{project_gplot,jdbcType=VARCHAR},
+	</if>
+	<if test="project_other!=null">
+		 project_other = #{project_other,jdbcType=VARCHAR}
+	</if>
+</set>
+where pid = #{pid,jdbcType=INTEGER}
+</update>
+
+<!-- 更新订单信息 -->
+<update id="update_project_one" parameterType="com.dcc.ProjectManagementSystem.entity.Project">
+update project
+<set>
+	<if test="od_num!=null">
+		 od_num = #{od_num,jdbcType=VARCHAR},
+	</if>
+	<if test="contract_num!=null">
+		  contract_num = #{contract_num,jdbcType=VARCHAR},
+	</if>
+	<if test="services_num!=null">
+		 services_num = #{services_num,jdbcType=VARCHAR},
+	</if>
+	<if test="project_name!=null">
+		 project_name = #{project_name,jdbcType=VARCHAR},
+	</if>
+	<if test="customer!=null">
+		<if test="customer!=0">
+			customer = #{customer,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_suppliers!=null">
+		<if test="project_suppliers!=0">
+			project_suppliers = #{project_suppliers,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_market!=null">
+		<if test="project_market!=0">
+			project_market = #{project_market,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_contract_pdf!=null">
+		 project_contract_pdf = #{project_contract_pdf,jdbcType=VARCHAR},
+	</if>
+	<if test="project_pm!=null">
+		<if test="project_pm!=0">
+			project_pm = #{project_pm,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_startdate!=null">
+		<if test="project_startdate!=0">
+			project_startdate = #{project_startdate,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_billdate!=null">
+		<if test="project_billdate!=0">
+			project_billdate = #{project_billdate,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_suppliers_chargeable_time!=null">
+		<if test="project_suppliers_chargeable_time!=0">
+			project_suppliers_chargeable_time = #{project_suppliers_chargeable_time,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_enddate!=null">
+		<if test="project_enddate!=0">
+			project_enddate = #{project_enddate,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_completion_date!=null">
+		<if test="project_completion_date!=0">
+			project_completion_date = #{project_completion_date,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_expected_completion_date!=null">
+		<if test="project_expected_completion_date!=0">
+			project_expected_completion_date = #{project_expected_completion_date,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_actual_finishing_date!=null">
+		<if test="project_actual_finishing_date!=0">
+			project_actual_finishing_date = #{project_actual_finishing_date,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_status!=null">
+		<if test="project_status!=0">
+			project_status = #{project_status,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_speed!=null">
+		  project_speed = #{project_speed,jdbcType=VARCHAR},
+	</if>
+	<if test="speed_unit!=null">
+		<if test="speed_unit!=0">
+			speed_unit = #{speed_unit,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_class!=null">
+		<if test="project_class!=0">
+			project_class = #{project_class,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_time_fee!=null">
+		 project_time_fee = #{project_time_fee,jdbcType=INTEGER},
+	</if>
+	<if test="project_moon_fee!=null">
+		project_moon_fee = #{project_moon_fee,jdbcType=INTEGER},
+	</if>
+	<if test="project_contract_party!=null">
+		  project_contract_party = #{project_contract_party,jdbcType=INTEGER},
+	</if>
+	<if test="project_progress_plan!=null">
+		 project_progress_plan = #{project_progress_plan,jdbcType=VARCHAR},
+	</if>
+	<if test="project_remark!=null">
+		 project_remark = #{project_remark,jdbcType=VARCHAR},
+	</if>
+	<if test="currency!=null">
+		<if test="currency!=0">
+			currency = #{currency,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_list!=null">
+		<if test="project_list!=0">
+			project_list = #{project_list,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="service_hours!=null">
+		<if test="service_hours!=0">
+			service_hours = #{service_hours,jdbcType=VARCHAR},
+		</if>
+	</if>
+	<if test="project_other!=null">
+		<if test="project_other!=0">
+			project_other = #{project_other,jdbcType=VARCHAR},
+		</if>
+	</if>
+	<if test="services_deadline!=null">
+		<if test="services_deadline!=0">
+			services_deadline = #{services_deadline,jdbcType=INTEGER},
+		</if>
+	</if>
+	<if test="project_install_address!=null">
+		project_install_address = #{project_install_address,jdbcType=INTEGER},
+	</if>
+	<if test="project_install_address_b!=null">
+		 project_install_address_b = #{project_install_address_b,jdbcType=INTEGER},
+	</if>
+</set>
+where pid = #{pid,jdbcType=INTEGER}
+</update>
+<!-- 更新订单信息 -->
+<update id="update_project_attproject"  parameterType="com.dcc.ProjectManagementSystem.entity.Project">
+update project
+<set>
+	<if test="project_soon!=null">
+		 project_soon = #{project_soon,jdbcType=VARCHAR}
+	</if>
+</set>
+where pid = #{pid,jdbcType=INTEGER}
+</update>
+</mapper>

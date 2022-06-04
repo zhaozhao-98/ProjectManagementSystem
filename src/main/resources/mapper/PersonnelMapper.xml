@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.PersonnelMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.Personnel">
+    <id column="pid" jdbcType="INTEGER" property="pid" />
+  </resultMap>
+  <select id="select_personnel_list"  resultMap="BaseResultMap">
+    select  pid,personnel_name,personnel_phone,personnel_email,personnel_head_portrait  from personnel where lock_door=1;
+  </select>
+  <select id="select_personnel_one"  resultMap="BaseResultMap">
+    select  user_stat  from personnel where pid=#{pid,jdbcType=INTEGER} and lock_door=1;
+  </select>
+  <select id="select_personnel_one_info"  resultMap="BaseResultMap">
+    select  pid,personnel_name,personnel_email,personnel_head_portrait,lock_door,user_stat  from personnel where pid=#{pid,jdbcType=INTEGER} and lock_door=1;
+  </select>
+    <!-- 更新收藏 -->
+   <update id="update_stat" parameterType="com.dcc.ProjectManagementSystem.entity.Personnel">
+    update personnel set user_stat=#{user_stat,jdbcType=VARCHAR} where pid = #{pid,jdbcType=INTEGER} and lock_door=1
+  </update>
+  <select id="select_personnel_rows"  resultType="java.lang.Long">
+    select  count(1)  from personnel;
+  </select>
+  
+  <insert id="insert_personnel" parameterType="com.dcc.ProjectManagementSystem.entity.Personnel">
+    INSERT INTO
+		promgsys.personnel
+			(pid,personnel_name,
+			personnel_email,
+			personnel_phone,
+			user_stat,
+			lock_door,
+			personnel_head_portrait)
+		VALUES 
+			(#{pid,jdbcType=INTEGER},#{personnel_name,jdbcType=VARCHAR},
+			#{personnel_email,jdbcType=VARCHAR},
+			#{personnel_phone,jdbcType=VARCHAR},
+			#{user_stat,jdbcType=VARCHAR},
+			#{lockdoor,jdbcType=INTEGER},
+			#{personnel_headportrait,jdbcType=VARCHAR});
+  </insert>
+</mapper>

@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>com.dcc.ProjectManagementSystem</title>
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/animate/animate.min.css">
+<style>
+.container{
+	max-width: none;
+	width: 100%;
+	padding-left: inherit;
+	padding-right: inherit;
+}
+.col-lg-3{
+	padding-left: 0;
+}
+.accordion:not(.accordion-flush) .accordion-item {
+    margin-bottom: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid #e9e9f2;
+}
+body {
+    background-color: #7aaded0d;
+    border: 0;
+	overflow-y:scroll;
+}
+body::-webkit-scrollbar {
+	  /*滚动条整体样式*/
+	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
+	  height: 0.5px;
+}
+body::-webkit-scrollbar-thumb {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 0.8);
+	  background   : transparent;
+ }
+body::-webkit-scrollbar-thumb:hover {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 1.0);
+	  background   : #F0F0F0;
+ }
+body::-webkit-scrollbar-track {
+	  background   : transparent;
+ }
+ ol li{
+	width: 50%;
+}
+ #search_ul{
+      	overflow-y:hidden;
+      	width: 306px;
+	    border: 1px solid #fff;
+	    position: absolute;
+	    z-index: 1;
+	    list-style: none;
+	    background-color: #fff;
+	    padding: 0;
+	    margin-bottom: 0;
+	    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 12%);
+	    border-radius:0.375rem;
+ }
+#search_ul:hover{
+	overflow-y:auto;
+}
+#search_ul::-webkit-scrollbar {
+	  /*滚动条整体样式*/
+	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
+	  height: 0.5px;
+}
+#search_ul::-webkit-scrollbar-thumb {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 0.8);
+	  background   : transparent;
+ }
+#search_ul::-webkit-scrollbar-thumb:hover {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 1.0);
+	  background   : #F0F0F0;
+ }
+#search_ul::-webkit-scrollbar-track {
+	  background   : transparent;
+ }
+/* 导航 */
+#account-menu{
+	overflow-y:auto;
+}
+#account-menu::-webkit-scrollbar {
+	  /*滚动条整体样式*/
+	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
+	  height: 0.5px;
+}
+#account-menu::-webkit-scrollbar-thumb {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 0.8);
+	  background   : transparent;
+ }
+#account-menu::-webkit-scrollbar-thumb:hover {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 1.0);
+	  background   : #F0F0F0;
+ }
+#account-menu::-webkit-scrollbar-track {
+	  background   : transparent;
+ }
+ 
+ 
+h3, .h3 {
+    line-height: 1.3;
+}
+.text-nowrap {
+    white-space: nowrap !important;
+}
+.fw-medium {
+    font-weight: 500 !important;
+}
+.fs-sm {
+    font-size: 0.675rem !important;
+}
+html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.text-body {
+    color: #737491 !important;
+}
+.text-nowrap {
+    white-space: nowrap !important;
+}
+.fw-normal {
+    font-weight: 400 !important;
+}
+.bg-faded-info {
+    background-color: rgba(106,155,244,.08) !important;
+}
+.text-info {
+    color: #6a9bf4 !important;
+}
+.fs-xs {
+    font-size: 0.55rem !important;
+}
+.px-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+.accordion-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.625rem 1.5rem;
+    font-size: 1rem;
+    color: #4a4b65;
+    text-align: left;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    overflow-anchor: none;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out,border-radius .15s ease;
+}
+.btn {
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.5625rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out;
+}
+.rounded-1 {
+    border-radius: 0.5rem !important;
+}
+.rounded{
+	border-radius: 1.25rem !important;
+}
+.btn-outline-primary {
+    color: #766df4;
+    border-color: #766df4;
+    font-size: .875rem;
+}
+.bg-secondary {
+    --bs-bg-opacity: 1;
+    background-color: #dee2e64f !important;
+}
+.nav-link-style.active {
+    color: #766df4;
+    pointer-events: none;
+    cursor: default;
+}
+.nav-link-style:hover {
+    color: #766df4;
+    text-decoration: none;
+}
+.nav-link-style {
+    display: inline-block;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out,box-shadow .25s ease-in-out,border-color .25s ease-in-out;
+    color: #5a5b75;
+    font-weight: 500;
+    text-decoration: none;
+}
+.nav-indicator {
+    display: inline-block;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    margin-top: -0.5rem;
+    margin-left: 0.375rem;
+    border-radius: 50%;
+    background-color: #16c995;
+}
+h3{
+	font-weight: 600;
+	color: #414486a3 !important;
+}
+.text-muted {
+    color: #9e9fb4 !important;
+}
+.ms-auto {
+    margin-left: auto !important;
+}
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+.px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+a{
+	cursor: pointer;
+}
+.form-select-sm {
+    padding-top: 0.425rem;
+    padding-bottom: 0.425rem;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+}
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 0.5625rem 2.25rem 0.5625rem 1.125rem;
+    -moz-padding-start: calc(1.125rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #737491;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234a4b65' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.125rem center;
+    background-size: 16px 12px;
+    border: 1px solid #dfdfeb;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 2px transparent;
+    transition: border-color .2s ease-in-out,box-shadow .2s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.tns-nav {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+}
+[data-nav] {
+    display: inline-block;
+    position: relative;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: 0 0.25rem;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+[data-nav]::before {
+    top: 50%;
+    left: 50%;
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-top: -0.1875rem;
+    margin-left: -0.1875rem;
+    background-color: #766df4;
+}
+[data-nav]::before, [data-nav]::after {
+    position: absolute;
+    transition: opacity .2s ease-in-out,transform .2s ease-in-out;
+    border-radius: 50%;
+    content: "";
+}
+[data-nav]::after {
+    top: 0;
+    left: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    transform: scale(0.5);
+    border: 0.125rem solid #766df4;
+    opacity: 0;
+}
+[data-nav].tns-nav-active::after, [data-nav].active::after {
+    transform: scale(1);
+    opacity: 1;
+}
+[data-nav].tns-nav-active::before, [data-nav].active::before {
+    opacity: 0;
+}
+.over_flow{
+    word-wrap: break-word;
+    word-break:break-all;
+    overflow: hidden;
+}
+.page_show{
+	text-align: center;
+    color: #49505780;
+    font-size: .675em;
+    font-weight: 600;
+}
+.text_underline:hover{
+    cursor:pointer;
+	text-decoration:underline;
+}
+.text_original{
+	color:#2485fd !important;
+}
+.p-lr-3{
+    padding-right: 1rem !important;
+}
+.input-group .position-absolute {
+    z-index: 5;
+}
+.top-50 {
+    top: 50% !important;
+}
+.start-0 {
+    left: 5% !important;
+}
+.translate-middle-y {
+    transform: translateY(-50%) !important;
+}
+.search_input{
+	padding-top: 1.0rem !important;
+	padding-bottom: 1.0rem !important;
+}
+.keyword_main:focus{
+	box-shadow: 0 0 0 0.05rem rgb(0 123 255 / 25%);
+}
+.navbar-glass-shadow {
+    box-shadow: 0 .5rem .5rem -.5rem rgba(0,0,0,.2)!important;
+}
+#account-menu a{
+	font-weight: 500;
+    font-size: .575em;
+}
+.bimg{
+	background-image: -webkit-linear-gradient(bottom,#b94835,#09383ce0,#a3222291);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.h5{
+	font-size: 0.6rem;
+}
+.container_nav{
+	position: fixed;
+    display: inline-block;
+    width: 22%;
+}
+.row{
+	margin-right: 0;
+	margin-left: 0;
+}
+#account-menu_outer{
+	margin-left: 22.2%;
+	padding-left: 0;
+	width: 100%;
+}
+.mb-grid-gutter{
+	margin-top: 1%;
+}
+.border-r{
+    border-radius: 1rem;
+}
+
+ .customizer {
+    position: fixed;
+    bottom: 0.5rem;
+    right: 2rem;
+    z-index: 200;
+}
+ .customizer .dropup{
+ 	float: right;
+ 	padding-right: 6px;
+    padding-left: 6px;
+ }
+ .customizer a{
+ 	float: right;
+ }
+ .btn-icon-only.btn-sm {
+    width: 2.4375rem;
+    height: 2.4375rem;
+}
+.hover-scale-110:hover, .scale-110 {
+    transform: scale(1.1) !important;
+}
+.btn-icon-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.125rem;
+    height: 3.125rem;
+    padding: 0px;
+}
+.dropdown-menu{
+	padding-top: 0;
+	padding-bottom: 0.5rem;
+}
+.dropdown-header{
+	padding: 0.5rem 0.5rem;
+}
+.dropdown-item{
+	padding: 0.25rem 0.8rem;
+}
+</style>
+</head>
+<body>
+<div class="container position-relative zindex-5" >
+        <div class="row">
+          <!-- Sidebar-->
+          <div class="container_nav d-md-block collapse border-r" >
+            <div class="bg-light rounded-3 shadow-lg border-r">
+              <div class="px-4 py-4 text-center" id="account-menu-title" style="background: linear-gradient(#c34cea,#14dc5b47);"><img class="d-block rounded-circle mx-auto my-2" src="/ProjectManagementSystem/img/Multiavatar-9b858947b263cca4da.png" at="zhaozhao" width="110">
+                <h6 class="bimg mb-0 pt-1 realname"></h6><a class="fs-sm email">@zhaozhao</a>
+              </div>
+              <div class="search-box">
+              <div class="px-4  text-center col-md-12 search_input">
+				    <div class="align-items-center search_input_body">
+					<div class="input-group">
+					  <i class="fa fa-search header_i  position-absolute top-50 start-0 translate-middle-y ms-3" aria-hidden="true" style="color:rgb(0 0 0 / 55%);"></i>
+				       <input class="form-control rounded keyword_main" type="text" placeholder="Search" style="padding-left: 12%;font-size: .875rem;font-weight: 500;">
+				     </div>
+				   </div>
+				</div>
+				<div class="col-md-12" style="margin: 0;">
+			       <div class="row collapse px-4 search_div" style="margin-right: -15px;margin-left: -30px;">
+				       <div id="search_ul"  style="top: -8px;">
+				       			
+				       </div>
+			        </div>
+		        </div>
+              </div>
+              <!--搜索历史  -->
+              <div style="display: none" class="search_history">
+              	
+              </div>
+		        
+              <div class="d-lg-block pb-2" id="account-menu" style="padding-right:2px;">
+                <h3 class="d-block bg-secondary fs-sm fw-semibold  mb-0 px-4 py-3">项目集合</h3>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this orders" >所有项目<span class="text-muted fs-sm fw-normal ms-auto">0</span></a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this test_orders" >测试项目<span class="text-muted fs-sm fw-normal ms-auto">0</span></a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this cooperative_orders" >合作项目<span class="text-muted fs-sm fw-normal ms-auto">0</span></a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this official_orders" >正式项目<span class="text-muted fs-sm fw-normal ms-auto">0</span></a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this remotehand_orders" >RemoteHand<span class="text-muted fs-sm fw-normal ms-auto">0</span></a>
+                <h3 class="d-block bg-secondary fs-sm fw-semibold  mb-0 px-4 py-3">联系人</h3>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this company">公司</a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this market">人员</a>
+                <h3 class="d-block bg-secondary fs-sm fw-semibold  mb-0 px-4 py-3">附件</h3>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this contract">合同</a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this sailing_notice">开通单</a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this gplot">拓扑图</a>
+                <h3 class="d-block bg-secondary fs-sm fw-semibold  mb-0 px-4 py-3">数据统计</h3>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this">报表</a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top order_this">数据分析</a>
+              </div>
+            </div>
+          </div>
+          <!-- Content-->
+          <div  id="account-menu_outer">
+                <!-- Accordion with orders-->
+                <div class="accordion" id="orders-accordion" >
+                <!-- Title + Filters-->
+                <div class="d-sm-flex align-items-center justify-content-between pb-2" >
+                  <h1 class="h3 mb-3 text-center text-sm-start"></h1>
+                    <div class="d-flex align-items-center" style="width: 22%">
+                    <label class="form-label text-nowrap pe-1 me-2 mb-0" style="padding-right: 1.5em;font-size:.675rem">显示条目</label>
+                    <select class="form-select form-select-sm" style="font-size:.675rem">
+                      <option>10</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                   </div>
+                </div>
+                 <!-- Order-->
+                 <div class="accordion-item" id="main_project" style="margin-left: 2px;box-shadow: 0 0.2rem 2rem 0.2rem rgba(1,1,0,.2)!important;">
+						
+                 </div>
+               <div class="page_show"><span class="in_page">1</span><span>/</span><span class="all_page">1</span></div>
+               <div class="tns-nav" aria-label="Carousel Pagination">
+
+               </div>
+               </div>
+               <!-- Pagination-->
+               <nav class="d-md-flex justify-content-between align-items-center text-center text-md-start pt-grid-gutter foot_item">
+                 <div class="d-md-flex align-items-center w-100">
+                 	<span class="fs-sm text-muted me-md-3 orders_num">总项目：<b></b> 条</span>
+                 </div>
+               </nav>
+               <div class="col-md-12" style="margin-top: 2%;"></div>
+          </div>
+          <div class="customizer col-lg-9">
+          		  <div class="btn-group dropup">
+				      <button type="button" id="out_login" data-mode="light" class="btn btn-primary btn-sm btn-icon-only rounded-circle hover-scale-110 shadow-lg" ><i class="fa  fa-sign-out"></i></button>
+			      </div>
+			      <div class="btn-group dropup">
+				      <button type="button" id="go_main" data-mode="light" class="btn btn-primary btn-sm btn-icon-only rounded-circle hover-scale-110 shadow-lg" ><i class="fa fa-reply-all"></i></button>
+			      </div>
+			      <div class="btn-group dropup cogsdropdown_dropup">
+				      <button type="button" id="cogsdropdown" data-toggle="dropdown" aria-expanded="false"  class="btn btn-primary btn-sm btn-icon-only rounded-circle hover-scale-110 shadow-lg"><i class="fa fa-cog"></i></button>
+				      <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="cogsdropdown" data-bs-popper="none" style="left:-50px">
+		                    <div class="row">
+		                      <div class="col-12 setting" style="padding-left: 8px;">
+		                        <!-- Heading -->
+		                        <h6 class="dropdown-header">设置</h6>
+		                        <!-- List -->
+		                        <a class="dropdown-item order_this user_info">个人资料</a>
+		                        <a class="dropdown-item order_this AccountManagement">账户管理</a>
+		                      </div>
+		                    </div>
+		              </div>
+			      </div>
+			      <div class="btn-group dropup tagsdropdown_dropup">
+				      <button type="button" id="tagsdropdown" data-toggle="dropdown" aria-expanded="false"  class="btn btn-primary btn-sm btn-icon-only rounded-circle hover-scale-110 shadow-lg"><i class="fa fa-tags"></i></button>
+				      <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="tagsdropdown" data-bs-popper="none" style="left:-50px">
+		                    <div class="row">
+		                      <div class="col-12" style="padding-left: 8px;">
+		                        <!-- Heading -->
+		                        <h6 class="dropdown-header">其他</h6>
+		                        <!-- List -->
+		                        <a class="dropdown-item order_this" id="about_me">关于我的项目</a>
+		                        <a class="dropdown-item order_this" id="overtime">超时未完成项目</a>
+		                        <a class="dropdown-item order_this" id="me_favorite">星标项目</a>
+		                      </div>
+		                    </div>
+		              </div>
+			      </div>
+           </div>
+        </div>
+      </div>
+
+<script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/moment-with-locales.js"></script>
+<script>
+$(function(){
+	$('#account-menu').height($(window).height()-$('#account-menu-title').height()-$('.search_input').height()-120);
+	//左侧导航
+	$('#modal-right_nav_a').click(function(){
+		$('#modal-right_nav').modal("show");
+		$('#modal-right_nav').attr("style","display: block; padding-right: 0px;");
+		$('.modal-open').attr("style","display: block; padding-right: 0px;overflow:scroll");
+	});
+	//页脚导航
+	$('#go_main').click(function(){
+		window.location.href='/ProjectManagementSystem/user_controller/in_main';
+	});
+	$('#out_login').click(function(){
+		 $.ajax({
+				type:'post',
+				url:'../user_controller/login_session_out',
+				dataType:'json',
+				success:function(data){
+					window.location.reload();
+				}
+			});
+	});
+	var cogsdropdown_dropup=false;
+	$('.cogsdropdown_dropup').hover(function(){
+		cogsdropdown_dropup=true;
+		var data_show=$("[aria-labelledby=cogsdropdown]").attr("data-show");
+		if(cogsdropdown_dropup==true && data_show=="show"){
+			$("[aria-labelledby=cogsdropdown]").fadeIn(10);
+		}else if(cogsdropdown_dropup==true && data_show!="show"){
+			$("[aria-labelledby=cogsdropdown]").attr("data-show","show");
+			$("[aria-labelledby=cogsdropdown]").fadeIn(500);
+		}else{
+			$("[aria-labelledby=cogsdropdown]").attr("data-show","hide");
+		}
+	},function(){
+		$("[aria-labelledby=cogsdropdown]").fadeOut(10);
+		$("[aria-labelledby=cogsdropdown]").attr("data-show","hide");
+	});
+    /*关于我的项目*/
+	$('#about_me').click(function(){
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+        const url = "/ProjectManagementSystem/navigation/other.html?about_me=" + $('.realname').attr("uid");
+
+        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\"  style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	});
+    /*收藏的项目*/
+	$('#me_favorite').click(function(){
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/other.html?favorite="+$('.realname').attr("uid");
+
+        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	});
+    /*超时项目*/
+    $('#overtime').click(function(){
+        //超时项目
+        $('#orders-accordion').empty();
+        $('.foot_item').remove();
+        url="/ProjectManagementSystem/navigation/other.html?timeout="+$('.realname').attr("uid");
+        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+        $('#orders-accordion').height($(window).height()-60);
+        $('body').attr("style","overflow:hidden;border:0;");
+    })
+	$('.tagsdropdown_dropup').hover(function(){
+		tagsdropdown_dropup=true;
+		var data_show=$("[aria-labelledby=tagsdropdown]").attr("data-show");
+		if(tagsdropdown_dropup==true && data_show=="show"){
+			$("[aria-labelledby=tagsdropdown]").fadeIn(10);
+		}else if(tagsdropdown_dropup==true && data_show!="show"){
+			$("[aria-labelledby=tagsdropdown]").attr("data-show","show");
+			$("[aria-labelledby=tagsdropdown]").fadeIn(500);
+		}else{
+			$("[aria-labelledby=tagsdropdown]").attr("data-show","hide");
+		}
+	},function(){
+		$("[aria-labelledby=tagsdropdown]").fadeOut(10);
+		$("[aria-labelledby=tagsdropdown]").attr("data-show","hide");
+	});
+	//导航搜索框
+	search_mian();
+	function search_mian(){
+		var isthisclick=false;
+		var iskeyword_main_click=false;
+		var isbodyclick=false;
+	  	  //聚焦
+		  $(".keyword_main").click(function(){
+		   var show_toggle=$("#search_ul").attr("show-toggle");
+		   if(iskeyword_main_click==true){
+			   iskeyword_main_click=false;
+			   $('.search_div').removeClass("show");
+		   }else{
+			   iskeyword_main_click=true;
+			   $('.search_div').addClass("show");
+		   }
+		    $('#search_ul').width($('#account-menu-title').width()+35);
+		    $('#search_ul').height($('#account-menu').height()*0.5);
+		  });
+
+	    var search_project;
+	    var list_personnel;
+	    var list_customer;
+	    $.ajax({
+			type:'post',
+			url:'../project_controller/search_input_main',
+			dataType:'json',
+			success:function(data){
+                search_project=data.search_project;
+                list_personnel=data.list_personnel;
+                list_customer=data.list_customer;
+			}
+		});
+	    $(".keyword_main").bind('input propertychange',function(){
+	    	var keyword_main=$(".keyword_main").val();
+	    	$('#search_ul').empty();
+	    	$('.search_div').addClass("show");
+	    	vaguesearch(search_project,list_personnel,list_customer,keyword_main);
+	    });
+	    function vaguesearch(search_project,list_personnel,list_customer,keyword_main){
+	    	var search_key=0;
+	    	var personnel_key=0;
+	    	var customer_key=0;
+	    	var project_html="";
+	    	var personnel_html="";
+	    	var customer_html="";
+	    	for(var oid=0;oid<search_project.length;oid++){
+	    		if((search_project[oid].od_num).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(search_key==0){
+	    				project_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">项目</h6>'
+	    			}else{
+	    				project_html=project_html;
+	    			}
+	    			if(search_key<5){
+		    			console.log(search_project[oid].od_num);
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>项目编号</span><span>></span><span>'+search_project[oid].od_num+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			search_key++;
+	    		}
+				if((search_project[oid].contract_num).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(search_key==0){
+	    				project_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">项目</h6>'
+	    			}else{
+	    				project_html=project_html;
+	    			}
+	    			if(search_key<5){
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>合同编号</span><span>></span><span>'+search_project[oid].contract_num+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			search_key++;
+	    		}
+				if((search_project[oid].services_num).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(search_key==0){
+	    				project_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">项目</h6>'
+	    			}else{
+	    				project_html=project_html;
+	    			}
+	    			if(search_key<5){
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>服务编号</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			search_key++;
+	    		}
+				if((search_project[oid].project_name).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(search_key==0){
+	    				project_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">项目</h6>'
+	    			}else{
+	    				project_html=project_html;
+	    			}
+	    			if(search_key<5){
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="project_name_click"  tag="'+search_project[oid].pid+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>项目名称</span><span>></span><span>'+search_project[oid].project_name+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			search_key++;
+	    		}
+				if((search_project[oid].customer_list.customer_name).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(search_key==0){
+	    				project_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">项目</h6>'
+	    			}else{
+	    				project_html=project_html;
+	    			}
+	    			if(search_key<5){
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<em>'+search_project[oid].services_num+'</em>"><span>客户</span><span>></span><span>关于'+search_project[oid].customer_list.customer_name+'的项目</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			search_key++;
+	    		}
+				if((search_project[oid].personnel_list.personnel_name).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(search_key==0){
+	    				project_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">项目</h6>'
+	    			}else{
+	    				project_html=project_html;
+	    			}
+	    			if(search_key<5){
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<em>'+search_project[oid].services_num+'</em>"><span>项目经理</span><span>></span><span>关于'+search_project[oid].personnel_list.personnel_name+'的项目</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			search_key++;
+	    		}
+	    	}
+	    	for(var pid=0;pid<list_personnel.length;pid++){
+	    		if((list_personnel[pid].personnel_name).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(personnel_key==0){
+	    				personnel_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">联系人</h6>'
+	    			}else{
+	    				personnel_html=personnel_html;
+	    			}
+	    			if(personnel_key<5){
+	    				personnel_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>个人信息</span><span>></span><span>'+list_personnel[pid].personnel_name+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			personnel_key++;
+	    		}
+	    	}
+	    	for(var cid=0;cid<list_customer.length;cid++){
+	    		if((list_customer[cid].customer_name).indexOf(keyword_main)!=-1){
+	    			//存在
+	    			if(customer_key==0){
+	    				customer_html='<h6 class="px-card pb-2 fw-medium dropdown-header" role="heading">公司</h6>'
+	    			}else{
+	    				customer_html=customer_html;
+	    			}
+	    			if(customer_key<5){
+	    				customer_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>公司信息</span><span>></span><span>'+list_customer[cid].customer_name+'</span></a>'
+	    			}else{
+	    				break;
+	    			}
+	    			customer_key++;
+	    		}
+	    	}
+	    	if(project_html=="" && personnel_html=="" && customer_html==""){
+	    		var html="<span style='font-size: 18px;color: #2a00d1c9;'>无结果，请重新检索</span>"
+	    		$('#search_ul').append(html);
+	    		$('#search_ul').css("text-align","center");
+	    		 $('[data-toggle="tooltip"]').tooltip({
+	    			 html:true
+	    		 });
+	    	}else{
+	    		if(project_html!=""){
+	    			$('#search_ul').append(project_html+'<hr class="bg-200 dark__bg-900">');
+	    		    $('[name=project_name_click]').click(function(){
+	    		    	var tag=$(this).attr('tag');
+	    				window.open("/ProjectManagementSystem/navigation/projectinformation.html.html?pid="+tag);
+	    		    });
+	    		}
+	    		if(personnel_html!=""){
+	    			$('#search_ul').append(personnel_html+'<hr class="bg-200 dark__bg-900">');
+	    		}
+	    		if(customer_html!=""){
+	    			$('#search_ul').append(customer_html+'<hr class="bg-200 dark__bg-900">');
+	    		}
+		    	$('#search_ul').css("text-align","inherit");
+	    	}
+	    	$('#search_ul').width($('#account-menu-title').width()+35);
+		   	 $('[data-toggle="tooltip"]').tooltip({
+				 html:true
+			 });
+	    }
+	    
+		  $("#search_ul").click(function(){
+			  isthisclick=true;
+		  });
+		  $('body').click(function(){
+			  isbodyclick=true;
+			  if(isthisclick==true){
+				  isthisclick=false;
+				  $('.search_div').addClass("show");
+			  }else{
+				  if(iskeyword_main_click==true){
+					  iskeyword_main_click=false;
+					  $('.search_div').addClass("show");
+				   }else if(iskeyword_main_click==false && isbodyclick==true){
+					   iskeyword_main_click=false;
+					   $('.search_div').removeClass("show");
+				   }
+			  }
+		  });
+	}
+	
+	
+	$('.order_this').click(function(){
+		//删除原始之前
+		var order_test=$('.active').text();
+		var new_order_text=order_test.replace(/\d/g, "");
+		var order_num=order_test.replace(/[^0-9]/ig, "");
+		var order_num_html='<span class="text-muted fs-sm fw-normal ms-auto">'+order_num+'</span>'
+		$('.active').empty();
+		$('.active').html(new_order_text+order_num_html);
+		
+		//删除原始之后
+		$('.active').removeClass("active");
+		var html='<span class="nav-indicator"></span>'
+		var this_order_text=$(this).text();
+		var new_this_order_text=this_order_text.replace(/\d/g, "");
+		var this_order_num=this_order_text.replace(/[^0-9]/ig, "");
+		var this_order_num_html='<span class="text-muted fs-sm fw-normal ms-auto">'+this_order_num+'</span>'
+		$(this).empty();
+		$(this).html(new_this_order_text+html+this_order_num_html);
+		$(this).addClass("active");
+	});
+	function orders(){
+        //orders  click()
+        $('#orders-accordion').empty();
+        $('.foot_item').remove();
+        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0"
+        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+        $('#orders-accordion').height($(window).height()-60);
+        $('body').attr("style","overflow:hidden;border:0;");
+	}
+	function test_orders(){
+		//test_orders  click()
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=2"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function cooperative_orders(){
+		//cooperative_orders  click()
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=4"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function official_orders(){
+		//official_orders  click()
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=5"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function remotehand_orders(){
+		//orders  click()
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=3"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function company(){
+		//公司
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/linkman.html?customertag=1"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function market(){
+		//销售和客户经理
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/linkman.html?pmtag=1"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function contract(){
+		//附件  合同
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/files.html?contract_tag=1"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function sailing_notice(){
+		//附件  开通单
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/files.html?sailing_notice=1"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	function gplot(){
+		//附件  拓扑
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/files.html?gplot_tag=1"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+	
+	function Sestting(){
+		//设置
+		$('#orders-accordion').empty();
+		$('.foot_item').remove();
+		url="/ProjectManagementSystem/navigation/personaldata.html"
+		$('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+		$('#orders-accordion').height($(window).height()-60);
+		$('body').attr("style","overflow:hidden;border:0;");
+	}
+
+    function UsersManage(){
+        //设置
+        $('#orders-accordion').empty();
+        $('.foot_item').remove();
+        url="/ProjectManagementSystem/navigation/usersmanage.html"
+        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0'  onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+        $('#orders-accordion').height($(window).height()-60);
+        $('body').attr("style","overflow:hidden;border:0;");
+    }
+
+	$('.user_info').click(function(){
+		Sestting();
+	});
+	$('.AccountManagement').click(function(){
+        UsersManage();
+	});
+
+
+	$('.contract').click(function(){
+		contract();
+	});
+	$('.sailing_notice').click(function(){
+		sailing_notice();
+	});
+	$('.gplot').click(function(){
+		gplot();
+	});
+	$('.market').click(function(){
+		market();
+	});
+	$('.company').click(function(){
+		company();
+	})
+	$(".orders").click(function(){
+		orders();
+	});
+	$(".test_orders").click(function(){
+		test_orders();
+	});
+	$(".cooperative_orders").click(function(){
+		cooperative_orders();
+	});
+	$(".official_orders").click(function(){
+		official_orders();
+	});
+	$(".remotehand_orders").click(function(){
+		remotehand_orders();
+	});
+	function page_button(){
+		$("[aria-controls='tns1']").click(function(){
+			$(".tns-nav-active").attr('aria-label',"Carousel Page"+$(".tns-nav-active").attr("data-nav"));
+			$(".tns-nav-active").attr('class','');
+			
+			$(this).attr("class","tns-nav-active");
+			$(this).attr("aria-label","Carousel Page"+$(this).attr("data-nav")+" (Current Slide)");
+			var rows=$('.form-select').attr('rows');
+			var page=$('.form-select').val();
+			
+			var limit=($(this).attr("data-nav")-1)*page;
+			var item=page;
+			$('.in_page').text($(this).attr("data-nav"));
+			if($(this).attr("data-nav")<=Math.ceil(rows/page)){
+				$.ajax({
+					type:'post',
+					url:'../project_controller/list_select_project_main',
+					dataType:'json',
+					data:{
+						'limit':limit,
+						'item':item
+					},
+					success:function(data){
+                        if(data.msg=="success"){
+                            $('#main_project').empty();
+                            var html="";
+                            for (var i=0;i<data.list_project.length;i++){
+                                if(data.list_project[i].class_other!=null){
+                                    var class_back_color=data.list_project[i].class_other.other_back_color
+                                    var class_text_color="#"+data.list_project[i].class_other.other_color
+                                    var class_text_display=data.list_project[i].class_other.other_name
+                                }else{
+                                    var class_back_color="rgb(49 51 48 / 35%)"
+                                    var class_text_color="#0d0d0dd1"
+                                    var class_text_display="未匹配"
+                                }
+
+                                if(data.list_project[i].status_other!=null){
+                                    var status_back_color=data.list_project[i].status_other.other_back_color
+                                    var status_text_color="#"+data.list_project[i].status_other.other_color
+                                    var status_text_display=data.list_project[i].status_other.other_name
+                                }else{
+                                    var status_back_color="rgb(49 51 48 / 35%)"
+                                    var status_text_color="#0d0d0dd1"
+                                    var status_text_display="未匹配"
+                                }
+
+
+                                if(data.list_project[i].project_startdate==null || data.list_project[i].project_startdate=="" || data.list_project[i].project_startdate==undefined){
+                                    var project_startdate=""
+                                }else{
+                                    var project_startdate=new Date(data.list_project[i].project_startdate);
+                                    project_startdate=project_startdate.getFullYear()+'/'+(project_startdate.getMonth()+1)+'/'+project_startdate.getDate()
+                                }
+                                if(data.list_project[i].project_actual_finishing_date!=null && data.list_project[i].project_actual_finishing_date!="" && data.list_project[i].project_actual_finishing_date!=undefined&& data.list_project[i].project_actual_finishing_date!=-1){
+                                    var project_expected_completion_date=new Date(data.list_project[i].project_expected_completion_date);
+                                    var project_expected_completion_date_html="实际完成时间";
+                                    project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
+                                }else if(data.list_project[i].project_expected_completion_date!=null && data.list_project[i].project_expected_completion_date!="" &&  data.list_project[i].project_expected_completion_date!=undefined&&  data.list_project[i].project_expected_completion_date!=-1){
+                                    var project_expected_completion_date=new Date(data.list_project[i].project_expected_completion_date);
+                                    var project_expected_completion_date_html="预计完成时间";
+                                    project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
+                                }else{
+                                    var project_expected_completion_date_html="实际/预计完成时间";
+                                    var project_expected_completion_date="#"
+                                }
+
+                                //创建时间
+                                if(data.list_project[i].create_date==null || data.list_project[i].create_date=="" || data.list_project[i].create_date==undefined){
+                                    var create_date=""
+                                }else{
+                                    var create_date=new Date(data.list_project[i].create_date);
+                                    create_date=create_date.getFullYear()+'/'+(create_date.getMonth()+1)+'/'+create_date.getDate()
+                                }
+                                html+='<h2 class="accordion-header" id="order-header-1">'
+                                    +'<button class="accordion-button no-indicator  align-items-center justify-content-between pe-4 collapsed" data-toggle="collapse" data-target="#order-collapse-'+i+'" aria-expanded="false" aria-controls="order-collapse-1" >'
+                                    +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-3 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'
+                                    +'<i class="fa  fa-slack" aria-hidden="true"></i> '+data.list_project[i].od_num+'</a></span></div>'
+                                    +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click"  tag="'+data.list_project[i].pid+'">'+data.list_project[i].project_name+'</a></div>'
+                                    +'<div class="text-nowrap text-body fs-sm fw-normal my-1 me-2 col-md-3 over_flow"><i class="fa  fa-clock-o" aria-hidden="true"></i> '+create_date+'</div>'
+                                    +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 "style="color:'+status_text_color+';background-color: '+status_back_color+' !important;">'+status_text_display+'</div>'
+
+                                    +'</button>'
+                                    +'</h2>'
+                                    +'<div class="col" style="margin: 0;border-radius: 1rem;">'
+                                    +'<div class="collapse multi-collapse bg-secondary row" id="order-collapse-'+i+'" style="border-bottom-left-radius: 1em;border-bottom-right-radius: 1em;padding-top: 0.2rem;">'
+                                    +'<div class="col-md-6 ">'
+                                    +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">客户名称:</label>'
+                                    +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size: .675rem;">'+data.list_project[i].customer_list.customer_name+'</span>'
+                                    +' </div>'
+                                    +'<div class="col-md-6">'
+                                    +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">项目经理:</label>'
+                                    +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].personnel_list.personnel_name+'</span>'
+                                    +'</div>'
+                                    +'<div class="col-md-6">'
+                                    +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">合同编号:</label>'
+                                    +' <span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].contract_num+'</span>'
+                                    +'</div>'
+                                    +'<div class="col-md-6">'
+                                    +' <label for="od_num" style="font-size: .675rem;font-weight: bold;">服务编号:</label>'
+                                    +' <span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].services_num+'</span>'
+                                    +'</div>'
+
+                                    +' <div class="col-md-4">'
+                                    +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">启动日期:</label>'
+                                    +' <span  style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+project_startdate+'</span>'
+                                    +'</div>'
+                                    +'<div class="col-md-4">'
+                                    +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">'+project_expected_completion_date_html+':</label>'
+                                    +'<span  style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+project_expected_completion_date+'</span>'
+                                    +' </div>'
+                                    +'<div class="col-md-4">'
+                                    +'<label for="od_num" style="font-size: 14px;font-weight: bold;">服务类别:</label>'
+                                    +'<span style="color:'+class_text_color+';background-color: '+class_back_color+' !important;text-align: center;margin-bottom: -0.5em;" class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1">'+class_text_display+'</span>'
+                                    +' </div>'
+                                    +'</div>'
+                                    +' </div>'
+                                    +'<div class="col-md-12" ><hr style="margin-top: 0;margin-bottom: 0.5em;"/></div>'
+                            };
+                            $('#main_project').append(html);
+                            $('.project_name_click').click(function(){
+                                var tag=$(this).attr('tag');
+                                window.open("/ProjectManagementSystem/navigation/projectinformation.html?pid="+tag);
+                            });
+                        }
+					}
+				});
+			}
+		});
+	}
+	$.ajax({
+		type:'post',
+		url:'../user_controller/login_session',
+		dataType:'json',
+		success:function(data){
+			if(data.personnel.length!=0){
+				$(".realname").attr("uid",data.personnel[0].pid);
+				$(".realname").attr("lockdoor",data.personnel[0].lockdoor);
+				$(".realname").html(data.personnel[0].personnel_name);
+				$(".email").html(data.personnel[0].personnel_email);
+				$('#account-menu-title img').attr("src","/headportrait/"+data.personnel[0].personnel_head_portrait)
+			}
+			var set_html=""
+			$('.setting').append(set_html);
+			/* 初次加载 */
+			$.ajax({
+				type:'post',
+				url:'../project_controller/list_select_project_main',
+				dataType:'json',
+				data:{
+					'limit':0,
+					'item':10
+				},
+				success:function(data){
+					if(data.msg="success"){
+                        $('#main_project').empty();
+                        var html="";
+                        for (var i=0;i<data.list_project.length;i++){
+                            if(data.list_project[i].class_other!=null){
+                                var class_back_color=data.list_project[i].class_other.other_back_color
+                                var class_text_color="#"+data.list_project[i].class_other.other_color
+                                var class_text_display=data.list_project[i].class_other.other_name
+                            }else{
+                                var class_back_color="rgb(49 51 48 / 35%)"
+                                var class_text_color="#0d0d0dd1"
+                                var class_text_display="未匹配"
+                            }
+
+                            if(data.list_project[i].status_other!=null){
+                                var status_back_color=data.list_project[i].status_other.other_back_color
+                                var status_text_color="#"+data.list_project[i].status_other.other_color
+                                var status_text_display=data.list_project[i].status_other.other_name
+                            }else{
+                                var status_back_color="rgb(49 51 48 / 35%)"
+                                var status_text_color="#0d0d0dd1"
+                                var status_text_display="未匹配"
+                            }
+                            if(data.list_project[i].project_startdate==null || data.list_project[i].project_startdate=="" || data.list_project[i].project_startdate==undefined){
+                                var project_startdate=""
+                            }else{
+                                var project_startdate=new Date(data.list_project[i].project_startdate);
+                                project_startdate=project_startdate.getFullYear()+'/'+(project_startdate.getMonth()+1)+'/'+project_startdate.getDate()
+                            }
+
+                            if(data.list_project[i].project_actual_finishing_date!=null && data.list_project[i].project_actual_finishing_date!="" && data.list_project[i].project_actual_finishing_date!=undefined&& data.list_project[i].project_actual_finishing_date!=-1){
+                                var project_expected_completion_date=new Date(data.list_project[i].project_expected_completion_date);
+                                var project_expected_completion_date_html="实际完成时间";
+                                project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
+                            }else if(data.list_project[i].project_expected_completion_date!=null && data.list_project[i].project_expected_completion_date!="" &&  data.list_project[i].project_expected_completion_date!=undefined&&  data.list_project[i].project_expected_completion_date!=-1){
+                                var project_expected_completion_date=new Date(data.list_project[i].project_expected_completion_date);
+                                var project_expected_completion_date_html="预计完成时间";
+                                project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
+                            }else{
+                                var project_expected_completion_date_html="实际/预计完成时间";
+                                var project_expected_completion_date="#"
+                            }
+
+                            //创建时间
+                            if(data.list_project[i].create_date==null || data.list_project[i].create_date=="" || data.list_project[i].create_date==undefined){
+                                var create_date=""
+                            }else{
+                                var create_date=new Date(data.list_project[i].create_date);
+                                create_date=create_date.getFullYear()+'/'+(create_date.getMonth()+1)+'/'+create_date.getDate()
+                            }
+                            html+='<h2 class="accordion-header" id="order-header-1">'
+                                +'<button class="accordion-button no-indicator  align-items-center justify-content-between pe-4 collapsed" data-toggle="collapse" data-target="#order-collapse-'+i+'" aria-expanded="false" aria-controls="order-collapse-1">'
+                                +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-3 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'
+                                +'<i class="fa  fa-slack" aria-hidden="true"></i> '+data.list_project[i].od_num+'</a></span></div>'
+                                +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click"  tag="'+data.list_project[i].pid+'">'+data.list_project[i].project_name+'</a></div>'
+                                +'<div class="text-nowrap text-body fs-sm fw-normal my-1 me-2 col-md-3 over_flow"><i class="fa  fa-clock-o" aria-hidden="true"></i> '+create_date+'</div>'
+                                +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 "style="color:'+status_text_color+';background-color: '+status_back_color+' !important;">'+status_text_display+'</div>'
+
+                                +'</button>'
+                                +'</h2>'
+                                +'<div class="col" style="margin: 0;border-radius: 1rem;">'
+                                +'<div class="collapse multi-collapse bg-secondary row" id="order-collapse-'+i+'" style="border-bottom-left-radius: 1em;border-bottom-right-radius: 1em;padding-top: 0.2rem;">'
+                                +'<div class="col-md-6">'
+                                +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">客户名称:</label>'
+                                +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].customer_list.customer_name+'</span>'
+                                +' </div>'
+                                +'<div class="col-md-6">'
+                                +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">项目经理:</label>'
+                                +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].personnel_list.personnel_name+'</span>'
+                                +'</div>'
+                                +'<div class="col-md-6">'
+                                +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">合同编号:</label>'
+                                +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].contract_num+'</span>'
+                                +'</div>'
+                                +'<div class="col-md-6">'
+                                +' <label for="od_num" style="font-size: .675rem;font-weight: bold;">服务编号:</label>'
+                                +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].services_num+'</span>'
+                                +'</div>'
+
+                                +' <div class="col-md-4">'
+                                +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">启动日期:</label>'
+                                +' <span style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+project_startdate+'</span>'
+                                +'</div>'
+                                +'<div class="col-md-4">'
+                                +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">'+project_expected_completion_date_html+':</label>'
+                                +'<span style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+project_expected_completion_date+'</span>'
+                                +' </div>'
+                                +'<div class="col-md-4">'
+                                +'<label for="od_num" style="font-size: 14px;font-weight: bold;">服务类别:</label>'
+                                +'<span style="color:'+class_text_color+';background-color: '+class_back_color+' !important;text-align: center;margin-bottom: -0.5em;" class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1">'+class_text_display+'</span>'
+                                +' </div>'
+                                +'</div>'
+                                +' </div>'
+                                +'<div class="col-md-12" ><hr style="margin-top: 0;margin-bottom: 0.5em;"/></div>'
+                        };
+                        $('#main_project').append(html);
+                        $('.orders span').text(data.rows);
+                        $('.test_orders span').text(data.test_orders);
+                        $('.cooperative_orders span').text(data.cooperative_orders);
+                        $('.official_orders span').text(data.official_orders);
+                        $('.remotehand_orders span').text(data.remotehand_orders);
+                        $('.form-select').attr("rows",data.rows);
+                        $('.orders_num b').text(data.rows);
+                        $('.in_page').text("1");
+                        $('.all_page').text(Math.ceil(data.rows/10));
+                        var html_page_button="";
+                        $('.tns-nav').empty();
+                        for(var j=0;j<Math.ceil(data.rows/10);j++){
+                            html_page_button+='<button type="button" data-nav="'+parseInt(j+1)+'" aria-controls="tns1" style="" aria-label="Carousel Page '+parseInt(j+1)+'"></button>'
+                        }
+                        $('.tns-nav').append(html_page_button);
+                        $('.tns-nav [data-nav=1]').attr("class","tns-nav-active");
+                        $('.tns-nav [data-nav=1]').attr("aria-label","Carousel Page 1 (Current Slide)");
+                        page_button();
+                        $('.project_name_click').click(function(){
+                            var tag=$(this).attr('tag');
+                            window.open("/ProjectManagementSystem/navigation/projectinformation.html?pid="+tag);
+                        });
+                    }
+				}
+			});
+		}
+	});
+	//条目
+	$('.form-select').change(function(){
+		var item=$(this).val();
+		$.ajax({
+			type:'post',
+			url:'../project_controller/list_select_project_main',
+			dataType:'json',
+			data:{
+				'limit':0,
+				'item':item
+			},
+			success:function(data){
+                if(data.msg=="success"){
+                    $('#main_project').empty();
+                    var html="";
+                    for (var i=0;i<data.list_project.length;i++){
+                        if(data.list_project[i].class_other!=null){
+                            var class_back_color=data.list_project[i].class_other.other_back_color
+                            var class_text_color="#"+data.list_project[i].class_other.other_color
+                            var class_text_display=data.list_project[i].class_other.other_name
+                        }else{
+                            var class_back_color="rgb(49 51 48 / 35%)"
+                            var class_text_color="#0d0d0dd1"
+                            var class_text_display="未匹配"
+                        }
+
+                        if(data.list_project[i].status_other!=null){
+                            var status_back_color=data.list_project[i].status_other.other_back_color
+                            var status_text_color="#"+data.list_project[i].status_other.other_color
+                            var status_text_display=data.list_project[i].status_other.other_name
+                        }else{
+                            var status_back_color="rgb(49 51 48 / 35%)"
+                            var status_text_color="#0d0d0dd1"
+                            var status_text_display="未匹配"
+                        }
+
+
+
+                        if(data.list_project[i].project_startdate==null || data.list_project[i].project_startdate=="" || data.list_project[i].project_startdate==undefined){
+                            var project_startdate=""
+                        }else{
+                            var project_startdate=new Date(data.list_project[i].project_startdate);
+                            project_startdate=project_startdate.getFullYear()+'/'+(project_startdate.getMonth()+1)+'/'+project_startdate.getDate()
+                        }
+                        if(data.list_project[i].project_actual_finishing_date!=null && data.list_project[i].project_actual_finishing_date!="" && data.list_project[i].project_actual_finishing_date!=undefined&& data.list_project[i].project_actual_finishing_date!=-1){
+                            var project_expected_completion_date=new Date(data.list_project[i].project_expected_completion_date);
+                            var project_expected_completion_date_html="实际完成时间";
+                            project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
+                        }else if(data.list_project[i].project_expected_completion_date!=null && data.list_project[i].project_expected_completion_date!="" &&  data.list_project[i].project_expected_completion_date!=undefined&&  data.list_project[i].project_expected_completion_date!=-1){
+                            var project_expected_completion_date=new Date(data.list_project[i].project_expected_completion_date);
+                            var project_expected_completion_date_html="预计完成时间";
+                            project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
+                        }else{
+                            var project_expected_completion_date_html="实际/预计完成时间";
+                            var project_expected_completion_date="#"
+                        }
+
+                        //创建时间
+                        if(data.list_project[i].create_date==null || data.list_project[i].create_date=="" || data.list_project[i].create_date==undefined){
+                            var create_date=""
+                        }else{
+                            var create_date=new Date(data.list_project[i].create_date);
+                            create_date=create_date.getFullYear()+'/'+(create_date.getMonth()+1)+'/'+create_date.getDate()
+                        }
+                        html+='<h2 class="accordion-header" id="order-header-1">'
+                            +'<button class="accordion-button no-indicator  align-items-center justify-content-between pe-4 collapsed" data-toggle="collapse" data-target="#order-collapse-'+i+'" aria-expanded="false" aria-controls="order-collapse-1">'
+                            +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-3 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'
+                            +'<i class="fa  fa-slack" aria-hidden="true"></i> '+data.list_project[i].od_num+'</a></span></div>'
+                            +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click"  tag="'+data.list_project[i].pid+'">'+data.list_project[i].project_name+'</a></div>'
+                            +'<div class="text-nowrap text-body fs-sm fw-normal my-1 me-2 col-md-3 over_flow"><i class="fa  fa-clock-o" aria-hidden="true"></i> '+create_date+'</div>'
+                            +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 "style="color:'+status_text_color+';background-color: '+status_back_color+' !important;">'+status_text_display+'</div>'
+
+                            +'</button>'
+                            +'</h2>'
+                            +'<div class="col" style="margin: 0;border-radius: 1rem;">'
+                            +'<div class="collapse multi-collapse bg-secondary row" id="order-collapse-'+i+'" style="border-bottom-left-radius: 1em;border-bottom-right-radius: 1em;padding-top: 0.2rem;">'
+                            +'<div class="col-md-6">'
+                            +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">客户名称:</label>'
+                            +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].customer_list.customer_name+'</span>'
+                            +' </div>'
+                            +'<div class="col-md-6">'
+                            +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">项目经理:</label>'
+                            +'<span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].personnel_list.personnel_name+'</span>'
+                            +'</div>'
+                            +'<div class="col-md-6">'
+                            +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">合同编号:</label>'
+                            +' <span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].contract_num+'</span>'
+                            +'</div>'
+                            +'<div class="col-md-6">'
+                            +' <label for="od_num" style="font-size: .675rem;font-weight: bold;">服务编号:</label>'
+                            +' <span class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+data.list_project[i].services_num+'</span>'
+                            +'</div>'
+                            +' <div class="col-md-4">'
+                            +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">启动日期:</label>'
+                            +' <span style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+project_startdate+'</span>'
+                            +'</div>'
+                            +'<div class="col-md-4">'
+                            +'<label for="od_num" style="font-size: .675rem;font-weight: bold;">'+project_expected_completion_date_html+':</label>'
+                            +'<span style="margin-bottom: -0.5em;padding-left:1rem;font-size:.675rem;">'+project_expected_completion_date+'</span>'
+                            +' </div>'
+                            +'<div class="col-md-4">'
+                            +'<label for="od_num" style="font-size: 14px;font-weight: bold;">服务类别:</label>'
+                            +'<span style="color:'+status_text_color+';background-color: '+status_back_color+' !important;text-align: center;margin-bottom: -0.5em;" class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1">'+status_text_display+'</span>'
+                            +' </div>'
+                            +'</div>'
+                            +' </div>'
+                            +'<div class="col-md-12" ><hr style="margin-top: 0;margin-bottom: 0.5em;"/></div>'
+                    };
+                    $('#main_project').append(html);
+                    $('.form-select').attr("rows",data.rows);
+                    $('.in_page').text("1");
+                    $('.all_page').text(Math.ceil(data.rows/item));
+                    var html_page_button="";
+                    $('.tns-nav').empty();
+                    for(var j=0;j<Math.ceil(data.rows/item);j++){
+                        html_page_button+='<button type="button" data-nav="'+parseInt(j+1)+'" aria-controls="tns1" style="" aria-label="Carousel Page '+parseInt(j+1)+'"></button>'
+                    }
+                    $('.tns-nav').append(html_page_button);
+                    $('.tns-nav [data-nav=1]').attr("class","tns-nav-active");
+                    $('.tns-nav [data-nav=1]').attr("aria-label","Carousel Page 1 (Current Slide)");
+                    page_button();
+                    $('.project_name_click').click(function(){
+                        var tag=$(this).attr('tag');
+                        window.open("/ProjectManagementSystem/navigation/projectinformation.html?pid="+tag);
+                    });
+                }
+			}
+		});
+	});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>联系人</title>
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
+<style>
+	body{
+		opacity: 0;
+		animation: page-fade-in 1s forwards;
+	}
+	@keyframes page-fade-in {
+		0% {
+			opacity: 0
+		}
+
+		100% {
+			opacity: 1
+		}
+	}
+.container{
+	max-width: none;
+	width: 100%;
+	margin-top:2%;
+}
+.accordion:not(.accordion-flush) .accordion-item {
+    margin-bottom: 0.75rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: 1px solid #e9e9f2;
+}
+h3, .h3 {
+    line-height: 1.3;
+}
+.text-nowrap {
+    white-space: nowrap !important;
+}
+.fw-medium {
+    font-weight: 500 !important;
+}
+.fs-sm {
+    font-size: 0.675rem !important;
+}
+h2 {
+	font: caption;
+}
+html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.text-body {
+    color: #737491 !important;
+}
+.text-nowrap {
+    white-space: nowrap !important;
+}
+.fw-normal {
+    font-weight: 400 !important;
+}
+.bg-faded-info {
+    background-color: rgba(106,155,244,.08) !important;
+}
+.text-info {
+    color: #6a9bf4 !important;
+}
+.fs-xs {
+    font-size: 0.75rem !important;
+}
+.px-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+.accordion-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 1rem;
+    color: #4a4b65;
+    text-align: left;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    overflow-anchor: none;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out,border-radius .15s ease;
+}
+.btn {
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.5625rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: 0.75rem;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out;
+}
+.rounded-1 {
+    border-radius: 0.5rem !important;
+}
+.btn-outline-primary {
+    color: #766df4;
+    border-color: #766df4;
+}
+.bg-secondary {
+    --bs-bg-opacity: 1;
+    background-color: #dee2e696 !important;
+}
+.nav-link-style.active {
+    color: #766df4;
+    pointer-events: none;
+    cursor: default;
+}
+.nav-link-style:hover {
+    color: #766df4;
+    text-decoration: none;
+}
+.nav-link-style {
+    display: inline-block;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out,box-shadow .25s ease-in-out,border-color .25s ease-in-out;
+    color: #5a5b75;
+    font-weight: 550;
+    text-decoration: none;
+}
+.nav-indicator {
+    display: inline-block;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    margin-top: -0.5rem;
+    margin-left: 0.375rem;
+    border-radius: 50%;
+    background-color: #16c995;
+}
+h3{
+	font-weight: 600;
+	color: #414486a3 !important;
+}
+.text-muted {
+    color: #2485fd !important;
+}
+
+.ms-auto {
+    margin-left: auto !important;
+}
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+.px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+a{
+	cursor: pointer;
+}
+.form-select-sm {
+    padding-top: 0.425rem;
+    padding-bottom: 0.425rem;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+}
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 0.5625rem 2.25rem 0.5625rem 1.125rem;
+    -moz-padding-start: calc(1.125rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #737491;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234a4b65' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.125rem center;
+    background-size: 16px 12px;
+    border: 1px solid #dfdfeb;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 2px transparent;
+    transition: border-color .2s ease-in-out,box-shadow .2s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.tns-nav {
+    padding-top: 1.5rem;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+}
+[data-nav] {
+    display: inline-block;
+    position: relative;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: 0 0.25rem;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+[data-nav]::before {
+    top: 50%;
+    left: 50%;
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-top: -0.1875rem;
+    margin-left: -0.1875rem;
+    background-color: #766df4;
+}
+[data-nav]::before, [data-nav]::after {
+    position: absolute;
+    transition: opacity .2s ease-in-out,transform .2s ease-in-out;
+    border-radius: 50%;
+    content: "";
+}
+[data-nav]::after {
+    top: 0;
+    left: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    transform: scale(0.5);
+    border: 0.125rem solid #766df4;
+    opacity: 0;
+}
+[data-nav].tns-nav-active::after, [data-nav].active::after {
+    transform: scale(1);
+    opacity: 1;
+}
+[data-nav].tns-nav-active::before, [data-nav].active::before {
+    opacity: 0;
+}
+.over_flow{
+    text-align: center;
+}
+.text_al{
+	text-align: center;
+}
+.customer:hover{
+    cursor:pointer;
+	text-decoration:underline;
+}
+.rounded{
+	padding-left: 38px;
+	border-radius: 0.75rem !important;
+}
+.input-group .position-absolute {
+    z-index: 5;
+}
+.ms-3 {
+    margin-left: 1rem !important;
+}
+.translate-middle-y {
+    transform: translateY(-50%) !important;
+}
+.start-0 {
+    left: 0 !important;
+}
+.top-50 {
+    top: 50% !important;
+}
+.position-absolute {
+    position: absolute !important;
+}
+.address_a_z{
+	color: #0000008c;
+    font-weight: 600;
+}
+.accordion-header:hover{
+	cursor: pointer;
+	background-color: #00000024;
+}
+.btn-refresh-primary{
+	color: #048c43;
+    border-color: #FFFFFF;
+    border-color: #048c43;
+    font-weight: 600;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.btn-refresh-primary:hover{
+	background-color: #048c43;
+    color: #FFFFFF;
+}
+.btn-outline-primary{
+	background-color: #048c43;
+    color: #FFFFFF;
+    border-color: #048c43;
+    font-weight: 600;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.btn-outline-primary:hover{
+	background-color: #048c43de;
+    color: #FFFFFF;
+}
+body{
+	overflow-y:scroll;
+}
+#modal-right_nav .modal-body{
+	overflow-y:scroll;
+}
+ body::-webkit-scrollbar {
+	  /*滚动条整体样式*/
+	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
+	  height: 0.5px;
+}
+body::-webkit-scrollbar-thumb {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 0.8);
+	  background   : transparent;
+ }
+body::-webkit-scrollbar-thumb:hover {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 1.0);
+	  background   : #F0F0F0;
+ }
+body::-webkit-scrollbar-track {
+	  background   : transparent;
+ }
+ 
+ 
+ .modal-body{
+	overflow-y:scroll;
+}
+ .modal-body::-webkit-scrollbar {
+	  /*滚动条整体样式*/
+	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
+	  height: 0.5px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 0.8);
+	  background   : transparent;
+ }
+.modal-body::-webkit-scrollbar-thumb:hover {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 1.0);
+	  background   : #F0F0F0;
+ }
+.modal-body::-webkit-scrollbar-track {
+	  background   : transparent;
+ }
+ .customizer {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+}
+ .customizer button{
+ 	float: right;
+ }
+ .customizer a{
+ 	float: right;
+ }
+.btn-icon-only.btn-sm {
+    width: 2.4375rem;
+    height: 2.4375rem;
+}
+.hover-scale-110:hover, .scale-110 {
+    transform: scale(1.1) !important;
+}
+.btn-icon-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.125rem;
+    height: 3.125rem;
+    padding: 0px;
+}
+.star-o_pur{
+	background-image: -webkit-linear-gradient(bottom,#d8ff00c7,#119beb8f,#b203fa8f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	font-size: 30px;
+}
+.star-o_pur:hover{
+	cursor: pointer;
+	background-image: -webkit-linear-gradient(bottom,#d8ff00c7,#119beb8f,#b203fa8f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#orders-accordion .media:hover{
+	cursor: pointer;
+	background-color:#f4f7f6;
+}
+.media-body{
+	padding: 12px;
+}
+.danger{
+	color: #f00;
+	font-size: 18px;
+    font-weight: 700;
+}
+.badge{
+	font-weight: 550;
+}
+</style>
+</head>
+<body>
+			<div class="align-items-center justify-content-between row nav_title" style="position: fixed;
+			    z-index: 999;margin:0;background-color: #f8fafe; box-shadow: 0 .5rem .5rem -.5rem rgba(0,0,0,.5)!important;
+			    width: 100%;">
+			<div class="col-md-6 justify-content-between" style="padding-left: 28px;">
+			       <a class="btn btn-outline-primary new_Information"  data-toggle="modal" data-target="#new_infomation">新建</a>
+			       <a class="btn btn-refresh-primary refresh_Information" >刷新</a>
+			</div>
+			<!-- Title + Filters-->
+			<div class="col-md-3" style="padding-right: 28px;">
+			    <div class="align-items-center" style="margin-top: 0.5rem !important;margin-bottom: 0.5rem !important;">
+				<div class="input-group">
+				  <i class="fa fa-search  position-absolute top-50 start-0 translate-middle-y ms-3" aria-hidden="true" style="color:rgb(0 0 0 / 55%);"></i>
+			       <input class="form-control rounded keyword" type="text" placeholder="Search">
+			     </div>
+			   </div>
+			</div>
+		</div>
+		<div class="align-items-center justify-content-between row nav_body" style="margin:0;margin-bottom: 5%;"></div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade"  id="new_infomation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		    <div class="modal-dialog" style="max-width: 50%;">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h4 class="modal-title" id="myModalLabel">公司（供应商/客户）</h4>
+		            </div>
+		            <div class="modal-body">
+
+					</div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary insert_Contact">提交</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+	   <!-- Content-->
+         <div class="col-lg-12"  id="account-menu_outer" style="padding: 0;">
+               <!-- Accordion with contact-->
+               <div class="accordion" id="orders-accordion">
+                
+               </div>
+			<!-- 弹框 -->
+			<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 3000; right: 0; bottom: 0;">
+			  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+			    <div class="toast-header">
+			      <strong class="mr-auto">springboot</strong>
+			      <small style="margin-left: 12px;">just now</small>
+			      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">*/
+			        <span aria-hidden="true">&times;</span>
+			      </button>
+			    </div>
+			    <div class="toast-body" style="color: #d23677;font-weight: bold;font-size: 16px;">
+			      
+			    </div>
+			  </div>
+			</div>
+         </div>
+
+<script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/moment-with-locales.js"></script>
+<script>
+$(function(){
+ var paras = location.search;            //search获得地址中的参数，内容为'?itemId=12'
+ var result = paras.match(/[^\?&]*=[^&]*/g);     //match是字符串中符合的字段一个一个取出来，result中的值为['login=xx','table=admin']
+ paras = {};                    //让paras变成没有内容的json对象
+ for(i in result){
+     var temp = result[i].split('=');    //split()将一个字符串分解成一个数组,两次遍历result中的值分别为['itemId','xx']
+     paras[temp[0]] = temp[1];
+ }
+ if(paras.customertag!=""&&paras.customertag!=null&&paras.customertag!=undefined){
+	 var customertag=paras.customertag;
+ }else{
+	 var customertag=0;
+ }
+ if(paras.pmtag!=""&&paras.pmtag!=null&&paras.pmtag!=undefined){
+	 var pmtag=paras.pmtag;
+ }else{
+	 var pmtag=0;
+ }
+ var user_index=paras.user_index
+
+ contact(customertag,pmtag);
+ function contact(customertag,pmtag){
+		if(pmtag!=0){
+			 $.ajax({
+					type:'post',
+					url:'../base_controller/initialize_permission',
+					dataType:'json',
+					data:{
+						'table_id':4
+					},
+					success:function(data){
+						if(data.insert_project_msg!="success"){
+							$(".new_Information").attr("disabled","disabled");
+							$('#new_infomation').remove();
+							$(".new_Information").click(function(){
+								$('.toast-body').text('账户权限受限制');
+						    	$('#liveToast').toast('show');
+						    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+							})
+						}
+					}
+				 });
+			$('.new_Information').click(function(){
+				$('.modal-body').empty();
+				var html='<div class="row">'
+				 +'<div class="col-md-12"><label>名字<span class="danger">*</span></label><div><input type="text" lockidoor="1" class=" form-control personnel_name" autocomplete="off"></div></div>'
+				 +'<div class="col-md-12"><label>邮箱<span class="danger">*</span></label><div><input type="text" lockidoor="1" class=" form-control  personnel_email" autocomplete="off"></div></div>'
+				 +'<div class="col-md-12"><label>联系电话</label><div><input type="text" lockidoor="1" class=" form-control  personnel_phone" autocomplete="off"></div></div>'
+			  	 +'</div>'
+			  	$('#myModalLabel').text("人员（销售/PM）");
+				$('.insert_Contact').attr("class","btn btn-primary insert_pm");
+				$('.modal-body').append(html);
+			  	$('.insert_pm').click(function(){
+			  		var personnel_name=$('.personnel_name').val();
+			  		var personnel_email=$('.personnel_email').val();
+			  		var personnel_phone=$('.personnel_phone').val();
+			  		if(personnel_name==""||personnel_name==null){
+			  			$('.personnel_name').focus();
+			  			$('.toast-body').text('请填写人员名字');
+				    	$('#liveToast').toast('show');
+				    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+			  		}else if(personnel_email==""||personnel_email==null){
+			  			$('.personnel_email').focus();
+			  			$('.toast-body').text('请填写邮箱');
+				    	$('#liveToast').toast('show');
+				    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+			  		}else{
+						 $.ajax({
+								type:'post',
+								url:'../personnel_controller/insert_personnel',
+								dataType:'json',
+								data:{
+									'personnel_name':personnel_name,
+									'personnel_email':personnel_email,
+									'personnel_phone':personnel_phone
+								},
+								success:function(data){
+									if(data.msg=="success"){
+										window.location.reload();
+									}else if(data.msg=="RestrictedPermission"){
+										$('.toast-body').text('账户权限受限制');
+								    	$('#liveToast').toast('show');
+								    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									}else{
+										$('.toast-body').text('其他错误，请联系管理员');
+								    	$('#liveToast').toast('show');
+								    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									}
+								}
+							 });
+			  		}
+			  	});
+			});
+			 $.ajax({
+					type:'post',
+					url:'../personnel_controller/select_personnel_list',
+					dataType:'json',
+					success:function(data){
+						$('#orders-accordion').empty();
+						if(data.list_personnel.length>0){
+							var customer_html="";
+							for(var p=0;p<data.list_personnel.length;p++){
+								customer_html+='<div class="media">'
+								  +'<img src="/headportrait/'+data.list_personnel[p].personnel_head_portrait+'" style="width: 50px;margin-top: 20px;" class="mr-3" alt="...">'
+								  +'<div class="media-body">'
+								  +'<h6 class="mt-0 nav-link-style" cid="'+data.list_personnel[p].pid+'">'+data.list_personnel[p].personnel_name+'</h6>'
+								  +'<p style="margin-bottom: 0;color: #098c93;font-size: 14px;"><a href="#">'+data.list_personnel[p].personnel_phone+'</a></p>'
+								  +'<p style="margin-bottom: 0;color: #0072ffeb;font-size: 14px;"><a href="#">'+data.list_personnel[p].personnel_email+'</a></p>'
+								  +'</div>'
+								  +'</div>'
+								  +'<div class="col-md-12"><hr style="margin:0;"/></div>'
+							}
+							$('#orders-accordion').append(customer_html);
+						}
+					}
+				});
+		}else if(customertag!=0){
+			 $.ajax({
+					type:'post',
+					url:'../base_controller/initialize_permission',
+					dataType:'json',
+					data:{
+						'table_id':3
+					},
+					success:function(data){
+						if(data.insert_project_msg!="success"){
+							$(".new_Information").attr("disabled","disabled");
+							$('#new_infomation').remove();
+							$(".new_Information").click(function(){
+								$('.toast-body').text('账户权限受限制');
+						    	$('#liveToast').toast('show');
+						    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+							})
+						}
+					}
+				 });
+			$('.new_Information').click(function(){
+				$('.modal-body').empty();
+				var html='<div class="row">'
+				 +'<div class="col-md-12"><label>公司名称<span class="danger">*</span></label><div><input type="text" lockidoor="1" class=" form-control customer_name" autocomplete="off"></div></div>'
+				 +'<div class="col-md-12"><label>联系方式</label><div><input type="text" lockidoor="1" class=" form-control  customer_email" autocomplete="off"></div></div>'
+				 +'<div class="col-md-12"><label>公司地址</label><div><input type="text" lockidoor="1" class=" form-control  customer_address" autocomplete="off"></div></div>'
+			  	 +'</div>'
+			  	$('#myModalLabel').text("公司（供应商/客户）");
+				$('.insert_Contact').attr("class","btn btn-primary insert_customer");
+				$('.modal-body').append(html);
+				
+			  	$('.insert_customer').click(function(){
+			  		var customer_name=$('.customer_name').val();
+			  		var customer_email=$('.customer_email').val();
+			  		var customer_address=$('.customer_address').val();
+			  		if(customer_name==""||customer_name==null){
+			  			$('.customer_name').focus();
+			  			$('.toast-body').text('请填写公司名称');
+				    	$('#liveToast').toast('show');
+				    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+			  		}else{
+						 $.ajax({
+								type:'post',
+								url:'../customer_controller/insert_customer',
+								dataType:'json',
+								data:{
+									'customer_name':customer_name,
+									'customer_email':customer_email,
+									'customer_address':customer_address
+								},
+								success:function(data){
+									if(data.msg=="success"){
+										window.location.reload();
+									}else if(data.msg=="RestrictedPermission"){
+										$('.toast-body').text('账户权限受限制');
+								    	$('#liveToast').toast('show');
+								    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									}else{
+										$('.toast-body').text('其他错误，请联系管理员');
+								    	$('#liveToast').toast('show');
+								    	setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+									}
+								}
+							 });
+			  		}
+			  	});
+			});
+			$.ajax({
+				type:'post',
+				url:'../customer_controller/select_customer_list',
+				dataType:'json',
+				success:function(data){
+					$('#orders-accordion').empty();
+					if(data.msg!="success"){
+						$('.toast-body').text('账户权限受限制');
+						$('#liveToast').toast('show');
+						setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+					}else{
+						if(data.list_customer.length>0){
+							var customer_html="";
+							for(var c=0;c<data.list_customer.length;c++){
+								customer_html+='<div class="media">'
+										+'<div class="media-body">'
+										+'<h5 class="mt-0 nav-link-style" cid="'+data.list_customer[c].cid+'">'+data.list_customer[c].customer_name+'</h5>'
+										+'<p style="margin-bottom: 0;padding-left: 12px;">'+data.list_customer[c].customer_email+'</p>'
+										+'<p style="margin-bottom: 0;padding-left: 12px;">'+data.list_customer[c].customer_phone+'</p>'
+										+'<p style="margin-bottom: 0;padding-left: 12px;">'+data.list_customer[c].customer_address+'</p>'
+										+'</div>'
+										+'</div>'
+										+'<div class="col-md-12"><hr style="margin-top:0;"/></div>'
+							}
+							$('#orders-accordion').append(customer_html);
+						}
+					}
+				}
+			});
+		}
+	}
+ 
+	//刷新
+	$('.refresh_Information').click(function(){
+		window.location.reload();
+	});
+})
+</script>
+</body>
+</html>

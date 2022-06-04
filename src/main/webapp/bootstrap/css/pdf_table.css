@@ -1,0 +1,47 @@
+	table{
+	    border-spacing: 0;/*把单元格间隙设置为0*/
+	}
+    table,table tr td { 
+        border:1px solid #636366; 
+    }
+	body{
+		font-family: "等线";
+	}
+	table{
+		margin: 0 auto;
+		margin-top: 28px;
+		width:100%;
+	}
+	tr td{
+		width: 100px;
+		height: 28px;
+	}
+	.title{
+		font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+	}
+	.seal{
+		height:258px;
+	}
+	h5{
+		    line-height: 100%;
+		    text-align: center;
+	}
+	input{
+		    width: 100%;
+    		height: 100%;
+	}
+	.customer_modal{
+			width: auto;
+    		height: auto;
+	}
+	.this_company{
+			width: auto;
+    		height: auto;
+	}
+	.creagte_pdf{
+		margin: 0 auto;
+	    padding: 0;
+	    width: 800px;
+	}

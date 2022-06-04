@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.ChatMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.Chat">
+    <id column="cid" jdbcType="INTEGER" property="cid" />
+  </resultMap>
+  <select id="select_chat_one_list"  resultMap="BaseResultMap">
+    select  *  from chat where chat_tag=#{chat_tag,jdbcType=INTEGER} order by chat_time asc;
+  </select>
+    <!-- 添加 -->
+  <insert id="insert_chat_one_list" parameterType="com.dcc.ProjectManagementSystem.entity.Chat">
+    	INSERT INTO promgsys.chat
+				(chat_text,
+				chat_name,
+				chat_time,
+				chat_tag) 
+		VALUES 
+				(#{chat_text,jdbcType=VARCHAR},
+				#{chat_name,jdbcType=VARCHAR},
+				#{chat_time,jdbcType=INTEGER},
+				#{chat_tag,jdbcType=INTEGER})
+  </insert>
+</mapper>

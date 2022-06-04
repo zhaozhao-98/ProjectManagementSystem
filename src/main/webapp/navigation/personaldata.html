@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>设置</title>
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+	body{
+		opacity: 0;
+		animation: page-fade-in 1s forwards;
+	}
+	@keyframes page-fade-in {
+		0% {
+			opacity: 0
+		}
+
+		100% {
+			opacity: 1
+		}
+	}
+	.avatar-5xl{
+		height: 10.5rem;
+    	width: 10.5rem;
+	}
+	.cover-image{
+		overflow: hidden;
+	}
+	.cover-image-file-input{
+		opacity: 0;
+	    cursor: pointer;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    padding: 0.25rem 0.5rem;
+	    margin-left: 1rem;
+	    margin-top: 1rem;
+	    border-radius: 0.25rem;
+	    font-size: .8333333333rem;
+	    color: #fff;
+	    border: 1px solid var(--falcon-border-color);
+	    -webkit-box-shadow: var(--falcon-box-shadow-sm);
+	    box-shadow: var(--falcon-box-shadow-sm);
+	    background-color: rgba(0,0,0,.9);
+	}
+	.bg-holder{
+		position: absolute;
+	    width: 100%;
+	    min-height: 100%;
+	    top: 0;
+	    left: 0;
+	    background-size: cover;
+	    background-position: center;
+	    overflow: hidden;
+	    will-change: transform,opacity,filter;
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    background-repeat: no-repeat;
+	    z-index: 0;
+	}
+	.avatar-profile{
+	    bottom: 0;
+	    -webkit-transform: translateY(32%);
+	    -ms-transform: translateY(32%);
+	    transform: translateY(32%);
+	}
+	.img-thumbnail{
+		padding: 0.25rem;
+	    border: 3px solid var(--falcon-thumbnail-bg);
+	    border-radius: 0.25rem;
+	    -webkit-box-shadow: var(--falcon-box-shadow-sm);
+	    box-shadow: var(--falcon-box-shadow-sm);
+	    max-width: 100%;
+	}
+	.row_title{
+		margin-right:0;
+    	margin-left:0;
+    	background: #95b5f13b;
+    	box-shadow: 0 1rem 3rem rgb(0 0 0 / 12%) !important;
+	}
+	.col-12{
+		background: #ffffff;
+    	box-shadow: 0 1rem 3rem rgb(0 0 0 / 12%) !important;
+	}
+	body{
+	overflow-y:scroll;
+}
+#modal-right_nav .modal-body{
+	overflow-y:scroll;
+}
+body::-webkit-scrollbar {
+	  /*滚动条整体样式*/
+	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
+	  height: 0.5px;
+}
+body::-webkit-scrollbar-thumb {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 0.8);
+	  background   : transparent;
+ }
+body::-webkit-scrollbar-thumb:hover {
+	  /*滚动条里面小方块*/
+	  border-radius: 8px;
+	  box-shadow   : inset 0 0 10px rgba(0, 0, 0, 1.0);
+	  background   : #F0F0F0;
+ }
+body::-webkit-scrollbar-track {
+	  background   : transparent;
+ }
+ label{
+ 	font-size: 1.2rem;
+    color: #5c55558a;
+    letter-spacing: .02em;
+    font-weight: 500 !important;
+    font-family: "Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+ }
+ .card{
+ 	border: 0;
+ 	background-color:#fff0;
+ 	border-radius: 0;
+ }
+ .card-body{
+ 	border: 1px solid rgba(0, 0, 0, .125);
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 12%) !important;
+ }
+ .avatar:hover .overlay-icon {
+    opacity: 1;
+}
+.overlay-icon {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    background-color: #607d8b78;
+}
+.flex-center {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.d-block{
+	font-size: smaller;
+}
+.fs--1 svg{
+	width: 1em;
+}
+.update_upw{
+	width: 50%;
+	float: right;
+}
+select{
+	border: 1.5px solid #a5949459;
+    border-radius: 0.25rem;
+    margin: auto;
+    width: 100%;
+    font-size: 16px;
+    height: 36px;
+    font-weight: 600;
+}
+.row{
+	margin: 0;
+}
+.form-check-input {
+    background-color: rgba(255,255,255,.25);
+}
+.form-check-input {
+	margin-left:5px;
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.3rem;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 2px solid #b4b7c9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+ }
+.form-check-input {
+    height: 18px;
+    margin-top: revert;
+    border: unset;
+    background-color: #b4b7c9;
+    filter: none;
+}
+.form-check-input {
+    width: 2.875em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    background-position: left center;
+    border-radius: 2.875em;
+    transition: background-position .15s ease-in-out;
+}
+.form-check-input:checked {
+    background-color: #22c55e;
+    box-shadow: 0 0.5rem 1.125rem -0.5rem rgb(34 197 94 / 90%);
+}
+.form-check-input:checked {
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e")
+}
+</style>
+<body>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade"  id="update_upw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		    <div class="modal-dialog" style="max-width: 50%;">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+		            </div>
+		            <div class="modal-body">
+						<div class="col-md-12"><label>原始密码</label><div><input type="text"   autocomplete="off" class="form-control  old_pwd"></div></div>
+						<div class="col-md-12"><label>新密码</label><div><input type="text"   autocomplete="off" class="form-control  new_pwd"></div></div>
+						<div class="col-md-12"><label>确认密码</label><div><input type="text"   autocomplete="off" class="form-control  commit_pwd"></div></div>
+					</div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-primary insert_Contact">确认</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+	   <!-- Content-->
+         <div class="col-lg-12"  id="account-menu_outer" style="padding: 0;">
+               <!-- Accordion with contact-->
+               <div class="accordion" id="orders-accordion">
+                	<div class="row row_title">
+			            <div class="col-12">
+			              <div class="card mb-3 btn-reveal-trigger" style="background: #000;    margin-bottom: 7rem !important;">
+			                <div class="card-header position-relative min-vh-25 mb-8" style="height: 155px;">
+			                  <div class="cover-image">
+			                    <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(/ProjectManagementSystem/img/logo.jpg);"></div>
+			                    <!--/.bg-holder-->
+			                    <input class="d-none" id="upload-cover-image" type="file"><label class="cover-image-file-input" for="upload-cover-image"><svg class="svg-inline--fa fa-camera fa-w-16 me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="camera" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path></svg><!-- <span class="fas fa-camera me-2"></span> Font Awesome fontawesome.com --><span>Change cover photo</span></label>
+			                  </div>
+			                  <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle">
+			                    <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> <img src="/ProjectManagementSystem/img/Multiavatar-9b858947b263cca4da.png" width="100%" alt="" data-dz-thumbnail="data-dz-thumbnail"><input class="d-none" id="profile-image" type="file"><label class="mb-0 overlay-icon d-flex flex-center" for="profile-image"><span class="bg-holder overlay overlay-0"></span><span class="z-index-1 text-white dark__text-white text-center fs--1"><svg class="svg-inline--fa fa-camera fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="camera" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path></svg><!-- <span class="fas fa-camera"></span> Font Awesome fontawesome.com --><span class="d-block">Update</span></span></label></div>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+		          </div>
+
+		          <div class="row" style="background: #95b5f13b;margin:0;">
+		          	  <div class="card col-md-9 mb-3 mt-3" style="padding-right: 0;">
+						  <div class="card-body mb-3">
+						    <h5 class="card-title">用户资料</h5>
+						    <div class="row">
+						    	<div class="col-md-6"><label>姓名</label><div><input type="text"   autocomplete="off" class="form-control  user_name"></div></div>
+						  		<div class="col-md-6"><label>邮箱</label><div><input type="text"   autocomplete="off" class="form-control  user_email"></div></div>
+						  		<div class="col-md-6"><label>联系电话</label><div><input type="text"   autocomplete="off" class="form-control  user_phone"></div></div>
+						  		<div class="col-md-6"><label>语言</label><div><select class="language" id="language"><option value="1">Chinese</option><option value="2">English</option></select></div></div>
+						    </div>
+						  </div>
+						  <div class="card-body mb-3">
+						    <h5 class="card-title">修改密码</h5>
+						    <div class="row">
+						    	<div class="col-md-12"><label>原始密码</label><div><input type="text"   autocomplete="off" class="form-control  old_pwd"></div></div>
+								<div class="col-md-12"><label>新密码</label><div><input type="text"   autocomplete="off" class="form-control  new_pwd"></div></div>
+								<div class="col-md-12 mb-2"><label>确认密码</label><div><input type="text"   autocomplete="off" class="form-control  commit_pwd"></div></div>
+						    	<div class="col-md-12"><a class="btn btn-outline-primary update_upw">提交</a></div>
+						    </div>
+						  </div>
+						  <div class="card-body mb-3">
+						    <h5 class="card-title">日志</h5>
+						    <div class="row">
+						    	
+						    </div>
+						  </div>
+					  </div>
+					  <div class="card col-md-3 mb-3 mt-3">
+						  <div class="card-body mb-3">
+						    <h5 class="card-title">账户所拥有权限</h5>
+						    <div class="row permission_all">
+
+
+						    </div>
+						  </div>
+					  </div>
+		          </div>
+               </div>
+			<!-- 弹框 -->
+			<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 3000; right: 0; bottom: 0;">
+			  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+			    <div class="toast-header">
+			      <strong class="mr-auto">springboot</strong>
+			      <small style="margin-left: 12px;">just now</small>
+			      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">*/
+			        <span aria-hidden="true">&times;</span>
+			      </button>
+			    </div>
+			    <div class="toast-body" style="color: #d23677;font-weight: bold;font-size: 16px;">
+			      
+			    </div>
+			  </div>
+			</div>
+         </div>
+
+
+<script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/moment-with-locales.js"></script>
+<script>
+$(function(){
+
+/*当前用户*/
+	$.ajax({
+		type:'post',
+		url:'../user_controller/login_session',
+		dataType:'json',
+		success:function(data){
+			if(data.personnel.length!=0){
+				$('.user_name').val(data.personnel[0].personnel_name);
+				$('.user_email').val(data.personnel[0].personnel_email);
+				if(data.personnel[0].personnel_phone!=0){
+					$('.user_phone').val(data.personnel[0].personnel_phone);
+				}
+				$("[data-dz-thumbnail=data-dz-thumbnail]").attr("src","/headportrait/"+data.personnel[0].personnel_head_portrait);
+			}
+		}
+	});
+/*权限*/
+	$.ajax({
+		type:'post',
+		url:'../user_controller/login_permission_session',
+		dataType:'json',
+		success:function(data){
+			if(data.permission.length!=0){
+				var html="";
+				$('.permission_all').empty();
+				for(let i =0 ; i<data.permission.length; i++){
+					html="<div class=\"col-md-12 mb-2 row\">" +
+							"<h5 class=\"col-md-12\">"+data.permission[i].permission_i_d_u_s.pointListing_list.t_name_chinese+"</h5>" +
+							"<div class=\"col-md-6\"><label style=\"font-size: 16px;\">新增</label><input disabled type=\"checkbox\" id=\"insert_"+data.permission[i].permission_i_d_u_s.pointListing_list.t_name+"\" class=\"form-check-input flex-shrink-0\"></div>" +
+							"<div class=\"col-md-6\"><label style=\"font-size: 16px;\">删除</label><input disabled type=\"checkbox\" id=\"delete_"+data.permission[i].permission_i_d_u_s.pointListing_list.t_name+"\" class=\"form-check-input flex-shrink-0\"></div>" +
+							"<div class=\"col-md-6\"><label style=\"font-size: 16px;\">修改</label><input disabled type=\"checkbox\" id=\"update_"+data.permission[i].permission_i_d_u_s.pointListing_list.t_name+"\" class=\"form-check-input flex-shrink-0\"></div>" +
+							"<div class=\"col-md-6\"><label style=\"font-size: 16px;\">查询</label><input disabled type=\"checkbox\" id=\"select_"+data.permission[i].permission_i_d_u_s.pointListing_list.t_name+"\" class=\"form-check-input flex-shrink-0\"></div>" +
+							"</div>"
+					$('.permission_all').append(html);
+					if(data.permission[i].permission_i_d_u_s.permission_insert!=1){
+						/*不选中*/
+					}else{
+						$('#insert_'+data.permission[i].permission_i_d_u_s.pointListing_list.t_name).attr("checked","checked");
+					}
+					if(data.permission[i].permission_i_d_u_s.permission_select!=1){
+						/*不选中*/
+					}else{
+						$('#select_'+data.permission[i].permission_i_d_u_s.pointListing_list.t_name).attr("checked","checked");
+					}
+					if(data.permission[i].permission_i_d_u_s.permission_update!=1){
+						/*不选中*/
+					}else{
+						$('#update_'+data.permission[i].permission_i_d_u_s.pointListing_list.t_name).attr("checked","checked");
+					}
+					if(data.permission[i].permission_i_d_u_s.permission_delete!=1){
+						/*不选中*/
+					}else{
+						$('#delete_'+data.permission[i].permission_i_d_u_s.pointListing_list.t_name).attr("checked","checked");
+					}
+				}
+			}
+		}
+	});
+})
+</script>
+</body>
+</html>

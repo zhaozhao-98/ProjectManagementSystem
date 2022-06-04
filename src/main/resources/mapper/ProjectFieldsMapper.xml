@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.ProjectfieldsMapper">
+    <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.ProjectFields" autoMapping="true">
+        <id column="pid" jdbcType="INTEGER" property="pid" />
+
+    </resultMap>
+    <select id="select_projectfields_permission"  resultMap="BaseResultMap">
+        select table_num,table_fields,fields_update,fields_select,fields_delete,t.t_name_chinese from projectfields
+        INNER JOIN pointlisting as t ON table_id=t.tid
+        where table_tag=#{table_tag,jdbcType=VARCHAR} and table_id=#{table_id,jdbcType=INTEGER}
+    </select>
+</mapper>

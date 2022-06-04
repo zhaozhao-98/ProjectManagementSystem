@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permission_operation>
+	<user_insert><name id="1" mainController="project_controller">insert_project</name></user_insert>
+	<user_insert><name id="2" mainController="attached_project_controller">insert_attached</name></user_insert>
+	<user_select><name id="2" mainController="attached_project_controller">select_attached_forattaid</name></user_select>
+	<user_delete><name id="2" mainController="attached_project_controller">del_attached</name></user_delete>
+	<user_update><name id="2" mainController="attached_project_controller">update_attached_project_one</name></user_update>
+	<user_insert><name id="3" mainController="customer_controller">insert_customer</name></user_insert>
+	<user_insert><name id="4" mainController="personnel_controller">insert_personnel</name></user_insert>
+	<user_select><name id="4" mainController="personnel_controller">select_personnel_one</name></user_select>
+	<user_select><name id="1" mainController="project_controller">list_select_project_main</name></user_select>
+	<user_select><name id="1" mainController="project_controller">search_input_main</name></user_select>
+	<user_select><name id="1" mainController="project_controller">list_select_project_mod_all</name></user_select>
+	<user_select><name id="1" mainController="project_controller">select_project_pid_one</name></user_select>
+	<user_select><name id="1" mainController="project_controller">select_timeout_project</name></user_select>
+	<user_select><name id="2" mainController="attached_project_controller">select_attached</name></user_select>
+	<user_select><name id="3" mainController="customer_controller">select_customer_list</name></user_select>
+	<user_select><name id="4" mainController="personnel_controller">select_personnel_list</name></user_select>
+	<user_select><name id="5" mainController="files_controller">select_files</name></user_select>
+	<user_update><name id="1" mainController="project_controller">update_project_one</name></user_update>
+	<user_update><name id="1" mainController="project_controller">upload_file_pdf</name></user_update>
+</permission_operation>

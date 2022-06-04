@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.AttachedProjectMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.AttachedProject" autoMapping="true">
+    <id column="attachedid" jdbcType="INTEGER" property="attachedid" />
+    
+    <association property="status_other"
+                    javaType="com.dcc.ProjectManagementSystem.entity.Other">
+                    <id column="status_oid" property="oid" />
+                    <result column="status_name" property="other_name" />
+                    <result column="status_tag" property="other_tag" />
+                    <result column="status_color" property="other_color" />
+                    <result column="status_back_color" property="other_back_color" />
+    </association>
+  </resultMap>
+	  <select id="select_attached"  resultMap="BaseResultMap">
+		select attached_id,
+		attached_project_name,
+		attached_status,
+		attached_bill_time,
+		attached_end_time,
+		attached_start_time,
+		attached_expected_completion_date,
+		attached_actual_finishing_date,
+		attached_time_fee,
+		attached_moon_fee,
+		attached_currency,
+		attached_remark,
+		attached_address,
+		project_pid,
+		attached_b_address,
+		attached_services_num,
+		status_other.oid as status_oid,
+		status_other.other_tag as status_tag,
+		status_other.other_name as status_name,
+		status_other.other_color as status_color,
+		status_other.other_back_color as status_back_color
+		from attachedproject,other as status_other where project_pid=#{project_pid,jdbcType=INTEGER} and attached_status=status_other.oid
+  	</select>
+	<select id="selectAttachedServiceNum" resultMap="BaseResultMap">
+		select attached_services_num from attachedproject;
+	</select>
+  	<select id="select_attached_forattaid"  resultMap="BaseResultMap">
+   		select * from attachedproject where attached_id=#{attachedid,jdbcType=INTEGER}
+  	</select>
+	<select id="select_attached_by_service_num"  resultType="java.lang.Long">
+		select count(1) from attachedproject where attached_services_num=#{attached_services_num,jdbcType=INTEGER}
+	</select>
+	<select id="count_service_num"  resultType="java.lang.Long">
+		select count(create_time)  from attachedproject
+		where <![CDATA[create_time>=#{start_datetime,jdbcType=INTEGER}]]>
+		and   <![CDATA[create_time<=#{end_datetime,jdbcType=INTEGER}]]>
+	</select>
+  <!-- 更新订单信息 -->
+  <update id="update_attachedProject_one" parameterType="com.dcc.ProjectManagementSystem.entity.AttachedProject">
+    update attachedproject
+    <set>
+    	<if test="attached_address!=null">
+    		 attached_address = #{attached_address,jdbcType=VARCHAR},
+    	</if>
+    	<if test="attached_project_name!=null">
+    		  attached_project_name = #{attached_project_name,jdbcType=VARCHAR},
+    	</if>
+    	<if test="attached_status!=null">
+			<if test="attached_status!=0">
+				attached_status = #{attached_status,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_bill_time!=null">
+			<if test="attached_bill_time!=0">
+				attached_bill_time = #{attached_bill_time,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_end_time!=null">
+			<if test="attached_end_time!=0">
+				attached_end_time = #{attached_end_time,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_start_time!=null">
+			<if test="attached_start_time!=0">
+				attached_start_time = #{attached_start_time,jdbcType=VARCHAR},
+			</if>
+    	</if>
+    	<if test="attached_expected_completion_date!=null">
+			<if test="attached_expected_completion_date!=0">
+				attached_expected_completion_date = #{attached_expected_completion_date,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_actual_finishing_date!=null">
+			<if test="attached_actual_finishing_date!=0">
+				attached_actual_finishing_date = #{attached_actual_finishing_date,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_time_fee!=null">
+			<if test="attached_time_fee!=0">
+				attached_time_fee = #{attached_time_fee,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_moon_fee!=null">
+			<if test="attached_moon_fee!=0">
+				attached_moon_fee = #{attached_moon_fee,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_currency!=null">
+			<if test="attached_currency!=0">
+				attached_currency = #{attached_currency,jdbcType=INTEGER},
+			</if>
+    	</if>
+    	<if test="attached_remark!=null">
+    		 attached_remark = #{attached_remark,jdbcType=INTEGER},
+    	</if>
+    	<if test="attached_b_address!=null">
+    		 attached_b_address = #{attached_b_address,jdbcType=VARCHAR}
+    	</if>
+		<if test="attached_services_num!=null">
+			attached_services_num = #{attached_services_num,jdbcType=VARCHAR}
+		</if>
+    </set>
+    where attached_id = #{attached_id,jdbcType=INTEGER}
+  </update>
+  <!-- 添加 -->
+  <insert id="insert_attached" parameterType="com.dcc.ProjectManagementSystem.entity.AttachedProject">
+    	INSERT INTO attachedproject
+				(attached_start_time,
+				attached_expected_completion_date,
+				attached_actual_finishing_date,
+				attached_time_fee,
+				attached_moon_fee,
+				attached_currency,
+				attached_remark,
+				attached_address,
+				attached_project_name,
+				attached_status,
+				attached_end_time,
+				attached_bill_time,
+				project_pid,
+				attached_b_address,
+				create_time,
+				attached_services_num)
+		VALUES 
+				(#{attached_start_time,jdbcType=INTEGER},
+				#{attached_expected_completion_date,jdbcType=INTEGER},
+				#{attached_actual_finishing_date,jdbcType=INTEGER},
+				#{attached_time_fee,jdbcType=INTEGER},
+				#{attached_moon_fee,jdbcType=INTEGER},
+				#{attached_currency,jdbcType=INTEGER},
+				#{attached_remark,jdbcType=VARCHAR},
+				#{attached_address,jdbcType=VARCHAR},
+				#{attached_project_name,jdbcType=VARCHAR},
+				#{attached_status,jdbcType=INTEGER},
+				#{attached_end_time,jdbcType=INTEGER},
+				#{attached_bill_time,jdbcType=INTEGER},
+				#{project_pid,jdbcType=INTEGER},
+				#{attached_b_address,jdbcType=VARCHAR},
+				#{create_time,jdbcType=INTEGER},
+				#{attached_services_num,jdbcType=VARCHAR})
+  </insert>
+	<delete id="del_attached" parameterType="java.lang.Integer">
+    delete from attachedproject where  attached_id = #{attachedid,jdbcType=INTEGER}
+  </delete>
+</mapper>

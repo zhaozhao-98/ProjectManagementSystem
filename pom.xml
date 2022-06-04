@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.dcc</groupId>
+	<artifactId>ProjectManagementSystem</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+	<repositories>
+	        <repository>
+	            <id>com.e-iceblue</id>
+	            <name>e-iceblue</name>
+	            <url>http://repo.e-iceblue.cn/repository/maven-public/</url>
+	        </repository>
+	</repositories>
+	<dependencies>
+		<!-- web模块包 自动配置web项的逻辑 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 项目打包步骤,移除内嵌tomcat -->
+			<exclusions>
+		        <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-tomcat</artifactId>
+		        </exclusion>
+		    </exclusions>
+		</dependency>
+		<!-- 项目打包步骤二：添加servlet-api依赖 -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- mybatis和spring配置整合包 
+		自动检测现有的DataSource。
+		将创建并注册的一个实例的SqlSessionFactory传递一个数据源作为使用输入SqlSessionFactoryBean的。
+		将创建并注册SqlSessionTemplate的实例从SqlSessionFactory中获取。
+		自动扫描映射器，将它们链接到SqlSessionTemplate并将它们注册到Spring上下文，以便将它们注入到bean中
+		-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<!-- mysql连接包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- 单元测试包
+		在测试类的类头部需要添加：@RunWith(SpringRunner.class)和@SpringBootTest注解，在测试方法的顶端添加@Test即可，最后在方法上点击右键run就可以运行。
+		 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope><!-- scope用来指定该架包的依赖范围 test表示测试时的范围 -->
+		</dependency>
+		<!-- 将springboot部署到tomcat容器内 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope><!-- provided表示已提供的范围 只有在当JDK或者一个容器已提供该依赖之后才使用 -->
+		</dependency>
+		<!-- Druid 数据源 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.2.9</version>
+		</dependency>
+		<!-- tomcat支持jsp的依赖 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- 谷歌json转换包 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>2.0.3</version>
+		</dependency>
+		<dependency>
+	        <groupId> e-iceblue </groupId>
+	        <artifactId>spire.pdf.free</artifactId>
+	        <version>4.4.1</version>
+	    </dependency>
+	     <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-test</artifactId>
+	  	</dependency>
+	  	<dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+ 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
+        <!--  shiro -->
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-spring</artifactId>
+		    <version>1.9.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.jdom</groupId>
+		  <artifactId>jdom2</artifactId>
+		  <version>2.0.6.1</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+	<!-- 项目打包步骤三：指定打包后的项目名 -->
+		<finalName>ProjectManagementSystem</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- spring-boot:run 中文乱码解决 -->
+				<configuration>
+					<fork>true</fork>
+					<jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

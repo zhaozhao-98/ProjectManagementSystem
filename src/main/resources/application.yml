@@ -1,0 +1,41 @@
+#配置servlet容器
+#设置访问端口号
+server:
+  port: 3060
+  servlet:
+    session:
+      timeout: 1800 #单位为秒
+    context-path: /
+#日志文件配置
+logging:
+  level:
+    org:
+      springframework: error
+    com:
+      dcc:
+       ProjectManagementSystem:
+         mapper: DEBUG
+#springmvc试图控制器
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+ #数据源配置
+  datasource:
+     druid:
+       driver-class-name: com.mysql.cj.jdbc.Driver
+       url: jdbc:mysql://localhost:3306/promgsys?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+       username: root
+       password: 'root'
+ #文件上传下载配置（多媒体文件解析器）
+  servlet:
+     multipart:
+       max-file-size: 100MB
+       max-request-size: 100MB
+       enabled: true
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.dcc.ProjectManagementSystem.entity

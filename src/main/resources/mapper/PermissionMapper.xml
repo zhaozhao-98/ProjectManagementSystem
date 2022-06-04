@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcc.ProjectManagementSystem.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.Permission" autoMapping="true">
+    <id column="permission_id" jdbcType="INTEGER" property="permission_id" />
+
+  </resultMap>
+
+  
+  <select id="select_this_user_permission"  resultType="com.dcc.ProjectManagementSystem.entity.Permission">
+	SELECT 
+		pe.permission_insert,
+		pe.permission_delete,
+		pe.permission_select,
+		pe.permission_update,
+		pe.permission_operate_table_num
+	FROM permission AS pe WHERE
+	permission_code = #{permission_code,jdbcType=VARCHAR}
+	AND permission_operate_table_num = #{permission_operate_table_num,jdbcType=INTEGER}
+  </select>
+</mapper>

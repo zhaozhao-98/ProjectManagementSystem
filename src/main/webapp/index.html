@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>com.dcc.ProjectManagementSystem</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="./login/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="./login/vendor/ham.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="./login/vendor/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="./login/css/util.css">
+<link rel="stylesheet" type="text/css" href="./login/css/main.css">
+<link rel="stylesheet" type="text/css" href="./animate/animate.min.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic" data-tilt>
+					<img src="login/img/img-01.png" alt="IMG">
+				</div>
+				<div class="login100-form validate-form">
+					<span class="login100-form-title animate__animated animate__jackInTheBox">项目管理系统</span>
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text"  id="uname" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="password" id="upwd" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="loginbtn">Login</button>
+					</div>
+					<div class="text-center p-t-12">
+						<span class="txt1">Forgot</span>
+						<a class="txt2" href="#">Username / Password?</a>
+					</div>
+					<div class="text-center p-t-136">
+						<a class="txt2" href="#">DCCONNECT.CN</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--===============================================================================================-->
+<script src="./js/jquery.js"></script>
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		//登录
+		$("#loginbtn").click(function(){
+			var email=$("#uname").val();
+			var upwd=$("#upwd").val();
+			if(uname!=null || uname!='' || upwd!=''||upwd!=null){
+				$.ajax({
+					type:'post',
+					url:'user_controller/login',
+					dataType:'json',
+					data:{
+						'email':email,
+						'upwd':upwd
+					},
+					timeout:15000,
+					beforeSend:function(XMLHttpRequest){
+						$('.wrap-login100').addClass("animate__animated animate__fast animate__lightSpeedOutRight");
+					},
+					success:function(data){
+						if(data.msg=="success"){
+							setTimeout(function(){window.location.href='user_controller/in_main';},500)
+						}
+					}
+				});
+			}
+		});
+	})
+
+</script>
+</body>
+</html>
