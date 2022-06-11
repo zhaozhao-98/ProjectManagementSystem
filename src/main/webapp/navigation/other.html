@@ -596,19 +596,19 @@
                                 if(data.list_project_all[i].project_actual_finishing_date!=null && data.list_project_all[i].project_actual_finishing_date!="" && data.list_project_all[i].project_actual_finishing_date!=undefined&&data.list_project_all[i].project_actual_finishing_date!=-1){
                                     //实际时间
                                     var color="#2485fd !important"
-                                    var project_expecte_dcompletion_date_text="实际完成日期"
-                                    var project_expecte_dcompletion_date=new Date(data.list_project_all[i].project_expecte_dcompletion_date);
-                                    project_expecte_dcompletion_date=project_expecte_dcompletion_date.getFullYear()+'/'+(project_expecte_dcompletion_date.getMonth()+1)+'/'+project_expecte_dcompletion_date.getDate()
+                                    var project_expected_completion_date_text="实际完成日期"
+                                    var project_expected_completion_date=new Date(data.list_project_all[i].project_expected_completion_date);
+                                    project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
                                 }else{
-                                    if(data.list_project_all[i].project_expecte_dcompletion_date!=null && data.list_project_all[i].project_expecte_dcompletion_date!="" &&  data.list_project_all[i].project_expecte_dcompletion_date!=undefined&&data.list_project_all[i].project_expecte_dcompletion_date!=-1){
+                                    if(data.list_project_all[i].project_expected_completion_date!=null && data.list_project_all[i].project_expected_completion_date!="" &&  data.list_project_all[i].project_expected_completion_date!=undefined&&data.list_project_all[i].project_expected_completion_date!=-1){
                                         //预期时间
                                         var color="#ca4a18 !important"
-                                        var project_expecte_dcompletion_date_text="预计完成日期"
-                                        var project_expecte_dcompletion_date=new Date(data.list_project_all[i].project_expecte_dcompletion_date);
-                                        project_expecte_dcompletion_date=project_expecte_dcompletion_date.getFullYear()+'/'+(project_expecte_dcompletion_date.getMonth()+1)+'/'+project_expecte_dcompletion_date.getDate()
+                                        var project_expected_completion_date_text="预计完成日期"
+                                        var project_expected_completion_date=new Date(data.list_project_all[i].project_expected_completion_date);
+                                        project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
                                     }else{
-                                        var project_expecte_dcompletion_date_text="实际/预计完成日期"
-                                        var project_expecte_dcompletion_date="#"
+                                        var project_expected_completion_date_text="实际/预计完成日期"
+                                        var project_expected_completion_date="#"
                                         var color="#6c757d !important"
                                     }
                                 }
@@ -616,7 +616,7 @@
 
                                 html+='<h2 class="accordion-header" style="margin:0;padding-bottom: 0.3rem;" data-toggle="collapse" data-target="#order-collapse-'+data.list_project_all[i].pid+'" data-tag="'+data.list_project_all[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_project_all[i].pid+'">'
                                     +'<span class="accordion-button no-indicator  pe-4 collapsed col-md-12" style="padding-bottom: 0;">'
-                                    +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'+data.list_project_all[i].od_num+'</a></span></div>'
+                                    +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle project_name_click" tag="'+data.list_project_all[i].pid+'"><a id class="nav-link-style">'+data.list_project_all[i].od_num+'</a></span></div>'
                                     +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click" tag="'+data.list_project_all[i].pid+'">'+data.list_project_all[i].project_name+'</a></div>'
                                     +'<div class="text-body fs-sm fw-medium my-1 col-md-2 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].contract_num+'</a></div>'
                                     +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].services_num+'</a></div>'
@@ -630,7 +630,7 @@
                                     +'</div>'
                                     +'<div class="text_al">'
                                     +'<span class="fs-sm text-muted me-md-3">启动日期：</span><span class="fs-sm text-muted me-md-3" style="padding-right:12px;">'+project_startdate+'</span>'
-                                    +'<span class="fs-sm  me-md-3" style="color:'+color+'">'+project_expecte_dcompletion_date_text+'：</span><span class="fs-sm me-md-3" style="color:'+color+'">'+project_expecte_dcompletion_date+'</span>'
+                                    +'<span class="fs-sm  me-md-3" style="color:'+color+'">'+project_expected_completion_date_text+'：</span><span class="fs-sm me-md-3" style="color:'+color+'">'+project_expected_completion_date+'</span>'
                                     +'</div>'
                                     +'</div>'
                                     +'</h2>'
@@ -719,19 +719,19 @@
                                                     if(data.attached_list[a].attached_actual_finishing_date!=null && data.attached_list[a].attached_actual_finishing_date!="" && data.attached_list[a].attached_actual_finishing_date!=undefined){
                                                         //实际时间
                                                         var attached_color="#2485fd !important"
-                                                        var attached_expecte_dcompletion_date_text="实际完成日期"
-                                                        var attached_expecte_dcompletion_date=new Date(data.attached_list[a].attached_expecte_dcompletion_date);
-                                                        attached_expecte_dcompletion_date=attached_expecte_dcompletion_date.getFullYear()+'/'+(attached_expecte_dcompletion_date.getMonth()+1)+'/'+attached_expecte_dcompletion_date.getDate()
+                                                        var attached_expected_completion_date_text="实际完成日期"
+                                                        var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+                                                        attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
                                                     }else{
-                                                        if(data.attached_list[a].attached_expecte_dcompletion_date!=null && data.attached_list[a].attached_expecte_dcompletion_date!="" &&  data.attached_list[a].attached_expecte_dcompletion_date!=undefined){
+                                                        if(data.attached_list[a].attached_expected_completion_date!=null && data.attached_list[a].attached_expected_completion_date!="" &&  data.attached_list[a].attached_expected_completion_date!=undefined){
                                                             //预期时间
                                                             var attached_color="#ca4a18 !important"
-                                                            var attached_expecte_dcompletion_date_text="预计完成日期"
-                                                            var attached_expecte_dcompletion_date=new Date(data.attached_list[a].attached_expecte_dcompletion_date);
-                                                            attached_expecte_dcompletion_date=attached_expecte_dcompletion_date.getFullYear()+'/'+(attached_expecte_dcompletion_date.getMonth()+1)+'/'+attached_expecte_dcompletion_date.getDate()
+                                                            var attached_expected_completion_date_text="预计完成日期"
+                                                            var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+                                                            attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
                                                         }else{
-                                                            var attached_expecte_dcompletion_date_text="实际/预计完成日期"
-                                                            var attached_expecte_dcompletion_date="#"
+                                                            var attached_expected_completion_date_text="实际/预计完成日期"
+                                                            var attached_expected_completion_date="#"
                                                             var attached_color="#6c757d !important"
                                                         }
                                                     }
@@ -741,7 +741,7 @@
                                                         +'<div class="col-md-5 "><label for="attached_project_name" style="font-size: 14px;font-weight: bold;">附属项目名称:</label><span id="attached_project_name" class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;">'+data.attached_list[a].attached_project_name+'</span> </div>'
                                                         +'<div class="col-md-2 "><label for="attached_status" style="font-size: 14px;font-weight: bold;">项目状态:</label><span id="attached_status" style="margin-bottom: -0.5em;padding-left:1rem;"><span class="badge badge-primary" style="color:#fff;background-color:'+attached_status_back_color+';border-radius: 12px;font-size:14px;">'+attached_status_text_display+'</span></div>'
                                                         +'	<div class="col-md-2 "><label for="attached_start_time" style="font-size: 14px;font-weight: bold;">启动日期:</label><span id="attached_start_time" style="margin-bottom: -0.5em;padding-left:1rem;">'+attached_start_time+'</span></div>'
-                                                        +'<div class="col-md-3 "><label for="attached_expecte_actual_dcompletion_date" style="font-size: 14px;font-weight: bold;">'+attached_expecte_dcompletion_date_text+':</label><span id="attached_expecte_actual_dcompletion_date" style="margin-bottom: -0.5em;padding-left:1rem;color:'+attached_color+';">'+attached_expecte_dcompletion_date+'</span></div>'
+                                                        +'<div class="col-md-3 "><label for="attached_expecte_actual_dcompletion_date" style="font-size: 14px;font-weight: bold;">'+attached_expected_completion_date_text+':</label><span id="attached_expecte_actual_dcompletion_date" style="margin-bottom: -0.5em;padding-left:1rem;color:'+attached_color+';">'+attached_expected_completion_date+'</span></div>'
                                                         +' <div class="d-md-flex justify-content-between" style="padding-left: 15px;padding-right: 25px;">'
                                                         +'	<div class=" text_al">'
                                                         +'	<span class="fs-sm address_a_z  me-md-3">A端地址:</span><span id="attached_a_address" class="fs-sm text-muted me-md-3 attached_address"  style="padding-right: 12px;">'+data.attached_list[a].attached_address+'</span>'
@@ -763,7 +763,7 @@
                             });
                             $('.project_name_click').click(function(){
                                 var tag=$(this).attr('tag');
-                                window.open("/ProjectManagementSystem/promgsys/projectinformation.html?pid="+tag);
+                                window.open("/ProjectManagementSystem/navigation/projectinformation.html?pid="+tag);
                             });
                         }else{
                             //空结果
@@ -830,19 +830,19 @@
                                 if(data.list_timeout_project[i].project_actual_finishing_date!=null && data.list_timeout_project[i].project_actual_finishing_date!="" && data.list_timeout_project[i].project_actual_finishing_date!=undefined&&data.list_timeout_project[i].project_actual_finishing_date!=-1){
                                     //实际时间
                                     var color="#2485fd !important"
-                                    var project_expecte_dcompletion_date_text="实际完成日期"
-                                    var project_expecte_dcompletion_date=new Date(data.list_timeout_project[i].project_expecte_dcompletion_date);
-                                    project_expecte_dcompletion_date=project_expecte_dcompletion_date.getFullYear()+'/'+(project_expecte_dcompletion_date.getMonth()+1)+'/'+project_expecte_dcompletion_date.getDate()
+                                    var project_expected_completion_date_text="实际完成日期"
+                                    var project_expected_completion_date=new Date(data.list_timeout_project[i].project_expected_completion_date);
+                                    project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
                                 }else{
-                                    if(data.list_timeout_project[i].project_expecte_dcompletion_date!=null && data.list_timeout_project[i].project_expecte_dcompletion_date!="" &&  data.list_timeout_project[i].project_expecte_dcompletion_date!=undefined&&data.list_timeout_project[i].project_expecte_dcompletion_date!=-1){
+                                    if(data.list_timeout_project[i].project_expected_completion_date!=null && data.list_timeout_project[i].project_expected_completion_date!="" &&  data.list_timeout_project[i].project_expected_completion_date!=undefined&&data.list_timeout_project[i].project_expected_completion_date!=-1){
                                         //预期时间
                                         var color="#ca4a18 !important"
-                                        var project_expecte_dcompletion_date_text="预计完成日期"
-                                        var project_expecte_dcompletion_date=new Date(data.list_timeout_project[i].project_expecte_dcompletion_date);
-                                        project_expecte_dcompletion_date=project_expecte_dcompletion_date.getFullYear()+'/'+(project_expecte_dcompletion_date.getMonth()+1)+'/'+project_expecte_dcompletion_date.getDate()
+                                        var project_expected_completion_date_text="预计完成日期"
+                                        var project_expected_completion_date=new Date(data.list_timeout_project[i].project_expected_completion_date);
+                                        project_expected_completion_date=project_expected_completion_date.getFullYear()+'/'+(project_expected_completion_date.getMonth()+1)+'/'+project_expected_completion_date.getDate()
                                     }else{
-                                        var project_expecte_dcompletion_date_text="实际/预计完成日期"
-                                        var project_expecte_dcompletion_date="#"
+                                        var project_expected_completion_date_text="实际/预计完成日期"
+                                        var project_expected_completion_date="#"
                                         var color="#6c757d !important"
                                     }
                                 }
@@ -850,7 +850,7 @@
 
                                 html+='<h2 class="accordion-header" style="margin:0;padding-bottom: 0.3rem;" data-toggle="collapse" data-target="#order-collapse-'+data.list_timeout_project[i].pid+'" data-tag="'+data.list_timeout_project[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_timeout_project[i].pid+'">'
                                     +'<span class="accordion-button no-indicator  pe-4 collapsed col-md-12" style="padding-bottom: 0;">'
-                                    +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'+data.list_timeout_project[i].od_num+'</a></span></div>'
+                                    +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle project_name_click" tag="'+data.list_timeout_project[i].pid+'"><a id class="nav-link-style">'+data.list_timeout_project[i].od_num+'</a></span></div>'
                                     +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click" tag="'+data.list_timeout_project[i].pid+'">'+data.list_timeout_project[i].project_name+'</a></div>'
                                     +'<div class="text-body fs-sm fw-medium my-1 col-md-2 over_flow"><a id class="nav-link-style">'+data.list_timeout_project[i].contract_num+'</a></div>'
                                     +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style">'+data.list_timeout_project[i].services_num+'</a></div>'
@@ -864,7 +864,7 @@
                                     +'</div>'
                                     +'<div class="text_al">'
                                     +'<span class="fs-sm text-muted me-md-3">启动日期：</span><span class="fs-sm text-muted me-md-3" style="padding-right:12px;">'+project_startdate+'</span>'
-                                    +'<span class="fs-sm  me-md-3" style="color:'+color+'">'+project_expecte_dcompletion_date_text+'：</span><span class="fs-sm me-md-3" style="color:'+color+'">'+project_expecte_dcompletion_date+'</span>'
+                                    +'<span class="fs-sm  me-md-3" style="color:'+color+'">'+project_expected_completion_date_text+'：</span><span class="fs-sm me-md-3" style="color:'+color+'">'+project_expected_completion_date+'</span>'
                                     +'</div>'
                                     +'</div>'
                                     +'</h2>'
@@ -953,19 +953,19 @@
                                                     if(data.attached_list[a].attached_actual_finishing_date!=null && data.attached_list[a].attached_actual_finishing_date!="" && data.attached_list[a].attached_actual_finishing_date!=undefined){
                                                         //实际时间
                                                         var attached_color="#2485fd !important"
-                                                        var attached_expecte_dcompletion_date_text="实际完成日期"
-                                                        var attached_expecte_dcompletion_date=new Date(data.attached_list[a].attached_expecte_dcompletion_date);
-                                                        attached_expecte_dcompletion_date=attached_expecte_dcompletion_date.getFullYear()+'/'+(attached_expecte_dcompletion_date.getMonth()+1)+'/'+attached_expecte_dcompletion_date.getDate()
+                                                        var attached_expected_completion_date_text="实际完成日期"
+                                                        var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+                                                        attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
                                                     }else{
-                                                        if(data.attached_list[a].attached_expecte_dcompletion_date!=null && data.attached_list[a].attached_expecte_dcompletion_date!="" &&  data.attached_list[a].attached_expecte_dcompletion_date!=undefined){
+                                                        if(data.attached_list[a].attached_expected_completion_date!=null && data.attached_list[a].attached_expected_completion_date!="" &&  data.attached_list[a].attached_expected_completion_date!=undefined){
                                                             //预期时间
                                                             var attached_color="#ca4a18 !important"
-                                                            var attached_expecte_dcompletion_date_text="预计完成日期"
-                                                            var attached_expecte_dcompletion_date=new Date(data.attached_list[a].attached_expecte_dcompletion_date);
-                                                            attached_expecte_dcompletion_date=attached_expecte_dcompletion_date.getFullYear()+'/'+(attached_expecte_dcompletion_date.getMonth()+1)+'/'+attached_expecte_dcompletion_date.getDate()
+                                                            var attached_expected_completion_date_text="预计完成日期"
+                                                            var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+                                                            attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
                                                         }else{
-                                                            var attached_expecte_dcompletion_date_text="实际/预计完成日期"
-                                                            var attached_expecte_dcompletion_date="#"
+                                                            var attached_expected_completion_date_text="实际/预计完成日期"
+                                                            var attached_expected_completion_date="#"
                                                             var attached_color="#6c757d !important"
                                                         }
                                                     }
@@ -975,7 +975,7 @@
                                                         +'<div class="col-md-5 "><label for="attached_project_name" style="font-size: 14px;font-weight: bold;">附属项目名称:</label><span id="attached_project_name" class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;">'+data.attached_list[a].attached_project_name+'</span> </div>'
                                                         +'<div class="col-md-2 "><label for="attached_status" style="font-size: 14px;font-weight: bold;">项目状态:</label><span id="attached_status" style="margin-bottom: -0.5em;padding-left:1rem;"><span class="badge badge-primary" style="color:#fff;background-color:'+attached_status_back_color+';border-radius: 12px;font-size:14px;">'+attached_status_text_display+'</span></div>'
                                                         +'	<div class="col-md-2 "><label for="attached_start_time" style="font-size: 14px;font-weight: bold;">启动日期:</label><span id="attached_start_time" style="margin-bottom: -0.5em;padding-left:1rem;">'+attached_start_time+'</span></div>'
-                                                        +'<div class="col-md-3 "><label for="attached_expecte_actual_dcompletion_date" style="font-size: 14px;font-weight: bold;">'+attached_expecte_dcompletion_date_text+':</label><span id="attached_expecte_actual_dcompletion_date" style="margin-bottom: -0.5em;padding-left:1rem;color:'+attached_color+';">'+attached_expecte_dcompletion_date+'</span></div>'
+                                                        +'<div class="col-md-3 "><label for="attached_expecte_actual_dcompletion_date" style="font-size: 14px;font-weight: bold;">'+attached_expected_completion_date_text+':</label><span id="attached_expecte_actual_dcompletion_date" style="margin-bottom: -0.5em;padding-left:1rem;color:'+attached_color+';">'+attached_expected_completion_date+'</span></div>'
                                                         +' <div class="d-md-flex justify-content-between" style="padding-left: 15px;padding-right: 25px;">'
                                                         +'	<div class=" text_al">'
                                                         +'	<span class="fs-sm address_a_z  me-md-3">A端地址:</span><span id="attached_a_address" class="fs-sm text-muted me-md-3 attached_address"  style="padding-right: 12px;">'+data.attached_list[a].attached_address+'</span>'
@@ -997,7 +997,7 @@
                             });
                             $('.project_name_click').click(function(){
                                 var tag=$(this).attr('tag');
-                                window.open("/ProjectManagementSystem/promgsys/projectinformation.html?pid="+tag);
+                                window.open("/ProjectManagementSystem/navigation/projectinformation.html?pid="+tag);
                             });
                         }else{
                             //空结果
@@ -1092,7 +1092,7 @@
 
                                     html+='<h2 class="accordion-header" style="margin:0;padding-bottom: 0.3rem;" data-toggle="collapse" data-target="#order-collapse-'+data.list_project_all[i].pid+'" data-tag="'+data.list_project_all[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_project_all[i].pid+'">'
                                         +'<span class="accordion-button no-indicator  pe-4 collapsed col-md-12" style="padding-bottom: 0;">'
-                                        +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'+data.list_project_all[i].od_num+'</a></span></div>'
+                                        +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle project_name_click" tag="'+data.list_project_all[i].pid+'"><a id class="nav-link-style">'+data.list_project_all[i].od_num+'</a></span></div>'
                                         +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click" tag="'+data.list_project_all[i].pid+'">'+data.list_project_all[i].project_name+'</a></div>'
                                         +'<div class="text-body fs-sm fw-medium my-1 col-md-2 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].contract_num+'</a></div>'
                                         +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].services_num+'</a></div>'

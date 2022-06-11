@@ -274,6 +274,7 @@
 		  font-size: 18px;
 		  font-weight: 700;
 	  }
+
     </style>
 <body  class="d-flex flex-column h-100">
     
@@ -297,7 +298,7 @@
         </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <input  autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       </form>
     </div>
   </nav>
@@ -318,19 +319,19 @@
 		  <div class="row">
           <div class="col-md-6 mb-3">
             <label for="od_num">项目编号</label>
-            <input type="text" class="form-control od_num" id="od_num" placeholder="" value="" required="">
+            <input autocomplete="off" type="text" class="form-control od_num" id="od_num" placeholder="" value="" required="">
           </div>
           <div class="col-md-6 mb-3">
             <label for="project_name">名称</label>
-            <input type="text" class="form-control project_name" id="project_name" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_name" id="project_name" placeholder="" value="" required="">
           </div>
            <div class="col-md-6 mb-3">
             <label for="contract_num">合同编号</label>
-            <input type="text" class="form-control contract_num" id="contract_num" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control contract_num" id="contract_num" placeholder="" value="" required="">
           </div>
            <div class="col-md-6 mb-3">
             <label for="services_num">服务编号</label>
-            <input type="text" class="form-control services_num" id="services_num" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control services_num" id="services_num" placeholder="" value="" required="">
           </div>
           <div class="col-md-12 mb-12">
                   <hr/>
@@ -380,12 +381,12 @@
 		  </div>
 		  <div class="col-md-4 mb-3">
 			  <label for="project_suppliers_chargeable_time">供应商计费日期</label>
-			  <input type="text" class="form-control project_date_list project_suppliers_chargeable_time" id="project_suppliers_chargeable_time"  placeholder=""  autocomplete="off"  value="" required="">
+			  <input  autocomplete="off" type="text" class="form-control project_date_list project_suppliers_chargeable_time" id="project_suppliers_chargeable_time"  placeholder=""  autocomplete="off"  value="" required="">
 		  </div>
           <div class="col-md-12 mb-12"><hr/></div>
           <div class="col-md-3 mb-3">
             <label for="project_speed">带宽</label>
-            <input type="text" class="form-control project_speed" onkeyup="this.value=this.value.replace(/\D/g,'')"  id="project_speed" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_speed" onkeyup="this.value=this.value.replace(/\D/g,'')"  id="project_speed" placeholder="" value="" required="">
           </div>
           <div class="col-md-3 mb-3">
             <label for="speed_unit">Gbps/Mbps</label>
@@ -393,7 +394,7 @@
           </div>
           <div class="col-md-3 mb-3">
             <label for="service_hours">服务期限</label>
-            <input type="text" class="form-control service_hours" id="service_hours" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder=""  autocomplete="off"  value="" required="">
+            <input  autocomplete="off" type="text" class="form-control service_hours" id="service_hours" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder=""  autocomplete="off"  value="" required="">
           </div>
           <div class="col-md-3 mb-3">
             <label for="services_deadline">单位</label>
@@ -404,34 +405,34 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="project_startdate">启动日期</label>
-            <input type="text" class="form-control project_date_list project_startdate" id="project_startdate"  placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_date_list project_startdate" id="project_startdate"  placeholder="" value="" required="">
           </div>
            <div class="col-md-6 mb-3">
             <label for="project_expected_completion_date">预计完成日期</label>
-            <input type="text" class="form-control project_date_list project_expected_completion_date" id="project_expected_completion_date" placeholder="" value="" autocomplete="off"  required="">
+            <input  autocomplete="off" type="text" class="form-control project_date_list project_expected_completion_date" id="project_expected_completion_date" placeholder="" value="" autocomplete="off"  required="">
           </div>
            <div class="col-md-6 mb-3">
             <label for="project_actual_finishing_date">实际完成日期</label>
-            <input type="text" class="form-control project_date_list project_actual_finishing_date" id="project_actual_finishing_date" placeholder=""  autocomplete="off"  value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_date_list project_actual_finishing_date" id="project_actual_finishing_date" placeholder=""  autocomplete="off"  value="" required="">
           </div>
            <div class="col-md-6 mb-3">
             <label for="project_billdate">计费日期</label>
-            <input type="text" class="form-control project_date_list project_billdate" id="project_billdate" placeholder=""  autocomplete="off"  value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_date_list project_billdate" id="project_billdate" placeholder=""  autocomplete="off"  value="" required="">
           </div>
            <div class="col-md-6 mb-3">
             <label for="project_enddate">终止日期</label>
-            <input type="text" class="form-control project_date_list project_enddate" id="project_enddate"  placeholder=""  autocomplete="off"  value="" required="" data-toggle="tooltip" data-placement="right" title="<p>填写终止日期后，系统将按照合同到期或者线路终止日期发出终止提醒至OD邮箱</p><p>若不填写，则不会发出提醒</p><p>新建服务：合同到期前45天发出首次提醒，到期前一天发出第二次提醒；</p><p>普通终止：终止日期前3天发出首次提醒，终止当日发出第二次提醒；</p><p>测试服务：终止日期前1天发出首次提醒，终止当日发出第二次提醒。</p>">
+            <input  autocomplete="off" type="text" class="form-control project_date_list project_enddate" id="project_enddate"  placeholder=""  autocomplete="off"  value="" required="" data-toggle="tooltip" data-placement="right" title="<p>填写终止日期后，系统将按照合同到期或者线路终止日期发出终止提醒至OD邮箱</p><p>若不填写，则不会发出提醒</p><p>新建服务：合同到期前45天发出首次提醒，到期前一天发出第二次提醒；</p><p>普通终止：终止日期前3天发出首次提醒，终止当日发出第二次提醒；</p><p>测试服务：终止日期前1天发出首次提醒，终止当日发出第二次提醒。</p>">
           </div>
           <div class="col-md-12 mb-12">
                   <hr/>
           </div>
            <div class="col-md-12 mb-3">
             <label for="project_install_address">A端地址</label>
-            <input type="text" class="form-control project_install_address" id="project_install_address" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_install_address" id="project_install_address" placeholder="" value="" required="">
           </div>
           <div class="col-md-12 mb-3">
             <label for="project_install_address_b">B端地址</label>
-            <input type="text" class="form-control project_install_address_b" id="project_install_address_b" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_install_address_b" id="project_install_address_b" placeholder="" value="" required="">
           </div>
           <div class="col-md-12 mb-12">
                   <hr/>
@@ -442,11 +443,11 @@
           </div>
            <div class="col-md-4 mb-3">
             <label for="project_time_fee">一次性费用</label>
-            <input type="text" class="form-control project_time_fee" id="project_time_fee" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_time_fee" id="project_time_fee" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="" value="" required="">
           </div>
            <div class="col-md-4 mb-3">
             <label for="project_moon_fee">月费</label>
-            <input type="text" class="form-control project_moon_fee" id="project_moon_fee"  onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="" value="" required="">
+            <input  autocomplete="off" type="text" class="form-control project_moon_fee" id="project_moon_fee"  onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="" value="" required="">
           </div>
           <div class="col-md-12 mb-12">
                   <hr/>
@@ -496,7 +497,7 @@
 		  		
 		    </div>
 		    <p class="card-text">
-		     <input type="text" class="form-control" id="char_input"  placeholder="" value="" required="">
+		     <input  autocomplete="off" type="text" class="form-control" id="char_input"  placeholder="" value="" required="">
 		    </p>
 		    <a class="btn btn-outline-primary char_send" >发送</a>
 		  </div>
@@ -514,7 +515,7 @@
 			    </p>
 			    <a class="btn btn-outline-primary project_sailing_notice_select_file">选择文件</a>
 			    <a class="btn btn-outline-primary openasingle_amplification" >放大</a>
-			     <input type="file" class="form-control" id="project_sailing_notice" style="display:none;">
+			     <input  autocomplete="off" type="file" class="form-control" id="project_sailing_notice" style="display:none;">
 			  </div>
 		</div>
     </div>
@@ -534,7 +535,7 @@
 				            </div>
 				            <div class="modal-body add_attached_body">
 							  <div class="row">
-							  	 <div class="col-md-6"><label>附属项目名称<span class="danger">*</span></label><div><input type='text'  autocomplete="off" class="form-control attached_project_name" style = "width:100%" /></div></div>
+							  	 <div class="col-md-6"><label>附属项目名称<span class="danger">*</span></label><div><input  autocomplete="off" type='text'  autocomplete="off" class="form-control attached_project_name" style = "width:100%" /></div></div>
 								  <div class="col-md-6"><label>项目状态<span class="danger">*</span></label>
 								 <div>
 								 <select class="attached_status" style="border-color: #ddd;text-align: center;margin: auto;float:right;margin-top:8px;width:100%;height: 30px;">
@@ -543,19 +544,19 @@
 								 </div>
 								 </div>
 							  	 <div class="col-md-12"><hr/></div>
-							     <div class="col-md-4"><label>启动日期<span class="danger">*</span></label><div><input type='text'  autocomplete="off" class="form-control  attached_time_list attached_start_time" style = "width:100%" /></div></div>
-								 <div class="col-md-4"><label>终止日期</label><div><input type="text"  autocomplete="off" class="form-control  attached_time_list attached_end_time"  style = "width:100%"></div></div>
-								 <div class="col-md-4"><label>计费日期</label><div><input type="text" autocomplete="off"   class="form-control  attached_time_list attached_bill_time"  style = "width:100%"></div></div>
-								 <div class="col-md-4"><label>预计完成日期</label><div><input type="text"  autocomplete="off"  class="form-control  attached_time_list attached_expected_completion_date"  style = "width:100%"></div></div>
-								 <div class="col-md-4"><label>实际完成日期</label><div><input type="text"  autocomplete="off"  class="form-control  attached_time_list attached_actual_finishing_date"  style = "width:100%"></div></div>
+							     <div class="col-md-4"><label>启动日期<span class="danger">*</span></label><div><input  autocomplete="off" type='text'  autocomplete="off" class="form-control  attached_time_list attached_start_time" style = "width:100%" /></div></div>
+								 <div class="col-md-4"><label>终止日期</label><div><input  autocomplete="off" type="text"  autocomplete="off" class="form-control  attached_time_list attached_end_time"  style = "width:100%"></div></div>
+								 <div class="col-md-4"><label>计费日期</label><div><input  autocomplete="off" type="text" autocomplete="off"   class="form-control  attached_time_list attached_bill_time"  style = "width:100%"></div></div>
+								 <div class="col-md-4"><label>预计完成日期</label><div><input  autocomplete="off" type="text"  autocomplete="off"  class="form-control  attached_time_list attached_expected_completion_date"  style = "width:100%"></div></div>
+								 <div class="col-md-4"><label>实际完成日期</label><div><input  autocomplete="off" type="text"  autocomplete="off"  class="form-control  attached_time_list attached_actual_finishing_date"  style = "width:100%"></div></div>
 								 
 								 <div class="col-md-12"><hr/></div>
-								 <div class="col-md-12"><label>A端地址</label><div><input type="text"   autocomplete="off" class="form-control  attached_address"></div></div>
-								 <div class="col-md-12"><label>B端地址</label><div><input type="text"   autocomplete="off" class="form-control  attached_b_address"></div></div>
+								 <div class="col-md-12"><label>A端地址</label><div><input  autocomplete="off" type="text"   autocomplete="off" class="form-control  attached_address"></div></div>
+								 <div class="col-md-12"><label>B端地址</label><div><input  autocomplete="off" type="text"   autocomplete="off" class="form-control  attached_b_address"></div></div>
 								 <div class="col-md-12"><hr/></div>
 								 <div class="col-md-4"><label>币种<span class="danger">*</span></label><div><select class="attached_currency" style="border: 1px rgb(0 0 0 / 25%) solid;text-align: center;margin: auto;float:right;margin-top:8px;width:100%;height: 30px;"><option value="1">RMB</option><option value="2">USD</option></select></div></div>
-								 <div class="col-md-4"><label>一次性费用<span class="danger">*</span></label><div><input type="text"  autocomplete="off"  onkeyup="this.value=this.value.replace(/\D/g,'')" class="form-control  attached_time_fee"></div></div>
-								 <div class="col-md-4"><label>月费<span class="danger">*</span></label><div><input type="text"  autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  class=" form-control  attached_moon_fee"></div></div>
+								 <div class="col-md-4"><label>一次性费用<span class="danger">*</span></label><div><input  autocomplete="off" type="text"  autocomplete="off"  onkeyup="this.value=this.value.replace(/\D/g,'')" class="form-control  attached_time_fee"></div></div>
+								 <div class="col-md-4"><label>月费<span class="danger">*</span></label><div><input  autocomplete="off" type="text"  autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  class=" form-control  attached_moon_fee"></div></div>
 								 <div class="col-md-12"><hr/></div>
 								 <div class="col-md-12"><label>备注</label><textarea rows="8" cols="80%"  class="form-control attached_remark"></textarea></div>
 								 
@@ -587,7 +588,7 @@
 			    </p>
 			    <a class="btn btn-outline-primary project_contract_pdf_select_file">选择文件</a>
 			    <a class="btn btn-outline-primary contract_amplification" >放大</a>
-			     <input type="file" class="form-control" id="project_contract_pdf" style="display:none;">
+			     <input  autocomplete="off" type="file" class="form-control" id="project_contract_pdf" style="display:none;">
 			  </div>
 		</div>
     </div>
@@ -601,7 +602,7 @@
 				    </p>
 				    <a class="btn btn-outline-primary project_gplot_select_file">选择文件</a>
 				    <a class="btn btn-outline-primary gplot_amplification" >放大</a>
-				     <input type="file" class="form-control" id="project_gplot" style="display:none;">
+				     <input  autocomplete="off" type="file" class="form-control" id="project_gplot" style="display:none;">
 				  </div>
 			</div>
     </div>
@@ -616,7 +617,7 @@
 					      <a href="#" class="stretched-link text-danger" style="position: relative;"><code></code></a>
 					    </p>
 					    <a class="btn btn-outline-primary other_select_file">选择文件</a>
-					     <input type="file" class="form-control" id="project_other" style="display:none;">
+					     <input  autocomplete="off" type="file" class="form-control" id="project_other" style="display:none;">
 					  </div>
 				</div>
     </div>
@@ -668,7 +669,7 @@
 				</div>
 			</div>
 			<div class="modal-footer saveinfo_attached_project_footer" style="background-color: #ffffffc7;margin: 0 auto;width: 100%;">
-				<button type="button" class="btn btn-primary save_info2">保存</button>
+				<button type="button" class="btn btn-primary save_info_initial">保存</button>
 			</div>
 		</div>
 	</div>
@@ -688,53 +689,53 @@
 						<tbody id="table_pdf">
 							<tr>
 								<td colspan="1"  rowspan="2" class="title">服务细节</td>
-								<td colspan="5"  rowspan="2"><input type="text" class="project_name_modal"></td>
+								<td colspan="5"  rowspan="2"><input  autocomplete="off" type="text" class="project_name_modal"></td>
 								<td colspan="1"  class="title">订单号码</td>
-								<td  colspan="5" ><input type="text" class="project_contract_num_modal"></td>
+								<td  colspan="5" ><input  autocomplete="off" type="text" class="project_contract_num_modal"></td>
 							</tr>
 							<tr>
 								<td colspan="1"  class="title">发送日期</td>
-								<td  colspan="5"><input type="text" class="send_time"></td>
+								<td  colspan="5"><input  autocomplete="off" type="text" class="send_time"></td>
 							</tr>
 							<tr>
 								<td colspan="1"  class="title">服务编号</td>
-								<td colspan="11"><input type="text" class="project_service_num_modal"></td>
+								<td colspan="11"><input  autocomplete="off" type="text" class="project_service_num_modal"></td>
 							</tr>
 							<tr>
 								<td colspan="1"  class="title">技术联系人</td>
-								<td  colspan="1"><input type="text" class="technology"></td>
+								<td  colspan="1"><input  autocomplete="off" type="text" class="technology"></td>
 								<td colspan="1"  class="title">联系方式</td>
-								<td  colspan="3"><input type="text" class="technology_phone"></td>
+								<td  colspan="3"><input  autocomplete="off" type="text" class="technology_phone"></td>
 								<td colspan="1"  class="title">服务开通日</td>
-								<td  colspan="5"><input type="text" class="Opening_time"></td>
+								<td  colspan="5"><input  autocomplete="off" type="text" class="Opening_time"></td>
 							</tr>
 							<tr>
 								<td colspan="1"  class="title">业务联系人</td>
-								<td   colspan="1" ><input type="text" class="business"></td>
+								<td   colspan="1" ><input  autocomplete="off" type="text" class="business"></td>
 								<td colspan="1"  class="title">联系方式</td>
-								<td   colspan="3" ><input type="text" class="business_phone"></td>
+								<td   colspan="3" ><input  autocomplete="off" type="text" class="business_phone"></td>
 								<td colspan="1"  class="title">开始计费日期</td>
-								<td   colspan="5" ><input type="text" class="bill_time"></td>
+								<td   colspan="5" ><input  autocomplete="off" type="text" class="bill_time"></td>
 							</tr>
 							<tr>
 								<td  colspan="12"   class="title_A_Z"  style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;background-color: #418ddc3b;"  tag="1">AC 接入端信息<button type="button" class="btn btn-light jian" style="margin-left: 12px;margin-right: 12px;font-weight: 700">-</button><button type="button" class="btn btn-light jia" style="font-weight: 700">+</button></td>
 							</tr>
 							<tr>
-								<td  rowspan="3" class="title"><input type='text' class="address_tag0" style="height: 30%;width: 20%;"> end</td>
+								<td  rowspan="3" class="title"><input  autocomplete="off" type='text' class="address_tag0" style="height: 30%;width: 20%;"> end</td>
 								<td  rowspan="1" class="title">接入地址</td>
-     							<td colspan="10" ><input type="text" class="address0"></td>
+     							<td colspan="10" ><input  autocomplete="off" type="text" class="address0"></td>
 							</tr>
 							<tr>
 								<td class="title">对接模块</td>
-								<td   colspan="10" ><input type="text" class="module0"></td>
+								<td   colspan="10" ><input  autocomplete="off" type="text" class="module0"></td>
 							</tr>
 							<tr>
 								<td class="title">端口模式</td>
-								<td  colspan="10" ><input type="text" class="module_type0"></td>
+								<td  colspan="10" ><input  autocomplete="off" type="text" class="module_type0"></td>
 							</tr>
 							<tr>
 				    		 <td  rowspan="1" class="title">服务备注</td>
-				    		 <td  colspan="11"><input type="text" class="services_remark0"></td>
+				    		 <td  colspan="11"><input  autocomplete="off" type="text" class="services_remark0"></td>
 				    		</tr>
 							<tr>
 								<td  colspan="12"   style="text-align: center;font-family: 等线;font-size:16px;font-weight: bold;background-color: #418ddc3b;">用户申明 Customer Declaration</td>
@@ -751,8 +752,8 @@
 						</table>
 						<table  id="table_pdf2">
 								<tr>
-								<td  colspan="6" ><input type="text" class="customer_modal">签名及公司印章</td>
-								<td  colspan="6" ><input type="text" class="this_company">销售员签名和公司印章</td>
+								<td  colspan="6" ><input  autocomplete="off" type="text" class="customer_modal">签名及公司印章</td>
+								<td  colspan="6" ><input  autocomplete="off" type="text" class="this_company">销售员签名和公司印章</td>
 							</tr>
 							<tr>
 								<td  colspan="6"  class="seal"></td>
@@ -840,6 +841,23 @@
 						$(".springboot_title").attr("realname",data.personnel[0].personnel_name);
 					}
 				});
+				 $.ajax({
+					 type:'post',
+					 url:'../base_controller/initialize_permission',
+					 dataType:'json',
+					 data:{'table_id':2},
+					 success:function(data){
+						 if(data.insert_project_msg!="success"){
+							 $(".add_attached_project_btn").attr("disabled","disabled");
+							 $('#add_attached_projectModal').remove();
+							 $(".add_attached_project_btn").click(function(){
+								 $('.toast-body').text('账户权限受限制');
+								 $('#liveToast').toast('show');
+								 setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+							 })
+						 }
+					 }
+				 });
 				$('.char_send').click(function(){
 					 var paras = location.search;            //search获得地址中的参数，内容为'?itemId=12'
 					 var result = paras.match(/[^\?&]*=[^&]*/g);     //match是字符串中符合的字段一个一个取出来，result中的值为['login=xx','table=admin']
@@ -928,8 +946,8 @@
 						type:'post',
 						url:'../attached_project_controller/del_attached',
 						dataType:'json',
-						data:{'attachedid':attachedid,
-								 'pid':pid},
+						data:{'attached_id':attachedid,
+							  'pid':pid},
 						success:function(data){
 							if(data.msg!="success"){
 								$('#commonModal').modal("hide");
@@ -1022,26 +1040,58 @@
 						'attached_b_address':attached_b_address,
 						'create_time':create_time
 				}
-				$.ajax({
-					type:'post',
-					url:'../attached_project_controller/insert_attached',
-					dataType:'json',
-					contentType: 'application/json;charset=UTF-8',
-					data:JSON.stringify(attached_json),
-					success:function(data){
-						if(data.msg=="success"){
-							$('#add_attached_projectModal').modal("hide");
-							$('.toast-body').text('添加成功');
-							$('#liveToast').toast('show');
-							$('.Attached_list').empty();
-							attached_project();
-						}else{
-							$('#add_attached_projectModal').modal("hide");
-							$('.toast-body').text('账户权限受限制');
-							$('#liveToast').toast('show');
+				if( $('.attached_project_name').val().trim()==null || $('.attached_project_name').val().trim()=="" || $('.attached_project_name').val().trim()==undefined){
+					$('.attached_project_name').focus();
+					$('.toast-body').text('请填写项目名称');
+					$('#liveToast').toast('show');
+					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+				}else if( $('.attached_status').val()==null || $('.attached_status').val()=="" || $('.attached_status').val()==undefined){
+					$('.attached_status').focus();
+					$('.toast-body').text('请选择项目状态');
+					$('#liveToast').toast('show');
+					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+				}else if( $('.attached_start_time').val()==null || $('.attached_start_time').val()=="" || $('.attached_start_time').val()==undefined){
+					$('.attached_start_time').focus();
+					$('.toast-body').text('请填写启动日期');
+					$('#liveToast').toast('show');
+					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+				}else if( $('.attached_currency').val()==null || $('.attached_currency').val()=="" || $('.attached_currency').val()==undefined){
+					$('.attached_currency').focus();
+					$('.toast-body').text('请选择币种');
+					$('#liveToast').toast('show');
+					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+				}else if( $('.attached_time_fee').val().trim()==null || $('.attached_time_fee').val().trim()=="" || $('.attached_time_fee').val().trim()==undefined){
+					$('.attached_time_fee').focus();
+					$('.toast-body').text('请填写一次性费用');
+					$('#liveToast').toast('show');
+					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+				}else if( $('.attached_moon_fee').val().trim()==null || $('.attached_moon_fee').val().trim()=="" || $('.attached_moon_fee').val().trim()==undefined){
+					$('.attached_moon_fee').focus();
+					$('.toast-body').text('请填写月费');
+					$('#liveToast').toast('show');
+					setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
+				}else{
+					$.ajax({
+						type:'post',
+						url:'../attached_project_controller/insert_attached',
+						dataType:'json',
+						contentType: 'application/json;charset=UTF-8',
+						data:JSON.stringify(attached_json),
+						success:function(data){
+							if(data.msg=="success"){
+								$('#add_attached_projectModal').modal("hide");
+								$('.toast-body').text('添加成功');
+								$('#liveToast').toast('show');
+								$('.Attached_list').empty();
+								attached_project();
+							}else{
+								$('#add_attached_projectModal').modal("hide");
+								$('.toast-body').text('账户权限受限制');
+								$('#liveToast').toast('show');
+							}
 						}
-					}
-				});
+					});
+				}
 			});
 			 function attached_project(){
 						$.ajax({
@@ -1096,46 +1146,55 @@
 												var status_text_display="未匹配"
 											}
 
-											if(data.attached_list[a].attached_start_time==null || data.attached_list[a].attached_start_time=="" || data.attached_list[a].attached_start_time==undefined){
+											if(data.attached_list[a].attached_start_time==null || data.attached_list[a].attached_start_time=="" || data.attached_list[a].attached_start_time==undefined || data.attached_list[a].attached_start_time==-1){
 												var attached_start_time=""
 											}else{
 												var attached_start_time=new Date(data.attached_list[a].attached_start_time);
 												attached_start_time=attached_start_time.getFullYear()+'-'+(attached_start_time.getMonth()+1)+'-'+attached_start_time.getDate();
 											}
 
-											if(data.attached_list[a].attached_end_time==null || data.attached_list[a].attached_end_time=="" || data.attached_list[a].attached_end_time==undefined){
+											if(data.attached_list[a].attached_end_time==null || data.attached_list[a].attached_end_time=="" || data.attached_list[a].attached_end_time==undefined|| data.attached_list[a].attached_end_time==-1){
 												var attached_end_time=""
 											}else{
 												var attached_end_time=new Date(data.attached_list[a].attached_end_time);
 												attached_end_time=attached_end_time.getFullYear()+'-'+(attached_end_time.getMonth()+1)+'-'+attached_end_time.getDate();
 											}
 
-											if(data.attached_list[a].attached_expected_completion_date==null || data.attached_list[a].attached_expected_completion_date=="" || data.attached_list[a].attached_expected_completion_date==undefined){
+											if(data.attached_list[a].attached_expected_completion_date==null || data.attached_list[a].attached_expected_completion_date=="" || data.attached_list[a].attached_expected_completion_date==undefined|| data.attached_list[a].attached_expected_completion_date==-1){
 												var attached_expected_completion_date=""
 											}else{
 												var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
 												attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'-'+(attached_expected_completion_date.getMonth()+1)+'-'+attached_expected_completion_date.getDate();
 											}
 
-											if(data.attached_list[a].attached_actual_finishing_date==null || data.attached_list[a].attached_actual_finishing_date=="" || data.attached_list[a].attached_actual_finishing_date==undefined){
+											if(data.attached_list[a].attached_actual_finishing_date==null || data.attached_list[a].attached_actual_finishing_date=="" || data.attached_list[a].attached_actual_finishing_date==undefined|| data.attached_list[a].attached_actual_finishing_date==-1){
 												var attached_actual_finishing_date=""
 											}else{
 												var attached_actual_finishing_date=new Date(data.attached_list[a].attached_actual_finishing_date);
 												attached_actual_finishing_date=attached_actual_finishing_date.getFullYear()+'-'+(attached_actual_finishing_date.getMonth()+1)+'-'+attached_actual_finishing_date.getDate();
 											}
 
-											if(data.attached_list[a].attached_bill_time==null || data.attached_list[a].attached_bill_time=="" || data.attached_list[a].attached_bill_time==undefined){
+											if(data.attached_list[a].attached_bill_time==null || data.attached_list[a].attached_bill_time=="" || data.attached_list[a].attached_bill_time==undefined|| data.attached_list[a].attached_bill_time==-1){
 												var attached_bill_time=""
 											}else{
 												var attached_bill_time=new Date(data.attached_list[a].attached_bill_time);
 												attached_bill_time=attached_bill_time.getFullYear()+'-'+(attached_bill_time.getMonth()+1)+'-'+attached_bill_time.getDate();
 											}
 
-											if(data.attached_list[a].attached_moon_fee==null||data.attached_list[a].attached_moon_fee==""){
-												data.attached_list[a].attached_moon_fee=""
+											if(data.attached_list[a].attached_project_name==""||data.attached_list[a].attached_project_name==null||data.attached_list[a].attached_project_name=="NullPointerValue"){
+												data.attached_list[a].attached_project_name=""
 											}
-											if(data.attached_list[a].attached_time_fee==null||data.attached_list[a].attached_time_fee==""){
-												data.attached_list[a].attached_time_fee=""
+											if(data.attached_list[a].attached_services_num==""||data.attached_list[a].attached_services_num==null||data.attached_list[a].attached_services_num=="NullPointerValue"){
+												data.attached_list[a].attached_services_num=""
+											}
+											if(data.attached_list[a].attached_address==""||data.attached_list[a].attached_address==null||data.attached_list[a].attached_address=="NullPointerValue"){
+												data.attached_list[a].attached_address=""
+											}
+											if(data.attached_list[a].attached_b_address==""||data.attached_list[a].attached_b_address==null||data.attached_list[a].attached_b_address=="NullPointerValue"){
+												data.attached_list[a].attached_b_address=""
+											}
+											if(data.attached_list[a].attached_remark==""||data.attached_list[a].attached_remark==null||data.attached_list[a].attached_remark=="NullPointerValue"){
+												data.attached_list[a].attached_remark=""
 											}
 											Attached_html_list='<div class="accordion" id="accordionExample'+a+'">'
 													+'<div class="card">'
@@ -1154,34 +1213,34 @@
 													+'<div class="row">'
 													+'<div class="col-md-6 mb-3">'
 													+'<label for="attached_project_name'+a+'">附属项目名称</label>'
-													+'<input type="text" class="form-control" id="attached_project_name'+a+'" placeholder="" value="'+data.attached_list[a].attached_project_name+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control" id="attached_project_name'+a+'" placeholder="" value="'+data.attached_list[a].attached_project_name+'" required="">'
 													+'</div>'
 													+'<div class="col-md-6 mb-3">'
 													+'<label for="attached_services_num'+a+'">服务编号</label>'
-													+'<input type="text" class="form-control" id="attached_services_num'+a+'" placeholder="" value="'+data.attached_list[a].attached_services_num+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control" id="attached_services_num'+a+'" placeholder="" value="'+data.attached_list[a].attached_services_num+'" required="">'
 													+'</div>'
 													+'<div class="col-md-12 mb-12">'
 													+'<hr/>'
 													+'</div>'
 													+'<div class="col-md-2 mb-3">'
 													+'<label for="attached_start_time'+a+'">启动时间</label>'
-													+'<input type="text" class="form-control attached_time_list_2" id="attached_start_time'+a+'" placeholder="" value="'+attached_start_time+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control attached_time_list_2" id="attached_start_time'+a+'" placeholder="" value="'+attached_start_time+'" required="">'
 													+'</div>'
 													+'<div class="col-md-2 mb-3">'
 													+'<label for="attached_end_time'+a+'">终止日期</label>'
-													+'<input type="text" class="form-control attached_time_list_2" id="attached_end_time'+a+'" placeholder="" value="'+attached_end_time+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control attached_time_list_2" id="attached_end_time'+a+'" placeholder="" value="'+attached_end_time+'" required="">'
 													+'</div>'
 													+'<div class="col-md-2 mb-3">'
 													+'<label for="attached_bill_time'+a+'">计费时间</label>'
-													+'<input type="text" class="form-control attached_time_list_2" id="attached_bill_time'+a+'" placeholder="" value="'+attached_bill_time+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control attached_time_list_2" id="attached_bill_time'+a+'" placeholder="" value="'+attached_bill_time+'" required="">'
 													+'</div>'
-													+'<div class="col-md-2 mb-3">'
+													+'<div class="col-md-3 mb-3">'
 													+'<label for="attached_expected_completion_date'+a+'">预计完成时间</label>'
-													+'<input type="text" class="form-control attached_time_list_2" id="attached_expected_completion_date'+a+'" placeholder="" value="'+attached_expected_completion_date+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control attached_time_list_2" id="attached_expected_completion_date'+a+'" placeholder="" value="'+attached_expected_completion_date+'" required="">'
 													+' </div>'
-													+'<div class="col-md-2 mb-3">'
+													+'<div class="col-md-3 mb-3">'
 													+'<label for="attached_actual_finishing_date'+a+'">实际完成时间</label>'
-													+'<input type="text" class="form-control attached_time_list_2" id="attached_actual_finishing_date'+a+'" placeholder="" value="'+attached_actual_finishing_date+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control attached_time_list_2" id="attached_actual_finishing_date'+a+'" placeholder="" value="'+attached_actual_finishing_date+'" required="">'
 													+'</div>'
 													+'<div class="col-md-12 mb-12">'
 													+' <hr/>'
@@ -1198,22 +1257,22 @@
 													+'</div>'
 													+'<div class="col-md-3 mb-3">'
 													+'<label for="attached_time_fee'+a+'">一次性费用</label>'
-													+'<input type="text" class="form-control" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" id="attached_time_fee'+a+'" placeholder="" value="'+data.attached_list[a].attached_time_fee+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" id="attached_time_fee'+a+'" placeholder="" value="'+data.attached_list[a].attached_time_fee+'" required="">'
 													+'</div>'
 													+'<div class="col-md-3 mb-3">'
 													+'<label for="attached_moon_fee'+a+'">月费</label>'
-													+'<input type="text" class="form-control" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" id="attached_moon_fee'+a+'" placeholder="" value="'+data.attached_list[a].attached_moon_fee+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" id="attached_moon_fee'+a+'" placeholder="" value="'+data.attached_list[a].attached_moon_fee+'" required="">'
 													+'</div>'
 													+'<div class="col-md-12 mb-12">'
 													+'<hr/>'
 													+'</div>'
 													+'<div class="col-md-12 mb-12">'
 													+'<label for="attached_address'+a+'">A端地址</label>'
-													+'<input type="text" class="form-control" id="attached_address'+a+'" placeholder="" value="'+data.attached_list[a].attached_address+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control" id="attached_address'+a+'" placeholder="" value="'+data.attached_list[a].attached_address+'" required="">'
 													+'</div>'
 													+'<div class="col-md-12 mb-12">'
 													+'<label for="attached_b_address'+a+'">B端地址</label>'
-													+'<input type="text" class="form-control" id="attached_b_address'+a+'" placeholder="" value="'+data.attached_list[a].attached_b_address+'" required="">'
+													+'<input  autocomplete="off" type="text" class="form-control" id="attached_b_address'+a+'" placeholder="" value="'+data.attached_list[a].attached_b_address+'" required="">'
 													+'</div>'
 													+'<div class="col-md-12 mb-12">'
 													+' <label for="attached_remark'+a+'">备注</label>'
@@ -1229,6 +1288,19 @@
 													+' </div>'
 													+' </div>';
 											$('.Attached_list').append(Attached_html_list);
+											if(data.attached_list[a].attached_moon_fee==null||data.attached_list[a].attached_moon_fee==""||data.attached_list[a].attached_moon_fee==-1){
+												$('#attached_moon_fee'+a).attr("type","password");
+											}
+											if(data.attached_list[a].attached_time_fee==null||data.attached_list[a].attached_time_fee==""||data.attached_list[a].attached_time_fee==-1){
+												$('#attached_time_fee'+a).attr("type","password");
+											}
+											for(var j=0;j<data.attached_project_fields.length;j++){
+												if(data.attached_project_fields[j].fields_select!=1){
+													$('#'+data.attached_project_fields[j].table_fields+''+a+'').attr("disabled",true);
+												}else if(data.attached_project_fields[j].fields_update!=1){
+													$('#'+data.attached_project_fields[j].table_fields+''+a+'').attr("disabled",true);
+												}
+											}
 											$('.attached_status'+a).val(data.attached_list[a].attached_status);
 											$('.attached_title_span'+a).text($('#project_status [value='+data.attached_list[a].attached_status+']').text())
 
@@ -1244,6 +1316,8 @@
 											});
 											//修改附属项目
 											$('.save_att_project'+a).click(function(){
+												var save_info2tag=$(this).attr("tag")
+
 												$('.saveinfo_attached_project_dialog').width("36%");
 												$('.saveinfo_attached_project_content').height("auto");
 												$('.saveinfo_attached_project_body').height("100%");
@@ -1251,9 +1325,10 @@
 												var tag=$(this).attr('tag');
 												$.ajax({
 													type:'post',
-													url:'../attached_project_controller/select_attached_forattaid',
+													url:'../attached_project_controller/select_attached_for_id',
 													dataType:'json',
-													data:{'attachedid':attachedid},
+													data:{'attached_id':attachedid,
+														  'pid':pid},
 													success:function(data){
 														if(data.msg!="success"){
 															$('.toast-body').text('账户权限受限制');
@@ -1280,17 +1355,21 @@
 																},
 																"length":14
 															};
-															var atta_json_one=[];
+															var attach_json_one=[];
 															var fields_count=0;
 															for(var i=0;i<fields.length;i++){
 																if(fields["fields_info"][i]["field"]=="attached_bill_time" || fields["fields_info"][i]["field"]=="attached_end_time"|| fields["fields_info"][i]["field"]=="attached_start_time"|| fields["fields_info"][i]["field"]=="attached_expected_completion_date"|| fields["fields_info"][i]["field"]=="attached_actual_finishing_date"){
-																	if(data.attached_one[fields["fields_info"][i]["field"]]!="" && data.attached_one[fields["fields_info"][i]["field"]]!=null){
+																	if(data.attached_one[fields["fields_info"][i]["field"]]!="" && data.attached_one[fields["fields_info"][i]["field"]]!=null&&data.attached_one[fields["fields_info"][i]["field"]]!=-1&&data.attached_one[fields["fields_info"][i]["field"]]!="NullPointerValue"){
 																		var time=new Date(data.attached_one[fields["fields_info"][i]["field"]]);
 																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
 																		OriginalValue=time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate();
 																	}else{
 																		var OriginalValue=""
-																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																		if($('#'+fields["fields_info"][i]["field"]+tag).val()!=null&&$('#'+fields["fields_info"][i]["field"]+tag).val()!=""&&$('#'+fields["fields_info"][i]["field"]+tag).val()!=-1&&$('#'+fields["fields_info"][i]["field"]+tag).val()!="NullPointerValue"){
+																			var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																		}else{
+																			var ChangeValue=""
+																		}
 																	}
 																}else if(fields["fields_info"][i]["field"]=="attached_currency"){
 																	var OriginalValue=$('#currency [value='+data.attached_one[fields["fields_info"][i]["field"]]+']').text();
@@ -1299,18 +1378,22 @@
 																	var OriginalValue=$('#project_status [value='+data.attached_one[fields["fields_info"][i]["field"]]+']').text();
 																	var ChangeValue=$('#project_status [value='+$('.'+fields["fields_info"][i]["field"]+tag).val()+']').text();
 																}else{
-																	if(data.attached_one[fields["fields_info"][i]["field"]]!="" && data.attached_one[fields["fields_info"][i]["field"]]!="null"){
+																	if(data.attached_one[fields["fields_info"][i]["field"]]!="" && data.attached_one[fields["fields_info"][i]["field"]]!="null" && data.attached_one[fields["fields_info"][i]["field"]]!="NullPointerValue" && data.attached_one[fields["fields_info"][i]["field"]]!=-1){
 																		var OriginalValue=data.attached_one[fields["fields_info"][i]["field"]];
 																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
 																	}else{
 																		var OriginalValue="";
-																		var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																		if($('#'+fields["fields_info"][i]["field"]+tag).val()!=null&&$('#'+fields["fields_info"][i]["field"]+tag).val()!=""&&$('#'+fields["fields_info"][i]["field"]+tag).val()!=-1&&$('#'+fields["fields_info"][i]["field"]+tag).val()!="NullPointerValue"){
+																			var ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
+																		}else{
+																			var ChangeValue=""
+																		}
 																	}
 																}
 																var html_info=""
 																if(OriginalValue!=ChangeValue){
 																	fields_count++;
-																	var field_name_ajax=fields["fields_info"][i]["field"] ;
+																	var field_name_ajax=fields["fields_info"][i]["field"];
 
 																	html_info='<div class="row" style="width: 100%;">'
 																			+'<div class="col-md-12 mb-12">'
@@ -1326,19 +1409,24 @@
 																	}else if(fields["fields_info"][i]["field"] =="attached_currency"){
 																		ChangeValue=$('#'+fields["fields_info"][i]["field"]+tag).val();
 																	}
-																	var field_arry={
+																	let field_array={
 																		"key":field_name_ajax,
 																		"value":ChangeValue
 																	}
-																	atta_json_one.push(field_arry);
+																	attach_json_one.push(field_array);
 																}
 															}
 															$('#saveinfo_attached_project').modal("show");
+															$('.save_info_initial').attr("class","btn btn-primary save_info"+save_info2tag);
 															if(fields_count>0){
-																$('.save_info2').attr("disabled",false);
+																var click_tag=0;
+																$('.save_info'+save_info2tag).attr("disabled",false);
 																//点击更新基本信息
-																$('.save_info2').click(function(){
-																	var ajax_str={'attachedid':attachedid,'change_value_ajax':atta_json_one,'fields_count':fields_count}
+																$('.save_info'+save_info2tag).click(function(){
+																	click_tag=1;
+																	$(this).unbind();
+																	$(this).attr("class","btn btn-primary save_info_initial");
+																	var ajax_str={'attachedid':attachedid,'change_value_ajax':atta_json_one,'fields_count':fields_count,'pid':pid}
 																	if(fields_count!=0){
 																		$.ajax({
 																			type:'post',
@@ -1403,8 +1491,12 @@
 																		setTimeout(function(){$('#liveToast').toast('hide')}, 3000);
 																	}
 																});
+																if(click_tag==1){
+																	$(this).unbind();
+																	$(this).attr("class","btn btn-primary save_info_initial");
+																}
 															}else{
-																$('.save_info2').attr("disabled",true);
+																$('.save_info'+save_info2tag).attr("disabled",true);
 															}
 														}
 													}
@@ -1561,7 +1653,7 @@
 								   dataType:'json',
 								   data:{'pid':pid},
 								   success:function(data){
-									   if(data.project_one.length!=0){
+									   if(data.project_one.length!==0){
 										   if(data.project_one.project_contract_pdf==null || data.project_one.project_contract_pdf==""){
 											   var project_contract_pdf="";
 										   }else{
@@ -1696,14 +1788,17 @@
 	    });
 	    //生成PDF  首先生成html传给后台
 	    $('.htmltopdf').click(function(){
-	    	$('.htmltopdf').empty();
-	    	$('.htmltopdf').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
-	    	$(".htmltopdf").attr('disabled',true);
 	       	 $.ajax({
 	    		 type:'post',
 	    		 url:'../project_controller/select_project_pid_one',
 	    		 dataType:'json',
 	    		 data:{'pid':pid},
+				 timeout:15000,
+				 beforeSend:function(XMLHttpRequest){
+					 $('.htmltopdf').empty();
+					 $('.htmltopdf').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...');
+					 $(".htmltopdf").attr('disabled',true);
+				 },
 	    		 success:function(data){
 	    			 if(data.project_one.length!=0){
 	    		         var today_time=new Date();
@@ -2163,14 +2258,14 @@
 	    		 dataType:'json',
 	    		 data:{'pid':pid},
 	    		 success:function(data){
-					 if(data.list_projectfields!=null){
-						 if(data.list_projectfields.length!=0){
-							 for(var i=0;i<data.list_projectfields.length;i++){
-								if(data.list_projectfields[i].fields_update!=1){
-									$('.'+data.list_projectfields[i].table_fields).attr('disabled',true)
+					 if(data.list_project_fields!=null){
+						 if(data.list_project_fields.length!=0){
+							 for(var i=0;i<data.list_project_fields.length;i++){
+								if(data.list_project_fields[i].fields_update!=1){
+									$('.'+data.list_project_fields[i].table_fields).attr('disabled',true)
 								}
-							 	if(data.list_projectfields[i].fields_select!=1){
-								 $('.'+data.list_projectfields[i].table_fields).attr('disabled',true)
+							 	if(data.list_project_fields[i].fields_select!=1){
+								 $('.'+data.list_project_fields[i].table_fields).attr('disabled',true)
 							 	}
 							 }
 							 if(data.project_one.length!=0){
@@ -2260,7 +2355,7 @@
 									 $('[for=services_num]').css("color","#dc5360");
 								 }
 								 $('#services_num').val(services_num);
-								 if(data.project_one.project_speed!=0 &&data.project_one.project_speed!=null &&data.project_one.project_speed!=""&&data.project_one.project_speed!=-1&&data.project_one.project_speed!="NullPointerValue"){
+								 if(data.project_one.project_speed!=null &&data.project_one.project_speed!=""&&data.project_one.project_speed!=-1&&data.project_one.project_speed!="NullPointerValue"){
 									 var project_speed=data.project_one.project_speed
 								 }else{
 									 var project_speed=""
@@ -2314,7 +2409,7 @@
 									 $('[for=currency]').css("color","#dc5360");
 								 }
 								 $('#currency').val(currency);
-								 if(data.project_one.project_time_fee!=0 && data.project_one.project_time_fee!=null && data.project_one.project_time_fee!=-1){
+								 if(data.project_one.project_time_fee!=null && data.project_one.project_time_fee!=-1){
 									 var project_time_fee=data.project_one.project_time_fee
 								 }else{
 									 var project_time_fee=0
@@ -2323,7 +2418,7 @@
 									 $('#project_time_fee').attr("type","password");
 								 }
 								 $('#project_time_fee').val(project_time_fee);
-								 if(data.project_one.project_moon_fee!=0 && data.project_one.project_moon_fee!=null && data.project_one.project_moon_fee!=-1 ){
+								 if(data.project_one.project_moon_fee!=null && data.project_one.project_moon_fee!=-1 ){
 									 var project_moon_fee=data.project_one.project_moon_fee
 								 }else{
 									 var project_moon_fee=0
@@ -2404,7 +2499,7 @@
 									 $('[for=speed_unit]').css("color","#dc5360");
 								 }
 								 $('#speed_unit').val(speed_unit);
-								 if(data.project_one.service_hours!="0" && data.project_one.service_hours!=null &&data.project_one.service_hours!="null"&& data.project_one.service_hours!="NullPointerValue"){
+								 if(data.project_one.service_hours!=null &&data.project_one.service_hours!="null"&& data.project_one.service_hours!="NullPointerValue"){
 									 var service_hours=data.project_one.service_hours
 								 }else{
 									 var service_hours=""
@@ -2583,17 +2678,17 @@
 			   $('.title_A_Z').attr('tag',tag);
 			   var insertHtml="";
 			   insertHtml="<tr>"
-			     +"<td rowspan='3' class='title'><input type='text' class='address_tag"+(parseInt(tag)-1)+"'style='height: 30%;width: 20%;'> end</td>"
+			     +"<td rowspan='3' class='title'><input  autocomplete=\"off\" type='text' class='address_tag"+(parseInt(tag)-1)+"'style='height: 30%;width: 20%;'> end</td>"
 			     +"<td class='title'>接入地址</td>"
-			     +"<td colspan='10' ><input type='text' class='address"+(parseInt(tag)-1)+"'></td>"
+			     +"<td colspan='10' ><input  autocomplete=\"off\" type='text' class='address"+(parseInt(tag)-1)+"'></td>"
 			     +"</tr>"
 			     +"<tr>"
 			     +" <td  class='title'>对接模块</td>"
-			     +" <td colspan='10'><input type='text' class='module"+(parseInt(tag)-1)+"'></td>"
+			     +" <td colspan='10'><input  autocomplete=\"off\" type='text' class='module"+(parseInt(tag)-1)+"'></td>"
 			     +" </tr>"
 			     +" <tr>"
 			     +" <td class='title'>端口模式</td>"
-			     +" <td colspan='10'><input type='text' class='module_type"+(parseInt(tag)-1)+"'></td>"
+			     +" <td colspan='10'><input  autocomplete=\"off\" type='text' class='module_type"+(parseInt(tag)-1)+"'></td>"
 			     +"</tr>"
 			   $('#table_pdf').find('tr').eq(8+((tag-2)*3)).after(insertHtml);
 		   }
@@ -2758,7 +2853,7 @@
 								 }
 							 }else{
 								 if(fields["fields_info"][i]["field"]=="project_progress_plan" || fields["fields_info"][i]["field"]=="project_remark"){
-									 if(data.project_one[fields["fields_info"][i]["field"]]!=null && data.project_one[fields["fields_info"][i]["field"]]!=""&&  data.project_one[fields["fields_info"][i]["field"]]!="null"){
+									 if(data.project_one[fields["fields_info"][i]["field"]]!=null && data.project_one[fields["fields_info"][i]["field"]]!="" &&  data.project_one[fields["fields_info"][i]["field"]]!="null"){
 										 OriginalValue=data.project_one[fields["fields_info"][i]["field"]].trim().replace(/\s/g,"").replace(/\n\r/g,"");
 									 }else{
 										 OriginalValue=null
@@ -2796,6 +2891,18 @@
 								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
 								 ChangeValue_display=$('#currency [value='+$('#currency').val()+']').text();
 								 if(ChangeValue_display==""){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_time_fee"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=ChangeValue
+								 if(ChangeValue_display=="" || ChangeValue_display==0){
+									 ChangeValue_display=null;
+								 }
+							 }else if(fields["fields_info"][i]["field"]=="project_moon_fee"){
+								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
+								 ChangeValue_display=ChangeValue
+								 if(ChangeValue_display=="" || ChangeValue_display==0){
 									 ChangeValue_display=null;
 								 }
 							 }else if(fields["fields_info"][i]["field"]=="project_class"){
@@ -2843,13 +2950,13 @@
 							 }else if(fields["fields_info"][i]["field"]=="speed_unit"){
 								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
 								 ChangeValue_display=$('#speed_unit [value='+$('#speed_unit').val()+']').text();
-								 if(ChangeValue_display==""){
+								 if(ChangeValue_display=="" || ChangeValue_display==0){
 									 ChangeValue_display=null;
 								 }
 							 }else if(fields["fields_info"][i]["field"]=="services_deadline"){
 								 ChangeValue=$('#'+fields["fields_info"][i]["field"]).val();
 								 ChangeValue_display=$('#services_deadline [value='+$('#services_deadline').val()+']').text();
-								 if(ChangeValue_display==""){
+								 if(ChangeValue_display=="" || ChangeValue_display==0){
 									 ChangeValue_display=null;
 								 }
 							 }else{

@@ -1,5 +1,6 @@
 package com.dcc.ProjectManagementSystem.Interceptor;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dcc.ProjectManagementSystem.utils.IpAddressUtil;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -45,7 +47,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
 	{
-		// 在处理过程中，执行拦截	
+		// 在处理过程中，执行拦截
 		
 		
 	}
@@ -81,11 +83,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 						String email_this = users.get(0).getChildText("email");
 						String permission_this = users.get(0).getChildText("permission");
 						String permission_uuid_this = users.get(0).getChildText("permission_uuid");
-						if(session.getAttribute("user_uuid").equals(permission_uuid_this)&&login_user.getEmail().equals(email_this)&&login_user.getPermission().equals(permission_this)) {
-							return true;
-						}else {
-							return false;
-						}
+						return session.getAttribute("user_uuid").equals(permission_uuid_this) && login_user.getEmail().equals(email_this) && login_user.getPermission().equals(permission_this);
 					}else{
 						return false;
 					}
@@ -99,11 +97,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 						String  email_this = users.get(0).getChildText("email");
 						String permission_this = users.get(0).getChildText("permission");
 						String permission_uuid_this = users.get(0).getChildText("permission_uuid");
-						if(session.getAttribute("user_uuid").equals(permission_uuid_this)&&login_user.getEmail().equals(email_this)&&login_user.getPermission().equals(permission_this)) {
-							return true;
-						}else {
-							return false;
-						}
+						return session.getAttribute("user_uuid").equals(permission_uuid_this) && login_user.getEmail().equals(email_this) && login_user.getPermission().equals(permission_this);
 					}else{
 						return false;
 					}
@@ -117,11 +111,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 						String  email_this = users.get(0).getChildText("email");
 						String permission_this = users.get(0).getChildText("permission");
 						String permission_uuid_this = users.get(0).getChildText("permission_uuid");
-						if(session.getAttribute("user_uuid").equals(permission_uuid_this)&&login_user.getEmail().equals(email_this)&&login_user.getPermission().equals(permission_this)) {
-							return true;
-						}else {
-							return false;
-						}
+						return session.getAttribute("user_uuid").equals(permission_uuid_this) && login_user.getEmail().equals(email_this) && login_user.getPermission().equals(permission_this);
 					}else{
 						return false;
 					}

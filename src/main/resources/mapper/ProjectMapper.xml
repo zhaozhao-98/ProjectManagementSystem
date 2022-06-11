@@ -96,6 +96,9 @@ order by PR.pid desc  limit  #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER}
 			PR.project_status,
 			PR.project_class,
 			PR.project_soon,
+			PR.project_pm,
+			PR.customer,
+			CU.cid,
 			CU.customer_name,
 			PE.personnel_name,
 			class_other.oid as class_oid,
@@ -116,6 +119,9 @@ order by PR.pid desc  limit  #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER}
 	<if test="project_list!=0">
 		 AND PR.project_list=#{project_list,jdbcType=INTEGER}
 	</if>
+	<if test="customer!=0">
+		AND PR.customer=#{customer,jdbcType=INTEGER}
+	</if>
 	<if test="project_pm!=0">
 		 AND PR.project_pm=#{project_pm,jdbcType=INTEGER}
 	</if>
@@ -123,7 +129,8 @@ order by PR.pid desc  limit  #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER}
 		 AND PR.stat_tag=#{stat_tag,jdbcType=VARCHAR}
 	</if>
 	ORDER BY PR.od_num desc
-	LIMIT #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER};
+	<if  test="limit!=-1">LIMIT  #{limit,jdbcType=INTEGER}</if>
+	<if  test="item!=-1">,#{item,jdbcType=INTEGER}</if>
 </select>
 <!-- 查询关于我进行中的项目 -->
 <select id="select_About_me_conduct_project" resultMap="BaseResultMap">
@@ -147,6 +154,9 @@ order by PR.pid desc  limit  #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER}
 		PR.project_status,
 		PR.project_class,
 		PR.project_soon,
+		PR.project_pm,
+		PR.customer,
+		CU.cid,
 		CU.customer_name,
 		PE.personnel_name,
 		class_other.oid as class_oid,
@@ -165,7 +175,7 @@ order by PR.pid desc  limit  #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER}
 	 INNER JOIN other AS class_other ON  PR.project_class=class_other.oid
 	 INNER JOIN other AS status_other ON  PR.project_status=status_other.oid
 	and project_pm=#{project_pm,jdbcType=VARCHAR}
-	and project_class!=4
+	and project_status!=4 and project_actual_finishing_date=-1 or project_actual_finishing_date=""
 	and <![CDATA[project_expected_completion_date< #{today_time,jdbcType=VARCHAR}]]>
 	LIMIT #{limit,jdbcType=INTEGER} ,#{item,jdbcType=INTEGER};
 </select>
@@ -228,11 +238,14 @@ select count(*) from project;
 <select id="selectRowsByid" resultType="java.lang.Long">
 select count(1) from project
 <where>
-	 <if test="project_list!=0">
-			project_list=#{project_list,jdbcType=INTEGER}
+	<if test="project_list!=0">
+		project_list=#{project_list,jdbcType=INTEGER}
+	</if>
+	<if test="customer!=0">
+		AND project.customer=#{customer,jdbcType=INTEGER}
 	</if>
 	<if test="project_pm!=0">
-			 AND project.project_pm=#{project_pm,jdbcType=INTEGER}
+		AND project.project_pm=#{project_pm,jdbcType=INTEGER}
 	</if>
 	<if test="services_num!=null">
 		AND project.services_num=#{services_num,jdbcType=INTEGER}

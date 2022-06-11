@@ -3,7 +3,7 @@
 <mapper namespace="com.dcc.ProjectManagementSystem.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.dcc.ProjectManagementSystem.entity.User" autoMapping="true">
     <id column="uid" jdbcType="INTEGER" property="uid" />
-        <association property="permission_i_d_u_s"
+        <association property="permission_CRUD"
                         javaType="com.dcc.ProjectManagementSystem.entity.Permission">
                         <id column="permission_id" property="permission_id" />
                         <result column="permission_insert" property="permission_insert" />
@@ -15,11 +15,17 @@
 					    <association property="pointListing_list"
 								   javaType="com.dcc.ProjectManagementSystem.entity.PointListing">
 						    <id column="tid" property="tid" />
-						    <result column="personnel_name" property="personnel_name" />
 							<result column="t_name" property="t_name" />
 							<result column="t_name_chinese" property="t_name_chinese" />
 						</association>
 		</association>
+	  <association property="cum_personnel"
+				   javaType="com.dcc.ProjectManagementSystem.entity.Personnel">
+		  <id column="pid" property="pid" />
+		  <result column="personnel_name" property="personnel_name" />
+		  <result column="personnel_email" property="personnel_email" />
+		  <result column="personnel_head_portrait" property="personnel_head_portrait" />
+	  </association>
   </resultMap>
   <select id="single_select_user"  resultType="user">
 	SELECT
@@ -66,11 +72,44 @@
 		  t.t_name,
 		  t.t_name_chinese
 	  FROM
-		  promgsys.USER AS u
+		  promgsys.user AS u
 			  INNER JOIN permission AS pe ON pe.permission_code = u.permission
 			  INNER JOIN pointlisting AS t ON pe.permission_operate_table_num = t.tid
 	  WHERE
 		  u.lockdoor = 1
 		AND u.email = #{email,jdbcType=VARCHAR}
+	</select>
+	<select id="select_users_permissions"  resultMap="BaseResultMap">
+		SELECT
+			U.permission,
+			PE.pid,
+			PE.personnel_name,
+			PE.personnel_email,
+			PE.personnel_head_portrait,
+			PEM.permission_insert,
+			PEM.permission_delete,
+			PEM.permission_update,
+			PEM.permission_select,
+			PO.t_name,PO.t_name_chinese,PO.tid
+		FROM
+			promgsys.user AS U
+				INNER JOIN personnel AS PE ON PE.pid = U.uid
+				INNER JOIN permission AS PEM ON PEM.permission_code=U.permission
+				INNER JOIN pointlisting AS PO ON PO.tid=PEM.permission_operate_table_num
+		WHERE
+			U.lockdoor=1
+	</select>
+	<select id="select_users"  resultMap="BaseResultMap">
+		SELECT
+			U.permission,
+			PE.pid,
+			PE.personnel_name,
+			PE.personnel_email,
+			PE.personnel_head_portrait
+		FROM
+			promgsys.user AS U
+				INNER JOIN personnel AS PE ON PE.pid = U.uid
+		WHERE
+			U.lockdoor=1
 	</select>
 </mapper>

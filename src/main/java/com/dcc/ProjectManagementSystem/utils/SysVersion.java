@@ -77,7 +77,7 @@ public class SysVersion {
 		if(sys_version.equals("WINDOWS")) {
 			builder_path="D:\\Eclipse\\eclipse-work\\ProjectManagementSystem\\src\\";
 		}else {
-			builder_path="/home/tomcat/tomcat-9/webapps/ProjectManagementSystem/primary_pdf/permission_xml/";
+			builder_path="/home/tomcat/file_backup/permission_xml/";
 		}
 		permission_xml.put("builder_path", builder_path);
 		return permission_xml;

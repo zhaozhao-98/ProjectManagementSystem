@@ -139,7 +139,7 @@ $(function(){
 							}
 							html+='<div class="col-md-4">'
 							+'<div class="card" style="width: 18rem;">'
-							+'<embed src="/projetc_sailing_notice/'+data.files_map[i].file_address+'" class="card-img-top" alt="..." style="height: 350px;">'
+							+'<embed src="/project_sailing_notice/'+data.files_map[i].file_address+'" class="card-img-top" alt="..." style="height: 350px;">'
 							+'<div class="card-body">'
 							+'<a href="#"><h5 class="card-title">'+data.files_map[i].file_address+'</h5></a>'
 							+'<p class="card-text">'+formatDate(data.files_map[i].create_date)+'<span style="color:'+color+';font-weight: 700;">('+file_valid+')</span>'+'</p>'
@@ -153,7 +153,7 @@ $(function(){
 					$('.files').append(html);
 					$('.open_project').click(function(){
 						var tag=$(this).attr("tag");
-						window.open("/ProjectManagementSystem/promgsys/project_info.html?pid="+tag);
+						window.open("/ProjectManagementSystem/navigation/projectinformation.html?pid="+tag);
 					});
 			}
 		});

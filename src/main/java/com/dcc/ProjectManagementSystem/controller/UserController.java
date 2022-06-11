@@ -57,20 +57,24 @@ public class UserController {
 					CreateUser.xml_usercode(login_user.getEmail(),login_user.getUid(),login_user.getPermission(),uuid_tag);
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index", "c4ca4238a0b923820dcc509a6f75849b");
+					session.setAttribute("level",level);
 				}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("d73110b578af2ba7967d866d754834a5")) {
 					//管理员
 					CreateUser.xml_usercode(login_user.getEmail(),login_user.getUid(),login_user.getPermission(),uuid_tag);
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index","c81e728d9d4c2f636f067f89cc14862c");
+					session.setAttribute("level",level);
 				}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("9e922299fe554a767569a39735b6b5bf")) {
 					//用户
 					CreateUser.xml_usercode(login_user.getEmail(),login_user.getUid(),login_user.getPermission(),uuid_tag);
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index","eccbc87e4b5ce2fe28308fd9f2a7baf3");
+					session.setAttribute("level",level);
 				}else{
 					//其他
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index","334c4a4c42fdb79d7ebc3e73b517e6f8");
+					session.setAttribute("level",level);
 				}
 				List<User> login_user_permission=userimp.single_select_user_permission(email, upwd);
 				session.setAttribute("login_user_permission",login_user_permission);
@@ -82,6 +86,34 @@ public class UserController {
 			login_user_map.put("msg", "fail");
 		}
 		return login_user_map;
+	}
+	/*查询所有用户权限 Admin界面*/
+	@RequestMapping(value="/select_users_permissions",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectUsersPermissions(HttpServletRequest request){
+		List<User> selectUsersPermissions=userimp.select_users_permissions();
+		List<User> selectUsers=userimp.select_users();
+		Map<String, Object> map=new HashMap<>();
+		HttpSession session=request.getSession();
+		Integer level= (Integer) session.getAttribute("level");
+
+
+		if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("7ff491a585c47e0f0256280fa72930ea")) {
+			//超级管理员
+			map.put("selectUsers",selectUsers);
+			map.put("selectUsersPermissions",selectUsersPermissions);
+		}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("d73110b578af2ba7967d866d754834a5")) {
+			//管理员
+			map.put("selectUsers",selectUsers);
+			map.put("selectUsersPermissions",selectUsersPermissions);
+		}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("9e922299fe554a767569a39735b6b5bf")) {
+			//用户
+			map.put("msg","RestrictedPermission");
+		}else{
+			//其他
+			map.put("msg","RestrictedPermission");
+		}
+		return map;
 	}
 	//进入登录页面
 	@RequestMapping(value="/in_index",method = RequestMethod.GET)

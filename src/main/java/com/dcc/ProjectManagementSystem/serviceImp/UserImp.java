@@ -32,4 +32,14 @@ public class UserImp implements UserService {
 	public List<User> single_select_user_permission_big(String email) {
 		return userMapper.single_select_user_permission_big(email);
 	}
+
+	@Override
+	public List<User> select_users_permissions() {
+		return userMapper.select_users_permissions();
+	}
+
+	@Override
+	public List<User> select_users() {
+		return userMapper.select_users();
+	}
 }

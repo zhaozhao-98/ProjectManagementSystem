@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
 <style>
+	html {
+		scroll-behavior: smooth;
+	}
+
+
 	body{
 		opacity: 0;
 		animation: page-fade-in 1s forwards;
@@ -467,6 +472,7 @@ body::-webkit-scrollbar-track {
          </div>
 
 <script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/js/jquery.md5.js"></script>
 <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
 <script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
@@ -497,6 +503,12 @@ $(function(){
  contact(customertag,pmtag);
  function contact(customertag,pmtag){
 		if(pmtag!=0){
+			if(paras.this_email!=""&&paras.this_email!=null&&paras.this_email!=undefined){
+				var this_email=paras.this_email;
+			}else{
+				var this_email=0;
+			}
+
 			 $.ajax({
 					type:'post',
 					url:'../base_controller/initialize_permission',
@@ -576,21 +588,40 @@ $(function(){
 						if(data.list_personnel.length>0){
 							var customer_html="";
 							for(var p=0;p<data.list_personnel.length;p++){
-								customer_html+='<div class="media">'
+								if(data.list_personnel[p].personnel_phone==0 || data.list_personnel[p].personnel_phone==null){
+									data.list_personnel[p].personnel_phone=""
+								}
+								customer_html+='<div class="media" id="'+$.md5(data.list_personnel[p].personnel_email)+'">'
 								  +'<img src="/headportrait/'+data.list_personnel[p].personnel_head_portrait+'" style="width: 50px;margin-top: 20px;" class="mr-3" alt="...">'
 								  +'<div class="media-body">'
 								  +'<h6 class="mt-0 nav-link-style" cid="'+data.list_personnel[p].pid+'">'+data.list_personnel[p].personnel_name+'</h6>'
-								  +'<p style="margin-bottom: 0;color: #098c93;font-size: 14px;"><a href="#">'+data.list_personnel[p].personnel_phone+'</a></p>'
-								  +'<p style="margin-bottom: 0;color: #0072ffeb;font-size: 14px;"><a href="#">'+data.list_personnel[p].personnel_email+'</a></p>'
+								  +'<p style="margin-bottom: 0;color: #098c93;font-size: 14px;"><a>'+data.list_personnel[p].personnel_phone+'</a></p>'
+								  +'<p style="margin-bottom: 0;color: #0072ffeb;font-size: 14px;"><a data-tag="'+$.md5(data.list_personnel[p].personnel_email)+'" href="#'+$.md5(data.list_personnel[p].personnel_email)+'">'+data.list_personnel[p].personnel_email+'</a></p>'
 								  +'</div>'
 								  +'</div>'
 								  +'<div class="col-md-12"><hr style="margin:0;"/></div>'
 							}
 							$('#orders-accordion').append(customer_html);
+
+							/*锚点*/
+							if(this_email!=0){
+								$("html, body").animate({
+									scrollTop: $($($("[data-tag="+this_email+"]")).attr("href")).offset().top-$(".nav_title").height() + "px"
+								}, {
+									duration: 500,
+									easing: "swing"
+								});
+								$("#"+this_email+"").attr("style","background-color: #2594ce5c;");
+							}
 						}
 					}
 				});
 		}else if(customertag!=0){
+			if(paras.this_email!=""&&paras.this_email!=null&&paras.this_email!=undefined){
+				var this_email=paras.this_email;
+			}else{
+				var this_email=0;
+			}
 			 $.ajax({
 					type:'post',
 					url:'../base_controller/initialize_permission',
@@ -671,10 +702,19 @@ $(function(){
 						if(data.list_customer.length>0){
 							var customer_html="";
 							for(var c=0;c<data.list_customer.length;c++){
-								customer_html+='<div class="media">'
+								if(data.list_customer[c].customer_email=="null"){
+									data.list_customer[c].customer_email=""
+								}
+								if(data.list_customer[c].customer_phone=="null"){
+									data.list_customer[c].customer_phone=""
+								}
+								if(data.list_customer[c].customer_address=="null"){
+									data.list_customer[c].customer_address=""
+								}
+								customer_html+='<div class="media" id="'+$.md5(data.list_customer[c].customer_name)+'">'
 										+'<div class="media-body">'
 										+'<h5 class="mt-0 nav-link-style" cid="'+data.list_customer[c].cid+'">'+data.list_customer[c].customer_name+'</h5>'
-										+'<p style="margin-bottom: 0;padding-left: 12px;">'+data.list_customer[c].customer_email+'</p>'
+										+'<p style="margin-bottom: 0;padding-left: 12px;"><a href="#'+$.md5(data.list_customer[c].customer_name)+'" data-tag="'+$.md5(data.list_customer[c].customer_name)+'">'+data.list_customer[c].customer_email+'</a></p>'
 										+'<p style="margin-bottom: 0;padding-left: 12px;">'+data.list_customer[c].customer_phone+'</p>'
 										+'<p style="margin-bottom: 0;padding-left: 12px;">'+data.list_customer[c].customer_address+'</p>'
 										+'</div>'
@@ -682,6 +722,16 @@ $(function(){
 										+'<div class="col-md-12"><hr style="margin-top:0;"/></div>'
 							}
 							$('#orders-accordion').append(customer_html);
+
+							if(this_email!=0){
+								$("html, body").animate({
+									scrollTop: $($($("[data-tag="+this_email+"]")).attr("href")).offset().top-$(".nav_title").height() + "px"
+								}, {
+									duration: 500,
+									easing: "swing"
+								});
+								$("#"+this_email+"").attr("style","background-color: #2594ce5c;");
+							}
 						}
 					}
 				}

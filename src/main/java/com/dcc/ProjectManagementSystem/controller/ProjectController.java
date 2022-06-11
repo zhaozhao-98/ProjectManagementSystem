@@ -1,6 +1,10 @@
 package com.dcc.ProjectManagementSystem.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -55,37 +59,37 @@ public class ProjectController {
 			final long  end_time_lon= (long) od_num_map.get("end_time_lon");
 			List<Project> nums=projectimp.selectNums();
 			//od编号
-			if(project_one.getOd_num()==null||project_one.getOd_num()=="") {
+			if(project_one.getOd_num()==null||project_one.getOd_num().equals("")) {
 				if(project_one.getProject_class()==10) {
 					Long count=projectimp.selectCount_createdate(firstDayOfMonth,lastDayOfMonth,10);
-					project_one.setOd_num(odTestNum(count,year,month,day,nums));
+					project_one.setOd_num(odTestNum(year,month,day,nums));
 				}else {
 					//odnum处理 以年计数递增，并且非测试单
 					Long count=projectimp.selectCount_createdate(firstDayOfMonth,lastDayOfMonth,1);
-					project_one.setOd_num(odRoutineNum(count,year,month,day,nums));
+					project_one.setOd_num(odRoutineNum(year,month,day,nums));
 				}
 			}
 			//服务编号
-			if(project_one.getServices_num()==null||project_one.getServices_num()==""){
+			if(project_one.getServices_num()==null||project_one.getServices_num().equals("")){
 				Long count=projectimp.selectCount_createdate(start_time_lon,end_time_lon,0);
 				Long attached_count=attachedImp.count_service_num(start_time_lon,end_time_lon);
 				//服务编号处理 重复时
 				List<Project> project_service_num_list=projectimp.selectServiceNum();
 				List<AttachedProject> attachedproject_service_num_list=attachedImp.selectAttachedServiceNum();
 				String service_num=serviceNum(count,attached_count,year,month,day);
-				for(int i=0;i<attachedproject_service_num_list.size();i++){
+				for (AttachedProject attachedProject : attachedproject_service_num_list) {
 					/*重复时count++,重新生成*/
-					if(service_num.equals(attachedproject_service_num_list.get(i).getAttached_services_num())){
+					if (service_num.equals(attachedProject.getAttached_services_num())) {
 						count++;
-						service_num=serviceNum(count,attached_count,year,month,day);
+						service_num = serviceNum(count, attached_count, year, month, day);
 					}
 				}
 
-				for(int i=0;i<project_service_num_list.size();i++){
+				for (Project project : project_service_num_list) {
 					/*重复时count++,重新生成*/
-					if(service_num.equals(project_service_num_list.get(i).getServices_num())){
+					if (service_num.equals(project.getServices_num())) {
 						count++;
-						service_num=serviceNum(count,attached_count,year,month,day);
+						service_num = serviceNum(count, attached_count, year, month, day);
 					}
 				}
 				project_one.setServices_num(service_num);
@@ -209,7 +213,7 @@ public class ProjectController {
     }
 	/*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*查询*/
 	/**
-	 * @主界面项目展示
+	 * {@code @主界面项目展示}
 	 */
 	@RequestMapping(value="/list_select_project_main",method = RequestMethod.POST)
 	@ResponseBody
@@ -219,10 +223,10 @@ public class ProjectController {
 			List<Project> list_project= projectimp.list_select_project_main(limit,item);
 			Long rows=projectimp.selectRows();
 
-			Long test_orders=projectimp.selectRowsByid(2,0,null);
-			Long cooperative_orders=projectimp.selectRowsByid(4,0,null);
-			Long official_orders=projectimp.selectRowsByid(5,0,null);
-			Long remotehand_orders=projectimp.selectRowsByid(3,0,null);
+			Long test_orders=projectimp.selectRowsByid(2,0,0,null);
+			Long cooperative_orders=projectimp.selectRowsByid(4,0,0,null);
+			Long official_orders=projectimp.selectRowsByid(5,0,0,null);
+			Long remotehand_orders=projectimp.selectRowsByid(3,0,0,null);
 			map.put("list_project", list_project);
 			map.put("test_orders", test_orders);
 			map.put("cooperative_orders", cooperative_orders);
@@ -257,20 +261,32 @@ public class ProjectController {
 		return map ;
 	}
 	/**
-	 * @所有、测试、正式、RemoteHand、合作项目展示
+	 * {@code @所有、测试、正式、RemoteHand、合作项目展示}
 	 */
 	@RequestMapping(value="/list_select_project_mod_all",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> listSelectProjectModAll(HttpServletRequest request, Project project, int limit, int item) throws IOException, JDOMException {
 		Map<String, Object> map=new HashMap<>();
 		if(BaseController.selectPermissionController(request)) {
-			List<Project> list_project_all= (List<Project>)projectimp.list_select_project_mod_all(project.getProject_list(),project.getProject_pm(),null,limit,item);
+			if(project.getProject_list()==null){
+				project.setProject_list(0);
+			}
+			if(project.getProject_pm()==null){
+				project.setProject_pm(0);
+			}
+			if(project.getCustomer()==null){
+				project.setCustomer(0);
+			}
+			List<Project> list_project_all=projectimp.list_select_project_mod_all(project.getProject_list(),project.getProject_pm(),project.getCustomer(),null,limit,item);
 			Long rows=projectimp.selectRows();
-			if(project.getProject_list()!=null && project.getProject_pm()!=0 &&  project.getProject_pm()!=null) {
-				Long project_list_rows=projectimp.selectRowsByid(project.getProject_list(),project.getProject_pm(),null);
+			if(project.getCustomer()!=null && project.getCustomer()!=0){
+				Long project_list_rows=projectimp.selectRowsByid(0,0,project.getCustomer(),null);
+				map.put("project_list_rows", project_list_rows);
+			}else if(project.getProject_pm()!=0 &&  project.getProject_pm()!=null) {
+				Long project_list_rows=projectimp.selectRowsByid(0,project.getProject_pm(),0,null);
 				map.put("project_list_rows", project_list_rows);
 			}else if(project.getProject_list()!=null && project.getProject_list()!=0){
-				Long project_list_rows=projectimp.selectRowsByid(project.getProject_list(),0,null);
+				Long project_list_rows=projectimp.selectRowsByid(project.getProject_list(),0,0,null);
 				map.put("project_list_rows", project_list_rows);
 			}else {
 				map.put("project_list_rows", rows);
@@ -284,7 +300,7 @@ public class ProjectController {
 		return map ;
 	}
 	/**
-	 * @模糊查询
+	 * {@code @模糊查询}
 	 */
 	@RequestMapping(value="/list_project_fuzzy_query_mod_all",method = RequestMethod.POST)
 	@ResponseBody
@@ -300,7 +316,7 @@ public class ProjectController {
 		return map ;
 	}
 	/**
-	 * @主界面搜索框
+	 * {@code @主界面搜索框}
 	 */
 	@RequestMapping(value="/search_input_main",method = RequestMethod.POST)
 	@ResponseBody
@@ -321,7 +337,7 @@ public class ProjectController {
 	}
 
 	/**
-	 * @项目编号session,用于查询项目
+	 * {@code @项目编号session,用于查询项目}
 	 */
 	@RequestMapping(value="/select_session_pid_one",method = RequestMethod.POST)
 	@ResponseBody
@@ -348,9 +364,9 @@ public class ProjectController {
 		Map<String, Object> project_one_map=new HashMap<>();
 		if(BaseController.selectPermissionController(request)) {
 			List<Project> p= projectimp.select_project_pid_one(pid);
-			Map<String,Object> new_p=ProjectFieldsController.selectProjectfieldsPermission(request,1,p.get(0),"1",null);
+			Map<String,Object> new_p=ProjectFieldsController.selectProjectFieldsPermission(request,1,p.get(0),"1",null);
 			project_one_map.put("project_one", new_p.get("project_one"));
-			project_one_map.put("list_projectfields", new_p.get("list_projectfields"));
+			project_one_map.put("list_project_fields", new_p.get("list_project_fields"));
 			project_one_map.put("msg", "success");
 		}else{
 			project_one_map.put("msg", "RestrictedPermission");
@@ -378,64 +394,65 @@ public class ProjectController {
 		Map<String, Object> map= new HashMap<>();
 		if(BaseController.updatePermissionController(request)){
 			List<Project> p= projectimp.select_project_pid_one(pid);
-			Map<String, Object> list_projectfields=ProjectFieldsController.selectProjectfieldsPermission(request,1,p.get(0),"1",null);
-			List<ProjectFields> projectfields= (List<ProjectFields>) list_projectfields.get("list_projectfields");
+			Map<String, Object> list_projectfields=ProjectFieldsController.selectProjectFieldsPermission(request,1,p.get(0),"1",null);
+			List<ProjectFields> projectfields= (List<ProjectFields>) list_projectfields.get("list_project_fields");
 
-			int project_contract_pdf_permisstion = 0;
-			int project_sailing_notice_permisstion = 0;
-			int project_gplot_permisstion = 0;
-			int project_other_permisstion = 0;
-			int project_contract_pdf_permisstion_update = 0;
-			int project_sailing_notice_permisstion_update = 0;
-			int project_gplot_permisstion_update = 0;
-			int project_other_permisstion_update = 0;
+			int project_contract_pdf_permission = 0;
+			int project_sailing_notice_permission = 0;
+			int project_plot_permission = 0;
+			int project_other_permission = 0;
+			int project_contract_pdf_permission_update = 0;
+			int project_sailing_notice_permission_update = 0;
+			int project_plot_permission_update = 0;
+			int project_other_permission_update = 0;
+
 			for(ProjectFields projectfield:projectfields){
 				if(projectfield.getTable_fields().contains("project_contract_pdf")){
 					if(projectfield.getFields_select()!=1){
-						project_contract_pdf_permisstion=0;
+						project_contract_pdf_permission=0;
 					}else{
-						project_contract_pdf_permisstion=1;
+						project_contract_pdf_permission=1;
 					}
 					if(projectfield.getFields_update()!=1){
-						project_contract_pdf_permisstion_update=0;
+						project_contract_pdf_permission_update=0;
 					}else{
-						project_contract_pdf_permisstion_update=1;
+						project_contract_pdf_permission_update=1;
 					}
 				}
 				if(projectfield.getTable_fields().contains("project_sailing_notice")){
 					if(projectfield.getFields_select()!=1){
-						project_sailing_notice_permisstion=0;
+						project_sailing_notice_permission=0;
 					}else{
-						project_sailing_notice_permisstion=1;
+						project_sailing_notice_permission=1;
 					}
 					if(projectfield.getFields_update()!=1){
-						project_sailing_notice_permisstion_update=0;
+						project_sailing_notice_permission_update=0;
 					}else{
-						project_sailing_notice_permisstion_update=1;
+						project_sailing_notice_permission_update=1;
 					}
 				}
 				if(projectfield.getTable_fields().contains("project_gplot")){
 					if(projectfield.getFields_select()!=1){
-						project_gplot_permisstion=0;
+						project_plot_permission=0;
 					}else{
-						project_gplot_permisstion=1;
+						project_plot_permission=1;
 					}
 					if(projectfield.getFields_update()!=1){
-						project_gplot_permisstion_update=0;
+						project_plot_permission_update=0;
 					}else{
-						project_gplot_permisstion_update=1;
+						project_plot_permission_update=1;
 					}
 				}
 				if(projectfield.getTable_fields().contains("project_other")){
 					if(projectfield.getFields_select()!=1){
-						project_other_permisstion=0;
+						project_other_permission=0;
 					}else{
-						project_other_permisstion=1;
+						project_other_permission=1;
 					}
 					if(projectfield.getFields_update()!=1){
-						project_other_permisstion_update=0;
+						project_other_permission_update=0;
 					}else{
-						project_other_permisstion_update=1;
+						project_other_permission_update=1;
 					}
 				}
 			}
@@ -451,10 +468,10 @@ public class ProjectController {
 				Project project=new Project();
 				project.setPid(pid);
 				List<Project> project_one=projectimp.select_project_pid_one(pid);
-				if(project_contract_pdf_permisstion!=1){
+				if(project_contract_pdf_permission!=1){
 					map.put("msg_contract_select","RestrictedPermission");
 				}else{
-					if(project_contract_pdf_permisstion_update!=1){
+					if(project_contract_pdf_permission_update!=1){
 						map.put("msg_contract","RestrictedPermission");
 					}else{
 						if(contract!=null) {
@@ -488,10 +505,10 @@ public class ProjectController {
 						}
 					}
 				}
-				if(project_sailing_notice_permisstion!=1){
+				if(project_sailing_notice_permission!=1){
 					map.put("msg_sailing_select","RestrictedPermission");
 				}else{
-					if(project_sailing_notice_permisstion_update!=1){
+					if(project_sailing_notice_permission_update!=1){
 						map.put("msg_sailing","RestrictedPermission");
 					}else{
 						if(notice!=null) {
@@ -523,10 +540,10 @@ public class ProjectController {
 						}
 					}
 				}
-				if(project_gplot_permisstion!=1){
+				if(project_plot_permission!=1){
 					map.put("msg_gplot_select","RestrictedPermission");
 				}else{
-					if(project_gplot_permisstion_update!=1){
+					if(project_plot_permission_update!=1){
 						map.put("msg_gplot","RestrictedPermission");
 					}else {
 						if(gplot!=null) {
@@ -560,10 +577,10 @@ public class ProjectController {
 				}
 
 
-				if(project_other_permisstion!=1){
+				if(project_other_permission!=1){
 					map.put("msg_other_select","RestrictedPermission");
 				}else{
-					if(project_other_permisstion_update!=1){
+					if(project_other_permission_update!=1){
 						map.put("msg_other","RestrictedPermission");
 					}else{
 						if(other!=null) {
@@ -600,7 +617,7 @@ public class ProjectController {
 			update_project_one.setPid(jsonObject.getInteger("pid"));
 
 			List<Project> p= projectimp.select_project_pid_one(jsonObject.getInteger("pid"));
-			Map<String,Object> update_fiedlds=ProjectFieldsController.selectProjectfieldsUpdatePermission(req,1,p.get(0),"1",null);
+			Map<String,Object> update_fiedlds=ProjectFieldsController.selectProjectFieldsUpdatePermission(req,1,p.get(0),"1",null);
 			//更改字段的总数
 			int fields_count=jsonObject.getInteger("fields_count");
 			int val=0;
@@ -613,11 +630,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("od_numval")!=null){
+								if(update_fiedlds.get("updateod_numval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setOd_num(null);
 								}else{
-									if(update_fiedlds.get("od_num")!=null){
+									if(update_fiedlds.get("updateod_num")!=null){
 										/*限制更改*/
 										update_project_one.setOd_num(null);
 									}else{
@@ -646,11 +663,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("project_nameval")!=null){
+								if(update_fiedlds.get("updateproject_nameval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_name(null);
 								}else{
-									if(update_fiedlds.get("project_name")!=null){
+									if(update_fiedlds.get("updateproject_name")!=null){
 										/*限制更改*/
 										update_project_one.setProject_name(null);
 									}else{
@@ -667,11 +684,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_listval")!=null){
+								if(update_fiedlds.get("updateproject_listval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_list(null);
 								}else{
-									if(update_fiedlds.get("project_list")!=null){
+									if(update_fiedlds.get("updateproject_list")!=null){
 										/*限制更改*/
 										update_project_one.setProject_list(null);
 									}else{
@@ -688,11 +705,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("customerval")!=null){
+								if(update_fiedlds.get("updatecustomerval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setCustomer(null);
 								}else{
-									if(update_fiedlds.get("customer")!=null){
+									if(update_fiedlds.get("updatecustomer")!=null){
 										/*限制更改*/
 										update_project_one.setCustomer(0);
 									}else{
@@ -709,11 +726,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_suppliersval")!=null){
+								if(update_fiedlds.get("updateproject_suppliersval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_suppliers(null);
 								}else{
-									if(update_fiedlds.get("project_suppliers")!=null){
+									if(update_fiedlds.get("updateproject_suppliers")!=null){
 										/*限制更改*/
 										update_project_one.setProject_suppliers(0);
 									}else{
@@ -730,11 +747,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_pmval")!=null){
+								if(update_fiedlds.get("updateproject_pmval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_pm(null);
 								}else{
-									if(update_fiedlds.get("project_pm")!=null){
+									if(update_fiedlds.get("updateproject_pm")!=null){
 										/*限制更改*/
 										update_project_one.setProject_pm(0);
 									}else{
@@ -751,11 +768,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_marketval")!=null){
+								if(update_fiedlds.get("updateproject_marketval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_market(null);
 								}else{
-									if(update_fiedlds.get("project_market")!=null){
+									if(update_fiedlds.get("updateproject_market")!=null){
 										/*限制更改*/
 										update_project_one.setProject_market(0);
 									}else{
@@ -773,11 +790,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("contract_numval")!=null){
+								if(update_fiedlds.get("updatecontract_numval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setContract_num(null);
 								}else{
-									if(update_fiedlds.get("contract_num")!=null){
+									if(update_fiedlds.get("updatecontract_num")!=null){
 										/*限制更改*/
 										update_project_one.setContract_num(null);
 									}else{
@@ -794,18 +811,18 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("services_numval")!=null){
+								if(update_fiedlds.get("updateservices_numval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setServices_num(null);
 								}else{
-									if(update_fiedlds.get("services_num")!=null){
+									if(update_fiedlds.get("updateservices_num")!=null){
 										/*限制更改*/
 										update_project_one.setServices_num(null);
 									}else{
 										/*服务编号需要保持不重复（主项目&&附属项目）*/
-										Long project_count=projectimp.selectRowsByid(0,0,value);
+										Long project_count=projectimp.selectRowsByid(0,0,0,value);
 										Long attached_count=attachedImp.select_attached_by_service_num(value);
-										Long allcount=project_count+attached_count;
+										long allcount=project_count+attached_count;
 										if(allcount>0){
 											map.put("msg","service_num_repetition");
 											return map;
@@ -825,11 +842,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("0") && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("project_speedval")!=null){
+								if(update_fiedlds.get("updateproject_speedval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_speed(null);
 								}else {
-									if (update_fiedlds.get("project_speed")!=null) {
+									if (update_fiedlds.get("updateproject_speed")!=null) {
 										/*限制更改*/
 										update_project_one.setProject_speed(null);
 									} else {
@@ -847,11 +864,11 @@ public class ProjectController {
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 
 							if (value != null && !value.equals("")) {
-								if(update_fiedlds.get("project_startdateval")!=null){
+								if(update_fiedlds.get("updateproject_startdateval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_startdate(null);
 								}else {
-									if (update_fiedlds.get("project_startdate") != null) {
+									if (update_fiedlds.get("updateproject_startdate") != null) {
 										/*限制更改*/
 										update_project_one.setProject_startdate((long) 0);
 									} else {
@@ -870,11 +887,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("")) {
-								if(update_fiedlds.get("project_billdateval")!=null){
+								if(update_fiedlds.get("updateproject_billdateval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_billdate(null);
 								}else {
-									if (update_fiedlds.get("project_billdate") != null) {
+									if (update_fiedlds.get("updateproject_billdate") != null) {
 										/*限制更改*/
 										update_project_one.setProject_billdate((long) 0);
 									} else {
@@ -893,11 +910,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("")) {
-								if(update_fiedlds.get("project_suppliers_chargeable_timeval")!=null){
+								if(update_fiedlds.get("updateproject_suppliers_chargeable_timeval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_suppliers_chargeable_time(null);
 								}else {
-									if (update_fiedlds.get("project_suppliers_chargeable_time") != null) {
+									if (update_fiedlds.get("updateproject_suppliers_chargeable_time") != null) {
 										/*限制更改*/
 										update_project_one.setProject_suppliers_chargeable_time((long) 0);
 									} else {
@@ -916,11 +933,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("")) {
-								if(update_fiedlds.get("project_enddateval")!=null){
+								if(update_fiedlds.get("updateproject_enddateval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_enddate(null);
 								}else {
-									if(update_fiedlds.get("project_enddate")!=null){
+									if(update_fiedlds.get("updateproject_enddate")!=null){
 										/*限制更改*/
 										update_project_one.setProject_enddate((long) 0);
 									}else{
@@ -939,11 +956,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("")) {
-								if(update_fiedlds.get("project_expected_completion_dateval")!=null){
+								if(update_fiedlds.get("updateproject_expected_completion_dateval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_expected_completion_date(null);
 								}else {
-									if (update_fiedlds.get("project_expected_completion_date") != null) {
+									if (update_fiedlds.get("updateproject_expected_completion_date") != null) {
 										/*限制更改*/
 										update_project_one.setProject_expected_completion_date((long) 0);
 									} else {
@@ -963,11 +980,11 @@ public class ProjectController {
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 
 							if (value != null && !value.equals("")) {
-								if(update_fiedlds.get("project_actual_finishing_dateval")!=null){
+								if(update_fiedlds.get("updateproject_actual_finishing_dateval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_actual_finishing_date(null);
 								}else {
-									if (update_fiedlds.get("project_actual_finishing_date") != null) {
+									if (update_fiedlds.get("updateproject_actual_finishing_date") != null) {
 										/*限制更改*/
 										update_project_one.setProject_actual_finishing_date((long) 0);
 									} else {
@@ -986,11 +1003,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_statusval")!=null){
+								if(update_fiedlds.get("updateproject_statusval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_status(null);
 								}else {
-									if (update_fiedlds.get("project_status") != null) {
+									if (update_fiedlds.get("updateproject_status") != null) {
 										/*限制更改*/
 										update_project_one.setProject_status(0);
 									} else {
@@ -1016,18 +1033,18 @@ public class ProjectController {
 
 							if (value != null && value != 0) {
 								if(value!=10){
-									if(update_fiedlds.get("project_classval")!=null){
+									if(update_fiedlds.get("updateproject_classval")!=null){
 										/*不可查既不可更改*/
 										update_project_one.setProject_class(null);
 									}else {
-										if (update_fiedlds.get("project_class") != null) {
+										if (update_fiedlds.get("updateproject_class") != null) {
 											/*限制更改*/
 											update_project_one.setProject_class(0);
 										} else {
 											if(update_project_one.getOd_num()!=null&&!update_project_one.getOd_num().equals("")){
 												//od编号
 												Long count=projectimp.selectCount_createdate(firstDayOfMonth,lastDayOfMonth,10);
-												update_project_one.setOd_num(odRoutineNum(count,year,month,day,nums));
+												update_project_one.setOd_num(odRoutineNum(year,month,day,nums));
 												update_project_one.setProject_class(value);
 												val++;
 											}
@@ -1037,7 +1054,7 @@ public class ProjectController {
 									if(update_project_one.getOd_num()!=null&&!update_project_one.getOd_num().equals("")){
 										//od编号
 										Long count=projectimp.selectCount_createdate(firstDayOfMonth,lastDayOfMonth,10);
-										update_project_one.setOd_num(odTestNum(count,year,month,day,nums));
+										update_project_one.setOd_num(odTestNum(year,month,day,nums));
 										update_project_one.setProject_class(value);
 										val++;
 									}else{
@@ -1053,11 +1070,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("project_install_addressval")!=null){
+								if(update_fiedlds.get("updateproject_install_addressval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_install_address(null);
 								}else {
-									if (update_fiedlds.get("project_install_address") != null) {
+									if (update_fiedlds.get("updateproject_install_address") != null) {
 										/*限制更改*/
 										update_project_one.setProject_install_address(null);
 									} else {
@@ -1074,11 +1091,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("currencyval")!=null){
+								if(update_fiedlds.get("updatecurrencyval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setCurrency(null);
 								}else {
-									if (update_fiedlds.get("currency") != null) {
+									if (update_fiedlds.get("updatecurrency") != null) {
 										/*限制更改*/
 										update_project_one.setCurrency(0);
 									} else {
@@ -1095,11 +1112,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_time_feeval")!=null){
+								if(update_fiedlds.get("updateproject_time_feeval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_time_fee(null);
 								}else {
-									if (update_fiedlds.get("project_time_fee") != null) {
+									if (update_fiedlds.get("updateproject_time_fee") != null) {
 										/*限制更改*/
 										update_project_one.setProject_time_fee(0);
 									} else {
@@ -1116,11 +1133,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("projetc_moon_feeval")!=null){
+								if(update_fiedlds.get("updateprojetc_moon_feeval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_moon_fee(null);
 								}else {
-									if (update_fiedlds.get("projetc_moon_fee") != null) {
+									if (update_fiedlds.get("updateprojetc_moon_fee") != null) {
 										/*限制更改*/
 										update_project_one.setProject_moon_fee(0);
 									} else {
@@ -1137,11 +1154,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("project_contract_partyval")!=null){
+								if(update_fiedlds.get("updateproject_contract_partyval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_contract_party(null);
 								}else {
-									if (update_fiedlds.get("project_contract_party") != null) {
+									if (update_fiedlds.get("updateproject_contract_party") != null) {
 										/*限制更改*/
 										update_project_one.setProject_contract_party(0);
 									} else {
@@ -1158,11 +1175,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("project_progress_planval")!=null){
+								if(update_fiedlds.get("updateproject_progress_planval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_progress_plan(null);
 								}else {
-									if (update_fiedlds.get("project_progress_plan") != null) {
+									if (update_fiedlds.get("updateproject_progress_plan") != null) {
 										/*限制更改*/
 										update_project_one.setProject_progress_plan(null);
 									} else {
@@ -1179,11 +1196,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("project_remarkval")!=null){
+								if(update_fiedlds.get("updateproject_remarkval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_remark(null);
 								}else {
-									if (update_fiedlds.get("project_remark") != null) {
+									if (update_fiedlds.get("updateproject_remark") != null) {
 										/*限制更改*/
 										update_project_one.setProject_remark(null);
 									} else {
@@ -1200,11 +1217,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("speed_unitval")!=null){
+								if(update_fiedlds.get("updatespeed_unitval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setSpeed_unit(null);
 								}else {
-									if (update_fiedlds.get("speed_unit") != null) {
+									if (update_fiedlds.get("updatespeed_unit") != null) {
 										/*限制更改*/
 										update_project_one.setSpeed_unit(null);
 									} else {
@@ -1221,11 +1238,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("0") && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("service_hoursval")!=null){
+								if(update_fiedlds.get("updateservice_hoursval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setService_hours(null);
 								}else {
-									if (update_fiedlds.get("service_hours") != null) {
+									if (update_fiedlds.get("updateservice_hours") != null) {
 										/*限制更改*/
 										update_project_one.setService_hours(null);
 									} else {
@@ -1242,11 +1259,11 @@ public class ProjectController {
 							//获取key对应的值
 							Integer value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getInteger("value");
 							if (value != null && value != 0) {
-								if(update_fiedlds.get("services_deadlineval")!=null){
+								if(update_fiedlds.get("updateservices_deadlineval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setServices_deadline(null);
 								}else {
-									if (update_fiedlds.get("services_deadline") != null) {
+									if (update_fiedlds.get("updateservices_deadline") != null) {
 										/*限制更改*/
 										update_project_one.setServices_deadline(null);
 									} else {
@@ -1263,11 +1280,11 @@ public class ProjectController {
 							//获取key对应的值
 							String value = jsonObject.getJSONArray("change_value_ajax").getJSONObject(i).getString("value");
 							if (value != null && !value.equals("") && !value.equals("null")) {
-								if(update_fiedlds.get("project_install_address_bval")!=null){
+								if(update_fiedlds.get("updateproject_install_address_bval")!=null){
 									/*不可查既不可更改*/
 									update_project_one.setProject_install_address_b(null);
 								}else {
-									if (update_fiedlds.get("project_install_address_b") != null) {
+									if (update_fiedlds.get("updateproject_install_address_b") != null) {
 										/*限制更改*/
 										update_project_one.setProject_install_address_b(null);
 									} else {
@@ -1306,7 +1323,7 @@ public class ProjectController {
 		if(!project_other_list.equals("") || project_other_list!=null) {
 			String[] retval = project_other_list.split("\\|");
 			for (String s : retval) {
-				if (s.equals(tag_add) == false) {
+				if (!s.equals(tag_add)) {
 					//比对不存在，追加字符串，得到新的子项目集合
 					new_project_other.add(s);
 				}
@@ -1335,23 +1352,46 @@ public class ProjectController {
 	/*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*其他*/
 	@RequestMapping(value="/html_to_pdf",method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> htmlToPDF(String html_pdf) throws  InterruptedException{
+	public Map<String, Object> htmlToPDF(String html_pdf) throws InterruptedException, IOException {
 		Map<String, Object> pdf=new HashMap<>();
-		SysVersion sysversion = new SysVersion();
-		Map<String, Object> htmltopdf_file=sysversion.htmltopdf_file();
+		Map<String, Object> wkhtmltopdf_file = SysVersion.htmltopdf_file();
 		UUID uuid = UUID.randomUUID();
+		String createfile_path=wkhtmltopdf_file.get("createfile_path").toString();
 		//创建html 追加table
-		CreateFile.createFile(htmltopdf_file.get("createfile_path").toString(),uuid.toString(),html_pdf);
-		Thread.currentThread().sleep(5000);
+		CreateFile.createFile(createfile_path,uuid.toString(),html_pdf);
 		//转储为PDF
-		String srcPath=htmltopdf_file.get("srcPath").toString()+uuid.toString()+".html";
-		String destPath=htmltopdf_file.get("destPath").toString()+uuid.toString()+".pdf";
-		String createfile_path=htmltopdf_file.get("createfile_path").toString();
-		boolean convert= JavaToPdf.convert(htmltopdf_file.get("exe_pdf").toString(),srcPath,destPath);
-		if(convert==true) {
-			pdf.put("msg","success");
-			pdf.put("uuid",uuid);
-			CreateFile.delFile(createfile_path,uuid.toString());
+		String srcPath=wkhtmltopdf_file.get("srcPath")+uuid.toString()+".html";
+		String destPath=wkhtmltopdf_file.get("destPath")+uuid.toString()+".pdf";
+		int httpCode=HttpCode.getHttpCode(srcPath+uuid+".html");
+		int count=0;
+		long startTime = System.currentTimeMillis();
+		while (true){
+			long endTime = System.currentTimeMillis();
+			float excTime = (float) (endTime - startTime) / 1000;
+			if(excTime>15){
+				pdf.put("msg","MethodsTheTimeout");
+				break;
+			}else{
+				System.out.println("###########################");
+				System.out.println(HttpCode.getHttpCode(srcPath+uuid+".html"));
+				if(httpCode!=200){
+					count=0;
+					Thread.sleep(500);
+					httpCode=HttpCode.getHttpCode(srcPath+uuid+".html");
+				}else{
+					count=1;
+					break;
+				}
+			}
+		}
+		if(count==1){
+			boolean convert= JavaToPdf.convert(wkhtmltopdf_file.get("exe_pdf").toString(),srcPath,destPath);
+			if(convert) {
+				pdf.put("msg","success");
+				pdf.put("uuid",uuid);
+				Thread.sleep(500);
+				/*CreateFile.delFile(createfile_path,uuid.toString());*/
+			}
 		}
 		return pdf;
 	}
