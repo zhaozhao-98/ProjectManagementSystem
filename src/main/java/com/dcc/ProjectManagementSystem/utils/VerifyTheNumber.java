@@ -17,26 +17,25 @@ public class VerifyTheNumber {
         }
         String pattern = "[-][0-9]+([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])";
         String regEx = "[\n`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。， 、？-]";
-        for(int j=0;j<num_list.size();j++){
-            String content=num_list.get(j).getOd_num();
+        for (Project project : num_list) {
+            String content = project.getOd_num();
             Pattern compile = Pattern.compile(pattern);
             Matcher matcher = compile.matcher(content);
             if (matcher.find()) {
                 String newString = matcher.group().replaceAll(regEx, "");
-                String Od_Num="OD"+String.valueOf(year)+"-"+newString;
-                if(Od_Num.equals(num_list.get(j).getOd_num())){
+                String Od_Num = "OD" + String.valueOf(year) + "-" + newString;
+                if (Od_Num.equals(project.getOd_num())) {
                     Long use_num = Long.valueOf(newString);
-                    for(int o=0;o<furthest_nums.size();o++){
-                        if(use_num.equals(Long.valueOf(furthest_nums.get(o).toString()))){
-                            furthest_nums.remove(""+use_num+"");
+                    for (int o = 0; o < furthest_nums.size(); o++) {
+                        if (use_num.equals(Long.valueOf(furthest_nums.get(o).toString()))) {
+                            furthest_nums.remove("" + use_num + "");
                             break;
                         }
                     }
                 }
             }
         }
-        Long VerifyNum = Long.valueOf(furthest_nums.get(0).toString());
-        return VerifyNum;
+        return Long.valueOf(furthest_nums.get(0).toString());
     }
 
     public static Long VerifyOdNum(List<Project> od_num_list,int year,int month,int day){
@@ -62,18 +61,18 @@ public class VerifyTheNumber {
         }
 
 
-        for(int j=0;j<od_num_list.size();j++){
-            String od_num=od_num_list.get(j).getOd_num();
-            if(od_num_list.get(j).getOd_num().contains("PO")){
-                String po_num=PoNum+od_num.substring(od_num.length()-3,od_num.length());
-                if(po_num.equals(od_num_list.get(j).getOd_num())){
-                    long use_po_num_lon = Long.parseLong(od_num.substring(od_num.length()-3,od_num.length()));
-                    furthest_nums.remove(""+use_po_num_lon+"");
+        for (Project project : od_num_list) {
+            String od_num = project.getOd_num();
+            if (project.getOd_num().contains("PO")) {
+                String po_num = PoNum + od_num.substring(od_num.length() - 3, od_num.length());
+                if (po_num.equals(project.getOd_num())) {
+                    long use_po_num_lon = Long.parseLong(od_num.substring(od_num.length() - 3, od_num.length()));
+                    furthest_nums.remove("" + use_po_num_lon + "");
                 }
             }
         }
 
-        Long VerifyOdNum = Long.valueOf(furthest_nums.get(0).toString());
-        return VerifyOdNum;
+        /*Long VerifyOdNum = Long.valueOf(furthest_nums.get(0).toString());*/
+        return Long.valueOf(furthest_nums.get(0).toString());
     }
 }

@@ -18,7 +18,7 @@
     margin-bottom: 0.75rem;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    border: 1px solid #e9e9f2;
+    border: 2px solid #e9e9f2;
 }
 
  
@@ -517,7 +517,7 @@ body::-webkit-scrollbar-track {
                 <div class="accordion" id="orders-accordion">
                  <div>
 					
-                <h2 style="border-bottom: 1.5px solid #0d8dca73;margin-bottom: 0;">
+                <h2 style="margin-bottom: 0;">
 	                <span class="accordion-button no-indicator pe-4 collapsed shadow-lg col-md-12"  style="border-top-left-radius: 1rem;border-top-right-radius: 1rem;background: linear-gradient(#8ce2e94f,#c5dfe3);">
 		                <div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1 text_al">项目编号</div>
 		                <div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-3 text_al">项目名称</div>
@@ -589,6 +589,7 @@ body::-webkit-scrollbar-track {
 					</div>
           </div>
  <script src="/ProjectManagementSystem/js/jquery.js"></script>
+ <script src="/ProjectManagementSystem/js/jquery.md5.js"></script>
  <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
  <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
  <script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
@@ -614,7 +615,11 @@ body::-webkit-scrollbar-track {
 		 }else{
 			 var project_pmid=0;
 		 }
-
+		if(paras.customer_project!=""&&paras.customer_project!=null&&paras.customer_project!=undefined){
+			var customer_project=paras.customer_project;
+		}else{
+			var customer_project=0;
+		}
 		 var user_index=paras.user_index
 		 $('[data-toggle="tooltip"]').tooltip({
 			 html:true
@@ -648,10 +653,17 @@ body::-webkit-scrollbar-track {
 				}
 				var limit=0;
 				var item=50;
-				mian_project_index(nav_project_list,project_pmid,limit,item);
+				mian_project_index(nav_project_list,project_pmid,customer_project,limit,item);
 			}
 		 });
-		 function mian_project_index(nav_project_list,project_pmid,limit,item){
+		 function mian_project_index(nav_project_list,project_pmid,customer_project,limit,item){
+			 if(paras.this_order!=""&&paras.this_order!=null&&paras.this_order!=undefined){
+				 var this_order=paras.this_order;
+				 limit=-1;
+				 item=-1;
+			 }else{
+				 var this_order=0;
+			 }
 			 $.ajax({
 				 type:'post',
 				 url:'../project_controller/list_select_project_mod_all',
@@ -659,6 +671,7 @@ body::-webkit-scrollbar-track {
 				 data:{
 					 'project_list':nav_project_list,
 					 'project_pm':project_pmid,
+					 'customer':customer_project,
 					 'limit':limit,
 					 'item':item
 				 },
@@ -677,7 +690,6 @@ body::-webkit-scrollbar-track {
 						 if(data.list_project_all.length>0){
 							 var html="";
 							 var html_title="";
-
 							 for (var i=0;i<data.list_project_all.length;i++){
 								 if(data.list_project_all[i].class_other!=null){
 									 var class_back_color=data.list_project_all[i].class_other.other_back_color
@@ -728,19 +740,22 @@ body::-webkit-scrollbar-track {
 								 }
 
 
-								 html+='<h2 class="accordion-header" style="margin:0;padding-bottom: 0.3rem;" data-toggle="collapse" data-target="#order-collapse-'+data.list_project_all[i].pid+'" data-tag="'+data.list_project_all[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_project_all[i].pid+'">'
+								 html+='<div class="progress" style="height:1.5px">'+
+										 '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;height:1.5px;background-color: '+status_text_color+'" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>' +
+										 '</div>'
+										 +'<h2 class="accordion-header" id="'+$.md5("this_order"+data.list_project_all[i].pid)+'" style="margin:0;padding-bottom: 0.3rem;" data-toggle="collapse" data-target="#order-collapse-'+data.list_project_all[i].pid+'" data-tag="'+data.list_project_all[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_project_all[i].pid+'">'
 										 +'<span class="accordion-button no-indicator  pe-4 collapsed col-md-12" style="padding-bottom: 0;">'
-										 +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'+data.list_project_all[i].od_num+'</a></span></div>'
-										 +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click" tag="'+data.list_project_all[i].pid+'">'+data.list_project_all[i].project_name+'</a></div>'
-										 +'<div class="text-body fs-sm fw-medium my-1 col-md-2 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].contract_num+'</a></div>'
-										 +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].services_num+'</a></div>'
+										 +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle project_name_click"  tag="'+data.list_project_all[i].pid+'"><a class="nav-link-style">'+data.list_project_all[i].od_num+'</a></span></div>'
+										 +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a href="#'+$.md5("this_order"+data.list_project_all[i].pid)+'" data-ordername-tag="'+$.md5("this_order"+data.list_project_all[i].pid)+'" class="nav-link-style project_name_click" tag="'+data.list_project_all[i].pid+'">'+data.list_project_all[i].project_name+'</a></div>'
+										 +'<div class="text-body fs-sm fw-medium my-1 col-md-2 over_flow"><a class="nav-link-style">'+data.list_project_all[i].contract_num+'</a></div>'
+										 +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a class="nav-link-style">'+data.list_project_all[i].services_num+'</a></div>'
 										 +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1  "style="color:'+status_text_color+';background-color: '+status_back_color+' !important;text-align: center;">'+status_text_display+'</div>'
 										 +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1  "style="color:'+class_text_color+';background-color: '+class_back_color+' !important;text-align: center;">'+class_text_display+'</div>'
-										 +'<div class="text-body fs-sm fw-medium my-1 col-md-1 over_flow"><a id class="nav-link-style">'+data.list_project_all[i].personnel_list.personnel_name+'</a></div>'
+										 +'<div class="text-body fs-sm fw-medium my-1 col-md-1 over_flow"><a data-tag="personnel_project"  tag="'+data.list_project_all[i].project_pm+'" class="nav-link-style">'+data.list_project_all[i].personnel_list.personnel_name+'</a></div>'
 										 +'</span>'
 										 +'<div class="d-md-flex justify-content-between" style="padding-left: 25px;padding-right: 25px;">'
 										 +'<div class=" text_al">'
-										 +'<span class="fs-sm text-muted me-md-3 customer">'+data.list_project_all[i].customer_list.customer_name+'</span>'
+										 +'<span class="fs-sm text-muted me-md-3 customer" name="customer_project" tag="'+data.list_project_all[i].customer+'">'+data.list_project_all[i].customer_list.customer_name+'</span>'
 										 +'</div>'
 										 +'<div class="text_al">'
 										 +'<span class="fs-sm text-muted me-md-3">启动日期：</span><span class="fs-sm text-muted me-md-3" style="padding-right:12px;">'+project_startdate+'</span>'
@@ -748,7 +763,7 @@ body::-webkit-scrollbar-track {
 										 +'</div>'
 										 +'</div>'
 										 +'</h2>'
-										 +'<div class="col-md-12"><hr style="padding:0;margin:0"/></div>'
+
 										 +'<div class="col" style="margin: 0;border-bottom-left-radius: 1rem;border-bottom-right-radius: 1rem;font-size: 12px;" data-toggle="@this_tag-'+data.list_project_all[i].pid+'">'
 
 										 +'</div>';
@@ -756,9 +771,35 @@ body::-webkit-scrollbar-track {
 							 $('.spinner').remove();
 							 $('#ifream_project').append(html_title+html);
 
-							 var limit_tag=limit/50;
+							 /*锚点*/
+							 if(this_order!=0){
+								 if($("[data-ordername-tag="+this_order+"]")!=null){
+									 $("html, body").animate({
+										 scrollTop: $($($("[data-ordername-tag="+this_order+"]")).attr("href")).offset().top-$(".nav_title").height() + "px"
+									 }, {
+										 duration: 500,
+										 easing: "swing"
+									 });
+								 }
+								 $("#"+this_order+"").attr("style","background-color: #f8ff0778;");
+							 }
 
-							 if(Math.ceil(data.project_list_rows/50)>parseInt(limit_tag+1)){
+							 $('[name=customer_project]').click(function(){
+								 $('#ifream_project').empty();
+								 var customer_project=$(this).attr("tag");
+								 mian_project_index(0,0,customer_project,limit,item);
+							 });
+							 $('[data-tag=personnel_project]').click(function(){
+								 $('#ifream_project').empty();
+								 var project_pmid=$(this).attr("tag");
+								 mian_project_index(0,project_pmid,0,limit,item);
+							 });
+							 var limit_tag=limit/50;
+							 if (this_order!=0){
+								 $('.loading_index').remove();
+								 $(window).unbind("scroll");
+							 }else	if(Math.ceil(data.project_list_rows/50)>parseInt(limit_tag+1)){
+								 $('.loading_index').remove();
 								 var html_loading='<div class="d-flex justify-content-center loading_index" limit="'+limit_tag+'" item="'+item+'">'
 										 +'<div class="spinner-grow text-info spinner-grow spinner-grow-sm" role="status" style="margin-right:3%;animation: 1s linear infinite spinner-grow;"><span class="sr-only">Loading...</span></div>'
 										 +'<div class="spinner-grow text-info spinner-grow spinner-grow-sm" role="status" style="margin-right:3%;animation: 1s linear infinite spinner-grow;"><span class="sr-only">Loading...</span></div>'
@@ -774,10 +815,9 @@ body::-webkit-scrollbar-track {
 										 if(loading_index_tag==limit_tag){
 											 setTimeout(function(){
 												 $('.loading_index').remove();
-												 var nav_project_list = paras.nav_project_list;
 												 limit_tag=loading_index_tag;
 												 limit=limit_tag;
-												 mian_project_index(nav_project_list,project_pmid,limit*50,50);
+												 mian_project_index(nav_project_list,project_pmid,customer_project,limit*50,50);
 											 }, 2000);
 
 										 }
@@ -1323,19 +1363,22 @@ body::-webkit-scrollbar-track {
 										var create_date=new Date(data.list_project_fuzzy_query_mod_all[i].create_date);
 										create_date=create_date.getFullYear()+'/'+(create_date.getMonth()+1)+'/'+create_date.getDate()
 									}
-									html+='<h2 class="accordion-header" style="margin:0;padding-bottom: 0.3rem;"  data-toggle="collapse" data-target="#order-collapse-'+data.list_project_fuzzy_query_mod_all[i].pid+'" data-tag="'+data.list_project_fuzzy_query_mod_all[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_project_fuzzy_query_mod_all[i].pid+'">'
+									html+='<div class="progress" style="height:1.5px">'+
+											'<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;height:1.5px;background-color: '+status_text_color+'" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>' +
+											'</div>'
+									 +'<h2 class="accordion-header" style="margin:0;padding-bottom: 0.3rem;"  data-toggle="collapse" data-target="#order-collapse-'+data.list_project_fuzzy_query_mod_all[i].pid+'" data-tag="'+data.list_project_fuzzy_query_mod_all[i].pid+'" aria-expanded="false" aria-controls="order-collapse-'+data.list_project_fuzzy_query_mod_all[i].pid+'">'
 				                     +'<span class="accordion-button no-indicator  pe-4 collapsed col-md-12" style="padding-bottom: 0;">' 
-				                     +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle"><a id class="nav-link-style">'+data.list_project_fuzzy_query_mod_all[i].od_num+'</a></span></div>' 
+				                     +' <div class="fs-sm fw-medium text-nowrap my-1 me-2 col-md-1 over_flow"><span class="d-inline-block align-middle project_name_click" tag="'+data.list_project_fuzzy_query_mod_all[i].pid+'"><a id class="nav-link-style">'+data.list_project_fuzzy_query_mod_all[i].od_num+'</a></span></div>'
 				                     +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style project_name_click" tag="'+data.list_project_fuzzy_query_mod_all[i].pid+'">'+data.list_project_fuzzy_query_mod_all[i].project_name+'</a></div>' 
 				                     +'<div class="text-body fs-sm fw-medium my-1 col-md-2 over_flow"><a id class="nav-link-style">'+data.list_project_fuzzy_query_mod_all[i].contract_num+'</a></div>' 
 				                     +'<div class="text-body fs-sm fw-medium my-1 col-md-3 over_flow"><a id class="nav-link-style">'+data.list_project_fuzzy_query_mod_all[i].services_num+'</a></div>' 
 				                     +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1  "style="color:'+status_text_color+';background-color: '+status_back_color+' !important;text-align: center;">'+status_text_display+'</div>'
 				                     +'<div class="fs-xs fw-medium py-1 px-3 rounded-1 my-1 me-2 col-md-1  "style="color:'+class_text_color+';background-color: '+class_back_color+' !important;text-align: center;">'+class_text_display+'</div>'
-				                     +'<div class="text-body fs-sm fw-medium my-1 col-md-1 over_flow"><a id class="nav-link-style">'+data.list_project_fuzzy_query_mod_all[i].personnel_list.personnel_name+'</a></div>' 
+				                     +'<div class="text-body fs-sm fw-medium my-1 col-md-1 over_flow"><a  data-tag="personnel_project"  tag="'+data.list_project_fuzzy_query_mod_all[i].project_pm+'" class="nav-link-style">'+data.list_project_fuzzy_query_mod_all[i].personnel_list.personnel_name+'</a></div>'
 				                     +'</span>'
 				                     +'<div class="d-md-flex justify-content-between" style="padding-left: 25px;padding-right: 25px;">'
 				                     +'<div class=" text_al">'
-				                     +'<span class="fs-sm text-muted me-md-3 customer">'+data.list_project_fuzzy_query_mod_all[i].customer_list.customer_name+'</span>'
+				                     +'<span class="fs-sm text-muted me-md-3 customer" name="customer_project" tag="'+data.list_project_fuzzy_query_mod_all[i].customer+'">'+data.list_project_fuzzy_query_mod_all[i].customer_list.customer_name+'</span>'
 				                     +'</div>'
 				                     +'<div class="text_al">'
 				                     +'<span class="fs-sm text-muted me-md-3">启动日期：</span><span class="fs-sm text-muted me-md-3" style="padding-right:12px;">'+project_startdate+'</span>'
@@ -1349,6 +1392,16 @@ body::-webkit-scrollbar-track {
 									+'</div>';
 								};
 								$('#ifream_project').append(html_title+html);
+								$('[name=customer_project]').click(function(){
+									$('#ifream_project').empty();
+									var customer_project=$(this).attr("tag");
+									mian_project_index(0,0,customer_project,0,50);
+								});
+								$('[data-tag=personnel_project]').click(function(){
+									$('#ifream_project').empty();
+									var project_pmid=$(this).attr("tag");
+									mian_project_index(0,project_pmid,0,0,50);
+								});
 								$('[data-toggle="collapse"]').click(function(){
 									var pid=$(this).attr('data-tag');
 									var this_tag=$(this).attr('data-tag');
@@ -1365,73 +1418,75 @@ body::-webkit-scrollbar-track {
 												success:function(data){
 													$('[data-toggle="@this_tag-'+pid+'"]').empty();
 													var Attached_html_list="";
-													for(var a=0;a<data.attached_list.length;a++){
-														if(data.attached_list[a].attached_status==1){
-															var attachedproject_status="待启动"
-															var attachedback_color="#CCCCCC"
-														}else if(data.attached_list[a].attached_status==2){
-															var  attachedproject_status="进行中"
-															var  attachedback_color="#1bd5e8d6"
-														}else if(data.attached_list[a].attached_status==3){
-															var  attachedproject_status="已部署"
-															var  attachedback_color="#3366CC"
-														}else if(data.attached_list[a].attached_status==4){
-															var attachedproject_status="已完成"
-															var attachedback_color="#33CC33"
-														}else if(data.attached_list[a].attached_status==5){
-															var attachedproject_status="已取消"
-															var attachedback_color="#FF0000"
-														}else if(data.attached_list[a].attached_status==6){
-															var attachedproject_status="未完成"
-															var attachedback_color="#FF3300"
-														}else{
-															var project_status=""
-														    var attachedback_color=""
-														}
-														
-														if(data.attached_list[a].attached_start_time==null || data.attached_list[a].attached_start_time=="" || data.attached_list[a].attached_start_time==undefined){
-															var attached_start_time=""
-														}else{
-															var attached_start_time=new Date(data.attached_list[a].attached_start_time);
-															attached_start_time=attached_start_time.getFullYear()+'-'+(attached_start_time.getMonth()+1)+'-'+attached_start_time.getDate();
-														}
-														if(data.attached_list[a].attached_actual_finishing_date!=null && data.attached_list[a].attached_actual_finishing_date!="" && data.attached_list[a].attached_actual_finishing_date!=undefined){
-															//实际时间
-															var attached_color="#2485fd !important"
-															var attached_expected_completion_date_text="实际完成日期"
-															var attached_expected_completion_date=new Date(data.attached_list[a].attached_actual_finishing_date);
-															attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
-														}else{
-															if(data.attached_list[a].attached_expected_completion_date!=null && data.attached_list[a].attached_expected_completion_date!="" &&  data.attached_list[a].attached_expected_completion_date!=undefined){
-																//预期时间
-																var attached_color="#ca4a18 !important"
-																var attached_expected_completion_date_text="预计完成日期"
-																var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+													if(data.attached_list.length>0){
+														for(var a=0;a<data.attached_list.length;a++){
+															if(data.attached_list[a].attached_status==1){
+																var attachedproject_status="待启动"
+																var attachedback_color="#CCCCCC"
+															}else if(data.attached_list[a].attached_status==2){
+																var  attachedproject_status="进行中"
+																var  attachedback_color="#1bd5e8d6"
+															}else if(data.attached_list[a].attached_status==3){
+																var  attachedproject_status="已部署"
+																var  attachedback_color="#3366CC"
+															}else if(data.attached_list[a].attached_status==4){
+																var attachedproject_status="已完成"
+																var attachedback_color="#33CC33"
+															}else if(data.attached_list[a].attached_status==5){
+																var attachedproject_status="已取消"
+																var attachedback_color="#FF0000"
+															}else if(data.attached_list[a].attached_status==6){
+																var attachedproject_status="未完成"
+																var attachedback_color="#FF3300"
+															}else{
+																var project_status=""
+																var attachedback_color=""
+															}
+
+															if(data.attached_list[a].attached_start_time==null || data.attached_list[a].attached_start_time=="" || data.attached_list[a].attached_start_time==undefined){
+																var attached_start_time=""
+															}else{
+																var attached_start_time=new Date(data.attached_list[a].attached_start_time);
+																attached_start_time=attached_start_time.getFullYear()+'-'+(attached_start_time.getMonth()+1)+'-'+attached_start_time.getDate();
+															}
+															if(data.attached_list[a].attached_actual_finishing_date!=null && data.attached_list[a].attached_actual_finishing_date!="" && data.attached_list[a].attached_actual_finishing_date!=undefined){
+																//实际时间
+																var attached_color="#2485fd !important"
+																var attached_expected_completion_date_text="实际完成日期"
+																var attached_expected_completion_date=new Date(data.attached_list[a].attached_actual_finishing_date);
 																attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
 															}else{
-																var attached_expected_completion_date_text="实际/预计完成日期"
+																if(data.attached_list[a].attached_expected_completion_date!=null && data.attached_list[a].attached_expected_completion_date!="" &&  data.attached_list[a].attached_expected_completion_date!=undefined){
+																	//预期时间
+																	var attached_color="#ca4a18 !important"
+																	var attached_expected_completion_date_text="预计完成日期"
+																	var attached_expected_completion_date=new Date(data.attached_list[a].attached_expected_completion_date);
+																	attached_expected_completion_date=attached_expected_completion_date.getFullYear()+'/'+(attached_expected_completion_date.getMonth()+1)+'/'+attached_expected_completion_date.getDate()
+																}else{
+																	var attached_expected_completion_date_text="实际/预计完成日期"
 																	var attached_expected_completion_date="#"
 																	var attached_color="#6c757d !important"
+																}
 															}
+
+
+															Attached_html_list+='<div class="multi-collapse bg-secondary row collapse"  name="order-collapse-'+pid+'" style="border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; padding-top: 0.1em;">'
+																	+'<div class="col-md-5 "><label for="attached_project_name" style="font-size: 14px;font-weight: bold;">附属项目名称:</label><span id="attached_project_name" class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;">'+data.attached_list[a].attached_project_name+'</span> </div>'
+																	+'<div class="col-md-2 "><label for="attached_status" style="font-size: 14px;font-weight: bold;">项目状态:</label><span id="attached_status" style="margin-bottom: -0.5em;padding-left:1rem;"><span class="badge badge-primary" style="color:#fff;background-color:'+attachedback_color+';border-radius: 12px;font-size:14px;">'+attachedproject_status+'</span></div>'
+																	+'	<div class="col-md-2 "><label for="attached_start_time" style="font-size: 14px;font-weight: bold;">启动日期:</label><span id="attached_start_time" style="margin-bottom: -0.5em;padding-left:1rem;">'+attached_start_time+'</span></div>'
+																	+'<div class="col-md-3 "><label for="attached_expecte_actual_dcompletion_date" style="font-size: 14px;font-weight: bold;">'+attached_expected_completion_date_text+':</label><span id="attached_expecte_actual_dcompletion_date" style="margin-bottom: -0.5em;padding-left:1rem;color:'+attached_color+';">'+attached_expected_completion_date+'</span></div>'
+																	+' <div class="d-md-flex justify-content-between" style="padding-left: 15px;padding-right: 25px;">'
+																	+'	<div class=" text_al">'
+																	+'	<span class="fs-sm address_a_z  me-md-3">A端地址:</span><span id="attached_a_address" class="fs-sm text-muted me-md-3 attached_address" style="padding-right: 12px;">'+data.attached_list[a].attached_address+'</span>'
+																	+'<span class="fs-sm address_a_z me-md-3">B端地址:</span><span  id="attached_b_address"  class="fs-sm text-muted me-md-3 attached_address">'+data.attached_list[a].attached_b_address+'</span>'
+																	+'</div>'
+																	+'</div>'
+																	+'<div class="col-md-12"><hr style="margin-top: 0;margin-bottom: 0.1em;background-color: #be228e;"></div>'
+																	+'</div>';
 														}
-														
-														
-														Attached_html_list+='<div class="multi-collapse bg-secondary row collapse"  name="order-collapse-'+pid+'" style="border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; padding-top: 0.1em;">'
-														+'<div class="col-md-5 "><label for="attached_project_name" style="font-size: 14px;font-weight: bold;">附属项目名称:</label><span id="attached_project_name" class="text_original text_underline" style="margin-bottom: -0.5em;padding-left:1rem;">'+data.attached_list[a].attached_project_name+'</span> </div>'
-														+'<div class="col-md-2 "><label for="attached_status" style="font-size: 14px;font-weight: bold;">项目状态:</label><span id="attached_status" style="margin-bottom: -0.5em;padding-left:1rem;"><span class="badge badge-primary" style="color:#fff;background-color:'+attachedback_color+';border-radius: 12px;font-size:14px;">'+attachedproject_status+'</span></div>'
-														+'	<div class="col-md-2 "><label for="attached_start_time" style="font-size: 14px;font-weight: bold;">启动日期:</label><span id="attached_start_time" style="margin-bottom: -0.5em;padding-left:1rem;">'+attached_start_time+'</span></div>'
-														+'<div class="col-md-3 "><label for="attached_expecte_actual_dcompletion_date" style="font-size: 14px;font-weight: bold;">'+attached_expected_completion_date_text+':</label><span id="attached_expecte_actual_dcompletion_date" style="margin-bottom: -0.5em;padding-left:1rem;color:'+attached_color+';">'+attached_expected_completion_date+'</span></div>'
-														+' <div class="d-md-flex justify-content-between" style="padding-left: 15px;padding-right: 25px;">'
-														+'	<div class=" text_al">'
-														+'	<span class="fs-sm address_a_z  me-md-3">A端地址:</span><span id="attached_a_address" class="fs-sm text-muted me-md-3 attached_address" style="padding-right: 12px;">'+data.attached_list[a].attached_address+'</span>'				                 	
-														+'<span class="fs-sm address_a_z me-md-3">B端地址:</span><span  id="attached_b_address"  class="fs-sm text-muted me-md-3 attached_address">'+data.attached_list[a].attached_b_address+'</span>'
-														+'</div>'
-														+'</div>'
-														+'<div class="col-md-12"><hr style="margin-top: 0;margin-bottom: 0.1em;background-color: #be228e;"></div>'
-														+'</div>';
+														$('[data-toggle="@this_tag-'+pid+'"]').append(Attached_html_list);
+														$('[name="order-collapse-'+this_tag+'"]').collapse('show');
 													}
-													$('[data-toggle="@this_tag-'+pid+'"]').append(Attached_html_list);
-													$('[name="order-collapse-'+this_tag+'"]').collapse('show');
 												}
 											});
 										}

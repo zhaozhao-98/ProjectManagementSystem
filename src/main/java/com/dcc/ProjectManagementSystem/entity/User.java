@@ -26,13 +26,25 @@ public class User {
 	//是否有效 1有效0无效
 	private Integer lockdoor;
 	
-	private Permission permission_i_d_u_s;
-	public Permission getPermission_i_d_u_s() {
-		return permission_i_d_u_s;
+	private Permission permission_CRUD;
+	private Personnel cum_personnel;
+
+	public Personnel getCum_personnel() {
+		return cum_personnel;
 	}
-	public void setPermission_i_d_u_s(Permission permission_i_d_u_s) {
-		this.permission_i_d_u_s = permission_i_d_u_s;
+
+	public void setCum_personnel(Personnel cum_personnel) {
+		this.cum_personnel = cum_personnel;
 	}
+
+	public Permission getPermission_CRUD() {
+		return permission_CRUD;
+	}
+
+	public void setPermission_CRUD(Permission permission_CRUD) {
+		this.permission_CRUD = permission_CRUD;
+	}
+
 	public Integer getUid() {
 		return uid;
 	}

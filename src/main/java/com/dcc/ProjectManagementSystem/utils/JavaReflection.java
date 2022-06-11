@@ -23,7 +23,6 @@ public class JavaReflection {
         }else{
             System.out.println("");
         }
-
         return pr;
     }
     public static AttachedProject fieldAttachedProjectPermisstion(String fieldName, String fields_value_string, Integer fields_value_int, Long fields_value_long, AttachedProject ap) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, ClassNotFoundException {
@@ -43,9 +42,5 @@ public class JavaReflection {
         }
 
         return ap;
-    }
-    public static void main(String[] args) throws NoSuchFieldException, ClassNotFoundException, IllegalAccessException {
-
-
     }
 }

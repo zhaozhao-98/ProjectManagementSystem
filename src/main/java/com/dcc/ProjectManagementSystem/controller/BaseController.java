@@ -52,7 +52,7 @@ public class BaseController {
 			String mainController = user_op_name.getAttributeValue("mainController");
 
 			if(request.getRequestURI().equals("/ProjectManagementSystem/"+mainController+"/"+user_insert_name)) {
-				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_i_d_u_s().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
+				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
 					String permission=login_user_permission.get(0).getPermission();
 					Integer table_id=Integer.valueOf(permission_id);
 					Permission p = permissionimp_backup.permissionimp.select_this_user_permission(permission,table_id);
@@ -70,7 +70,8 @@ public class BaseController {
 		HttpSession session = request.getSession();
 		List<User> login_user_permission=(List<User>) session.getAttribute("login_user_permission");
 		SAXBuilder builder = new SAXBuilder();
-		Document operation = builder.build("D:\\Eclipse\\eclipse-work\\ProjectManagementSystem\\src\\permission_operation.xml");
+		Map<String, Object> builder_path= SysVersion.permission_xml();
+		Document operation = builder.build(builder_path.get("builder_path")+"permission_operation.xml");
 		Element operation_beauties = operation.getRootElement();
 		List<Element> user_selects = operation_beauties.getChildren("user_select");
 		for(Element user_select:user_selects ) {
@@ -79,7 +80,7 @@ public class BaseController {
 			String permission_id = user_op_name.getAttributeValue("id");
 			String mainController = user_op_name.getAttributeValue("mainController");
 			if(request.getRequestURI().equals("/ProjectManagementSystem/"+mainController+"/"+user_select_name)) {
-				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_i_d_u_s().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
+				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
 					String permission=login_user_permission.get(0).getPermission();
 					Integer table_id=Integer.valueOf(permission_id);
 					Permission p = permissionimp_backup.permissionimp.select_this_user_permission(permission,table_id);
@@ -108,7 +109,7 @@ public class BaseController {
 			String mainController = user_op_name.getAttributeValue("mainController");
 
 			if(request.getRequestURI().equals("/ProjectManagementSystem/"+mainController+"/"+user_update_name)) {
-				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_i_d_u_s().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
+				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
 					String permission=login_user_permission.get(0).getPermission();
 					Integer table_id=Integer.valueOf(permission_id);
 					Permission p = permissionimp_backup.permissionimp.select_this_user_permission(permission,table_id);
@@ -136,7 +137,7 @@ public class BaseController {
 			String mainController = user_op_name.getAttributeValue("mainController");
 
 			if(request.getRequestURI().equals("/ProjectManagementSystem/"+mainController+"/"+user_delete_name)) {
-				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_i_d_u_s().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
+				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
 					String permission=login_user_permission.get(0).getPermission();
 					Integer table_id=Integer.valueOf(permission_id);
 					Permission p = permissionimp_backup.permissionimp.select_this_user_permission(permission,table_id);

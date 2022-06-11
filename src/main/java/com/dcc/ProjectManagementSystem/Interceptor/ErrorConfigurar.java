@@ -15,9 +15,8 @@ public class ErrorConfigurar implements ErrorPageRegistrar {
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {
         ErrorPage[] errorPages = new ErrorPage[2];
-        errorPages[0] = new ErrorPage(HttpStatus.NOT_FOUND, "/promgsys/error/404.html");
-        errorPages[1] = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/promgsys/error/500.html");
-
+        errorPages[0] = new ErrorPage(HttpStatus.NOT_FOUND, "/navigation/error/404.html");
+        errorPages[1] = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/navigation/error/500.html");
         registry.addErrorPages(errorPages);
     }
 }

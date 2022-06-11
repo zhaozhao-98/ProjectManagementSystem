@@ -3,8 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/bootstrap/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/ProjectManagementSystem/login/font-awesome-4.7.0/css/font-awesome.min.css">
+<style>
+    .row{
+        margin: 0;
+        margin-top: 1%;
+    }
+    .card-img-top{
+        width: 100px;
+    }
+    img{
+        margin: 0 auto;
+    }
+    p{
+        margin: 0;
+        padding-top: 0.2em;
+        padding-bottom: 0.3em;
+    }
+    .form-check-input {
+        background-color: rgba(255,255,255,.25);
+    }
+    .form-check-input {
+        margin-left:5px;
+        width: 1rem;
+        height: 1rem;
+        margin-top: 0.3rem;
+        vertical-align: top;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: 2px solid #b4b7c9;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    .form-check-input {
+        height: 18px;
+        margin-top: revert;
+        border: unset;
+        background-color: #b4b7c9;
+        filter: none;
+    }
+    .form-check-input {
+        width: 2.875em;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+        background-position: left center;
+        border-radius: 2.875em;
+        transition: background-position .15s ease-in-out;
+    }
+    .form-check-input:checked {
+        background-color: #22c55e;
+        box-shadow: 0 0.5rem 1.125rem -0.5rem rgb(34 197 94 / 90%);
+    }
+    .form-check-input:checked {
+        background-position: right center;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e")
+    }
+    .col-md-3{
+        padding-right: 15px;
+        padding-left: 5px;
+    }
+    .card-body{
+        padding: 0;
+    }
+    .form-check-input{
+        width: 50%;
+    }
+    .flex-center {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    .overlay-icon {
+        position: absolute;
+        width: 100%;
+        top:0;
+        height: 10%;
+        bottom: 0;
+        opacity: 0;
+        -webkit-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+        background-color: #607d8b78;
+    }
+    .card-title{
+        margin-bottom: 0.2rem;
+        margin-top: 0.2rem;
+    }
+    #user1:hover .overlay-icon {
+        opacity: 1;
+    }
+    .card-body{
+        padding: 5px;
+    }
+    .foot_item{
+        text-align: end;
+        color: #000;
+        padding-right: 12px;
+    }
+    .foot_item a{
+        color: #3a3c3f7d;
+        font-size: 12px;
+    }
+</style>
 </head>
 <body>
-
+<div class="row justify-content-between">
+    <div class="card col-md-3" style="padding: 0px;" id="user1">
+        <img src="/ProjectManagementSystem/img/Multiavatar-9b858947b263cca4da.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title" style="text-align: center">
+                <p>赵昭</p>
+            </h5>
+            <div class="card-text row permissions">
+                <h5 class="col-md-12">项目</h5>
+                <div class="col-md-3">
+                    <label style="font-size: 16px;">增</label>
+                    <input type="checkbox" id="insert_project" class="form-check-input flex-shrink-0" checked="checked" >
+                </div>
+                <div class="col-md-3">
+                    <label style="font-size: 16px;">删</label>
+                    <input  type="checkbox" id="delete_project" class="form-check-input flex-shrink-0">
+                </div>
+                <div class="col-md-3">
+                    <label style="font-size: 16px;">改</label>
+                    <input  type="checkbox" id="update_project" class="form-check-input flex-shrink-0" checked="checked">
+                </div>
+                <div class="col-md-3">
+                    <label style="font-size: 16px;">查</label>
+                    <input  type="checkbox" id="select_project" class="form-check-input flex-shrink-0" checked="checked">
+                </div>
+            </div>
+        </div>
+        <label class="mb-0 overlay-icon d-flex flex-center">
+            <span class="bg-holder overlay overlay-0"></span>
+            <span class="z-index-1 text-white dark__text-white text-center fs--1">
+                        <i class="fa fa-cogs"></i>
+                        <span class="d-block">修改字段权限</span>
+                    </span>
+        </label>
+        <nav class="foot_item">
+            <div class="w-100">
+                <span class="fs-sm text-muted me-md-3"><a class="nav-link-style" href="#">www.809927124@qq.com</a></span>
+            </div>
+        </nav>
+    </div>
+</div>
+<script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/js/jquery.md5.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/ProjectManagementSystem/bootstrap/js/moment-with-locales.js"></script>
+<script>
+    $.ajax({
+        type:'post',
+        url:'../user_controller/select_users_permissions',
+        dataType:'json',
+        success:function(data){
+            let permissions_html=""
+            for(let i=0;i<data.selectUsersPermissions.length;i++){
+                if (data.selectUsersPermissions[i].permission_CRUD.pointListing_list.tid==1){
+                    /**/
+                }
+            }
+            debugger;
+        }
+    });
+</script>
 </body>
 </html>

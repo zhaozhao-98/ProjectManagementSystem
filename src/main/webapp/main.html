@@ -561,6 +561,7 @@ a{
       </div>
 
 <script src="/ProjectManagementSystem/js/jquery.js"></script>
+<script src="/ProjectManagementSystem/js/jquery.md5.js"></script>
 <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/ProjectManagementSystem/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
 <script src="/ProjectManagementSystem/bootstrap/js/pophover.min.js"></script>
@@ -707,7 +708,7 @@ $(function(){
 	    			}
 	    			if(search_key<5){
 		    			console.log(search_project[oid].od_num);
-		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>项目编号</span><span>></span><span>'+search_project[oid].od_num+'</span></a>'
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="od_num_click"  tag="'+$.md5("this_order"+search_project[oid].pid)+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>项目编号</span><span>></span><span>'+search_project[oid].od_num+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -721,7 +722,7 @@ $(function(){
 	    				project_html=project_html;
 	    			}
 	    			if(search_key<5){
-		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>合同编号</span><span>></span><span>'+search_project[oid].contract_num+'</span></a>'
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="contract_num_click"  tag="'+$.md5("this_order"+search_project[oid].pid)+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>合同编号</span><span>></span><span>'+search_project[oid].contract_num+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -735,7 +736,7 @@ $(function(){
 	    				project_html=project_html;
 	    			}
 	    			if(search_key<5){
-		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>服务编号</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="services_num_click"  tag="'+$.md5("this_order"+search_project[oid].pid)+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>服务编号</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -749,7 +750,7 @@ $(function(){
 	    				project_html=project_html;
 	    			}
 	    			if(search_key<5){
-		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="project_name_click"  tag="'+search_project[oid].pid+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>项目名称</span><span>></span><span>'+search_project[oid].project_name+'</span></a>'
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="project_name_click"  tag="'+$.md5("this_order"+search_project[oid].pid)+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>项目名称</span><span>></span><span>'+search_project[oid].project_name+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -763,7 +764,7 @@ $(function(){
 	    				project_html=project_html;
 	    			}
 	    			if(search_key<5){
-		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<em>'+search_project[oid].services_num+'</em>"><span>客户</span><span>></span><span>关于'+search_project[oid].customer_list.customer_name+'的项目</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style"  name="customer_project_click"  tag="'+$.md5("this_order"+search_project[oid].pid)+'"  style="font-size: 0.2rem;padding: 0rem .8rem;" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<em>'+search_project[oid].services_num+'</em>"><span>客户</span><span>></span><span>关于'+search_project[oid].customer_list.customer_name+'的项目</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -777,7 +778,7 @@ $(function(){
 	    				project_html=project_html;
 	    			}
 	    			if(search_key<5){
-		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<em>'+search_project[oid].services_num+'</em>"><span>项目经理</span><span>></span><span>关于'+search_project[oid].personnel_list.personnel_name+'的项目</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
+		    			project_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" name="personnel_project_click" tag="'+$.md5("this_order"+search_project[oid].pid)+'" style="font-size: 0.2rem;padding: 0rem .8rem;" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<em>'+search_project[oid].services_num+'</em>"><span>项目经理</span><span>></span><span>关于'+search_project[oid].personnel_list.personnel_name+'的项目</span><span>></span><span>'+search_project[oid].services_num+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -793,7 +794,7 @@ $(function(){
 	    				personnel_html=personnel_html;
 	    			}
 	    			if(personnel_key<5){
-	    				personnel_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>个人信息</span><span>></span><span>'+list_personnel[pid].personnel_name+'</span></a>'
+	    				personnel_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style"  tag="'+list_personnel[pid].personnel_email+'" name="personnel_click"  tag="'+list_personnel[pid].pid+'" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>个人信息</span><span>></span><span>'+list_personnel[pid].personnel_name+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -809,7 +810,7 @@ $(function(){
 	    				customer_html=customer_html;
 	    			}
 	    			if(customer_key<5){
-	    				customer_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" href="#" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>公司信息</span><span>></span><span>'+list_customer[cid].customer_name+'</span></a>'
+	    				customer_html+='<a class="fs--1 px-card py-1 hover-primary  dropdown-item nav-link-style" tag="'+list_customer[cid].customer_name+'" name="customer_click" style="font-size: 0.2rem;padding: 0rem .8rem;"><span>公司信息</span><span>></span><span>'+list_customer[cid].customer_name+'</span></a>'
 	    			}else{
 	    				break;
 	    			}
@@ -824,18 +825,96 @@ $(function(){
 	    			 html:true
 	    		 });
 	    	}else{
+                /*项目名称*/
 	    		if(project_html!=""){
 	    			$('#search_ul').append(project_html+'<hr class="bg-200 dark__bg-900">');
 	    		    $('[name=project_name_click]').click(function(){
 	    		    	var tag=$(this).attr('tag');
-	    				window.open("/ProjectManagementSystem/navigation/projectinformation.html.html?pid="+tag);
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0&this_order="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
 	    		    });
+                    /*项目编号*/
+                    $('[name=od_num_click]').click(function(){
+                        var tag=$(this).attr('tag');
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0&this_order="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
+                    /*合同编号*/
+                    $('[name=contract_num_click]').click(function(){
+                        var tag=$(this).attr('tag');
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0&this_order="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
+                    /*服务编号*/
+                    $('[name=services_num_click]').click(function(){
+                        var tag=$(this).attr('tag');
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0&this_order="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
+                    /*关于XX公司的项目*/
+                    $('[name=customer_project_click]').click(function(){
+                        var tag=$(this).attr('tag');
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0&this_order="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
+                    /*关于XX人的项目*/
+                    $('[name=personnel_project_click]').click(function(){
+                        var tag=$(this).attr('tag');
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/projectcollection.html?nav_project_list=0&this_order="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
 	    		}
+                /*人员信息*/
 	    		if(personnel_html!=""){
 	    			$('#search_ul').append(personnel_html+'<hr class="bg-200 dark__bg-900">');
+                    $('[name=personnel_click]').click(function(){
+                        var tag=$.md5($(this).attr('tag'));
+                        //查询个人信息**锚点
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/linkman.html?pmtag=1&this_email="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
 	    		}
+                /*公司信息*/
 	    		if(customer_html!=""){
 	    			$('#search_ul').append(customer_html+'<hr class="bg-200 dark__bg-900">');
+                    $('[name=customer_click]').click(function(){
+                        var tag=$.md5($(this).attr('tag'));
+                        //查询个人信息**锚点
+                        $('#orders-accordion').empty();
+                        $('.foot_item').remove();
+                        url="/ProjectManagementSystem/navigation/linkman.html?customertag=1&this_email="+tag
+                        $('#orders-accordion').append("<iframe src='"+url+"' frameborder='0' onload=\"this.style.display='block'\" style='display: none;width:100%;height:100%'></iframe>");
+                        $('#orders-accordion').height($(window).height()-60);
+                        $('body').attr("style","overflow:hidden;border:0;");
+                    });
 	    		}
 		    	$('#search_ul').css("text-align","inherit");
 	    	}

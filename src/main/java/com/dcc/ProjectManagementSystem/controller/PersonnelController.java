@@ -64,7 +64,7 @@ public class PersonnelController {
 			String this_user_stat=list_stat.get(0).getUser_stat();
 			String[] retval = this_user_stat.split("\\|");
 			for (String s : retval) {
-				List<Project> project = projectimp.list_select_project_mod_all(0, 0, s, limit, item);
+				List<Project> project = projectimp.list_select_project_mod_all(0, 0, 0,s, limit, item);
 				if (project != null) {
 					project_list.addAll(project);
 				}

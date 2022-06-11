@@ -12,4 +12,5 @@ public interface UserMapper {
 	User single_select_user(@Param("email")String email, @Param("upwd")String upwd);
 	List<User> single_select_user_permission(@Param("email")String email, @Param("upwd")String upwd);
 	List<User> single_select_user_permission_big(@Param("email")String email);
+	List<User> select_users_permissions();
 }

@@ -28,7 +28,7 @@ public class ChatController {
 		int month=cal.get(Calendar.MONTH)+1;
 		int day=cal.get(Calendar.DATE);
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		cal.set(year,month,day,00,00,00);
+		cal.set(year,month,day, 00,00,00);
 		String chat_date =cal.get(Calendar.YEAR)+"-"+cal.get(Calendar.MONTH)+"-"+cal.get(Calendar.DAY_OF_MONTH)+" 00:00:00";
 		final Date chat_datetime = sdf.parse(chat_date);
 		final long chat_time = chat_datetime.getTime();

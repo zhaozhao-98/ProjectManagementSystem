@@ -66,6 +66,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope><!-- scope用来指定该架包的依赖范围 test表示测试时的范围 -->
 		</dependency>
+		<!-- SpringBoot 整合 devtools 实现热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope><!-- scope用来指定该架包的依赖范围 runtime表示运行时的范围 -->
+			<optional>true</optional>
+		</dependency>
 		<!-- 将springboot部署到tomcat容器内 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -100,6 +107,11 @@
 	        <artifactId>spire.pdf.free</artifactId>
 	        <version>4.4.1</version>
 	    </dependency>
+		<!--email-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	     <dependency>
 	      <groupId>org.springframework</groupId>
 	      <artifactId>spring-test</artifactId>

@@ -25,9 +25,9 @@ public class ProjectImp implements ProjectServices {
 		return 	projectMapper.selectRows();
 	}
 	@Override
-	public List<Project> list_select_project_mod_all(int project_list, int project_pm, String stat_tag, int limit, int item) {
+	public List<Project> list_select_project_mod_all(int project_list, int project_pm, int customer,String stat_tag, int limit, int item) {
 		// TODO Auto-generated method stub
-		return projectMapper.list_select_project_mod_all(project_list,project_pm,stat_tag,limit,item);
+		return projectMapper.list_select_project_mod_all(project_list,project_pm,customer,stat_tag,limit,item);
 	}
 	@Override
 	public int insert_project(Project pro) {
@@ -70,9 +70,9 @@ public class ProjectImp implements ProjectServices {
 		return projectMapper.update_project_attproject(project);
 	}
 	@Override
-	public Long selectRowsByid(int project_list,int project_pm,String services_num) {
+	public Long selectRowsByid(int project_list,int project_pm,int customer,String services_num) {
 		// TODO Auto-generated method stub
-		return projectMapper.selectRowsByid(project_list,project_pm,services_num);
+		return projectMapper.selectRowsByid(project_list,project_pm,customer,services_num);
 	}
 	@Override
 	public List<Project> search_project() {
