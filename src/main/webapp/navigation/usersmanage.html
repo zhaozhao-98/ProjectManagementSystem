@@ -188,81 +188,114 @@
         url:'../user_controller/select_users_permissions',
         dataType:'json',
         success:function(data){
-            let users_html=""
-            for(let i=0;i<data.selectUsers.length;i++){
-                let permissions_html=""
-                for(let j=0;j<data.selectUsersPermissions.length;j++){
-                    if(data.selectUsers[i].permission==data.selectUsersPermissions[j].permission){
-                        let insert_checked=""
-                        let delete_checked=""
-                        let update_checked=""
-                        let select_checked=""
-                        let insert_checked_color= "color: #7c7a7ab3;"
-                        let delete_checked_color= "color: #7c7a7ab3;"
-                        let update_checked_color= "color: #7c7a7ab3;"
-                        let select_checked_color= "color: #7c7a7ab3;"
-                        if(data.selectUsersPermissions[j].permission_CRUD.permission_insert==1){
-                            insert_checked_color=""
-                            insert_checked="checked"
+            if(data.msg!="RestrictedPermission"){
+                let users_html=""
+                for(let i=0;i<data.selectUsers.length;i++){
+                    let permissions_html=""
+                    let data_uid=data.selectUsers[i].cum_personnel.pid
+                    for(let j=0;j<data.selectUsersPermissions.length;j++){
+                        if(data.selectUsers[i].permission==data.selectUsersPermissions[j].permission){
+                            let insert_checked=""
+                            let delete_checked=""
+                            let update_checked=""
+                            let select_checked=""
+                            let insert_checked_color= "color: #7c7a7ab3;"
+                            let delete_checked_color= "color: #7c7a7ab3;"
+                            let update_checked_color= "color: #7c7a7ab3;"
+                            let select_checked_color= "color: #7c7a7ab3;"
+                            if(data.selectUsersPermissions[j].permission_CRUD.permission_insert==1){
+                                insert_checked_color=""
+                                insert_checked="checked"
+                            }
+                            if(data.selectUsersPermissions[j].permission_CRUD.permission_delete==1){
+                                delete_checked_color=""
+                                delete_checked="checked"
+                            }
+                            if(data.selectUsersPermissions[j].permission_CRUD.permission_update==1){
+                                update_checked_color=""
+                                update_checked="checked"
+                            }
+                            if(data.selectUsersPermissions[j].permission_CRUD.permission_select==1){
+                                select_checked_color=""
+                                select_checked="checked"
+                            }
+                            let data_id=data.selectUsersPermissions[j].permission_CRUD.permission_id
+                            let data_name=data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name+data.selectUsersPermissions[j].cum_personnel.pid
+                            let data_table=data.selectUsersPermissions[j].permission_CRUD.pointListing_list.tid
+                            permissions_html+='<h5 class="col-md-12" style="color: #2873c0;">'+data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name_chinese+'</h5>' +
+                                '                <div class="col-md-3">' +
+                                '                    <label style="font-size: 16px;'+insert_checked_color+'">增</label>' +
+                                '                    <input type="checkbox" data-uid="'+data_uid+'"  data-operation="permission_insert" data-table="'+data_table+'" data-id="'+data_id+'"  data-name="'+data_name+'"  class="form-check-input flex-shrink-0"'+insert_checked+'>' +
+                                '                </div>' +
+                                '                <div class="col-md-3">' +
+                                '                    <label style="font-size: 16px;'+delete_checked_color+'">删</label>' +
+                                '                    <input type="checkbox" data-uid="'+data_uid+'" data-operation="permission_delete" data-table="'+data_table+'" data-id="'+data_id+'" data-name="'+data_name+'"  class="form-check-input flex-shrink-0"'+delete_checked+'>' +
+                                '                </div>' +
+                                '                <div class="col-md-3">' +
+                                '                    <label style="font-size: 16px;'+update_checked_color+'">改</label>' +
+                                '                    <input type="checkbox" data-uid="'+data_uid+'" data-operation="permission_update" data-table="'+data_table+'" data-id="'+data_id+'" data-name="'+data_name+'"  class="form-check-input flex-shrink-0"'+update_checked+'>' +
+                                '                </div>' +
+                                '                <div class="col-md-3">' +
+                                '                    <label style="font-size: 16px;'+select_checked_color+'">查</label>' +
+                                '                    <input type="checkbox" data-uid="'+data_uid+'" data-operation="permission_select" data-table="'+data_table+'" data-id="'+data_id+'" data-name="'+data_name+'"  class="form-check-input flex-shrink-0" '+select_checked+'>' +
+                                '                </div>'
+
                         }
-                        if(data.selectUsersPermissions[j].permission_CRUD.permission_delete==1){
-                            delete_checked_color=""
-                            delete_checked="checked"
-                        }
-                        if(data.selectUsersPermissions[j].permission_CRUD.permission_update==1){
-                            update_checked_color=""
-                            update_checked="checked"
-                        }
-                        if(data.selectUsersPermissions[j].permission_CRUD.permission_select==1){
-                            select_checked_color=""
-                            select_checked="checked"
-                        }
-                        permissions_html+='<h5 class="col-md-12" style="color: #2873c0;">'+data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name_chinese+'</h5>\n' +
-                            '                <div class="col-md-3">\n' +
-                            '                    <label style="font-size: 16px;'+insert_checked_color+'">增</label>\n' +
-                            '                    <input type="checkbox" id="insert_'+data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name+data.selectUsersPermissions[j].cum_personnel.pid+'" class="form-check-input flex-shrink-0"'+insert_checked+'>\n' +
-                            '                </div>\n' +
-                            '                <div class="col-md-3">\n' +
-                            '                    <label style="font-size: 16px;'+delete_checked_color+'">删</label>\n' +
-                            '                    <input  type="checkbox" id="delete_'+data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name+data.selectUsersPermissions[j].cum_personnel.pid+'" class="form-check-input flex-shrink-0"'+delete_checked+'>\n' +
-                            '                </div>\n' +
-                            '                <div class="col-md-3">\n' +
-                            '                    <label style="font-size: 16px;'+update_checked_color+'">改</label>\n' +
-                            '                    <input  type="checkbox" id="update_'+data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name+data.selectUsersPermissions[j].cum_personnel.pid+'" class="form-check-input flex-shrink-0"'+update_checked+'>\n' +
-                            '                </div>\n' +
-                            '                <div class="col-md-3">\n' +
-                            '                    <label style="font-size: 16px;'+select_checked_color+'">查</label>\n' +
-                            '                    <input  type="checkbox" id="select_'+data.selectUsersPermissions[j].permission_CRUD.pointListing_list.t_name+data.selectUsersPermissions[j].cum_personnel.pid+'" class="form-check-input flex-shrink-0" '+select_checked+'>\n' +
-                            '                </div>'
                     }
+
+                    users_html+='<div class="card col-md-4" style="padding: 0px;margin-bottom: 1%;" id="user1">' +
+                        '        <img src="/headportrait/'+data.selectUsers[i].cum_personnel.personnel_head_portrait+'" class="card-img-top" alt="...">' +
+                        '        <div class="card-body">' +
+                        '            <h5 class="card-title" style="text-align: center">' +
+                        '                <p>'+data.selectUsers[i].cum_personnel.personnel_name+'</p>' +
+                        '            </h5>' +
+                        '            <div class="card-text row permissions">'+
+                        permissions_html+
+                        '            </div>' +
+                        '        </div>' +
+                        '        <label class="mb-0 overlay-icon d-flex flex-center">' +
+                        '            <span class="bg-holder overlay overlay-0"></span>' +
+                        '            <span class="z-index-1 text-white dark__text-white text-center fs--1">' +
+                        '                        <i class="fa fa-cogs"></i>' +
+                        '                        <span class="d-block">修改字段权限</span>' +
+                        '                    </span>' +
+                        '        </label>' +
+                        '        <nav class="foot_item foot_item'+data_uid+'" data-permission="'+data.selectUsers[i].permission+'">' +
+                        '            <div class="w-100">' +
+                        '                <span class="fs-sm text-muted me-md-3"><a class="nav-link-style" href="#">'+data.selectUsers[i].cum_personnel.personnel_email+'</a></span>' +
+                        '            </div>' +
+                        '        </nav>' +
+                        '    </div>'
                 }
+                $('.users').append(users_html);
+                $('input').click(function(){
+                    let data_operation=$(this).attr("data-operation");
+                    let data_table=$(this).attr("data-table");
+                    let data_id=$(this).attr("data-id");
+                    let data_uid=$(this).attr("data-uid");
+                    let permission_code=$('.foot_item'+data_uid).attr("data-permission");
+                    let data_operation_value=0;
+                    if($(this).attr("checked")=="checked"){
+                        data_operation_value=0
+                    }else{
+                        data_operation_value=1
+                    }
+                    $.ajax({
+                        type:'post',
+                        url:'../user_controller/update_permissions',
+                        dataType:'json',
+                        data:{
+                            'permission_code':permission_code,
+                            'data_operation_value':data_operation_value,
+                            'permission_id':data_id,
+                            'data_operation':data_operation
+                        },
+                        success:function(data){
 
-
-                users_html+='<div class="card col-md-4" style="padding: 0px;margin-bottom: 1%;" id="user1">\n' +
-                    '        <img src="/headportrait/'+data.selectUsers[i].cum_personnel.personnel_head_portrait+'" class="card-img-top" alt="...">\n' +
-                    '        <div class="card-body">\n' +
-                    '            <h5 class="card-title" style="text-align: center">\n' +
-                    '                <p>'+data.selectUsers[i].cum_personnel.personnel_name+'</p>\n' +
-                    '            </h5>\n' +
-                    '            <div class="card-text row permissions">\n'+
-                    permissions_html+
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <label class="mb-0 overlay-icon d-flex flex-center">\n' +
-                    '            <span class="bg-holder overlay overlay-0"></span>\n' +
-                    '            <span class="z-index-1 text-white dark__text-white text-center fs--1">\n' +
-                    '                        <i class="fa fa-cogs"></i>\n' +
-                    '                        <span class="d-block">修改字段权限</span>\n' +
-                    '                    </span>\n' +
-                    '        </label>\n' +
-                    '        <nav class="foot_item">\n' +
-                    '            <div class="w-100">\n' +
-                    '                <span class="fs-sm text-muted me-md-3"><a class="nav-link-style" href="#">'+data.selectUsers[i].cum_personnel.personnel_email+'</a></span>\n' +
-                    '            </div>\n' +
-                    '        </nav>\n' +
-                    '    </div>'
+                        }
+                    });
+                })
             }
-            $('.users').append(users_html);
         }
     });
 </script>

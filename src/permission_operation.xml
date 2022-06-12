@@ -20,4 +20,5 @@
 	<user_select><name id="5" mainController="files_controller">select_files</name></user_select>
 	<user_update><name id="1" mainController="project_controller">update_project_one</name></user_update>
 	<user_update><name id="1" mainController="project_controller">upload_file_pdf</name></user_update>
+	<user_update><name id="7" mainController="user_controller">update_permissions</name></user_update>
 </permission_operation>

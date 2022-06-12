@@ -109,10 +109,18 @@ public class BaseController {
 			String mainController = user_op_name.getAttributeValue("mainController");
 
 			if(request.getRequestURI().equals("/ProjectManagementSystem/"+mainController+"/"+user_update_name)) {
+				System.out.println("##############################################################");
+				System.out.println("/ProjectManagementSystem/"+mainController+"/"+user_update_name);
+				System.out.println("##############################################################");
+				System.out.println(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num());
+				System.out.println(Integer.valueOf(permission_id));
+				System.out.println(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num().equals(Integer.valueOf(permission_id)));
 				if(login_user_permission.get(Integer.parseInt(permission_id) - 1).getPermission_CRUD().getPermission_operate_table_num().equals(Integer.valueOf(permission_id))) {
 					String permission=login_user_permission.get(0).getPermission();
 					Integer table_id=Integer.valueOf(permission_id);
 					Permission p = permissionimp_backup.permissionimp.select_this_user_permission(permission,table_id);
+					System.out.println("##############################################################");
+					System.out.println(p.getPermission_update());
 					if(p.getPermission_update()==1) {
 						//此账户拥有权限
 						return true;

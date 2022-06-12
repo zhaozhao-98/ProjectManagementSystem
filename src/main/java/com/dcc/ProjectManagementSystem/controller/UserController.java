@@ -51,30 +51,27 @@ public class UserController {
 				session.setAttribute("user", login_user);
 				session.setAttribute("personnel", personnelimp.select_personnel_one_info(login_user.getUid()));
 				Integer level=login_user.getPermission_level();
+				session.setAttribute("level",level);
 				String uuid_tag=UUID.randomUUID().toString();
 				if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("7ff491a585c47e0f0256280fa72930ea")) {
 					//超级管理员
 					CreateUser.xml_usercode(login_user.getEmail(),login_user.getUid(),login_user.getPermission(),uuid_tag);
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index", "c4ca4238a0b923820dcc509a6f75849b");
-					session.setAttribute("level",level);
 				}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("d73110b578af2ba7967d866d754834a5")) {
 					//管理员
 					CreateUser.xml_usercode(login_user.getEmail(),login_user.getUid(),login_user.getPermission(),uuid_tag);
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index","c81e728d9d4c2f636f067f89cc14862c");
-					session.setAttribute("level",level);
 				}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("9e922299fe554a767569a39735b6b5bf")) {
 					//用户
 					CreateUser.xml_usercode(login_user.getEmail(),login_user.getUid(),login_user.getPermission(),uuid_tag);
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index","eccbc87e4b5ce2fe28308fd9f2a7baf3");
-					session.setAttribute("level",level);
 				}else{
 					//其他
 					session.setAttribute("user_uuid",uuid_tag);
 					session.setAttribute("user_index","334c4a4c42fdb79d7ebc3e73b517e6f8");
-					session.setAttribute("level",level);
 				}
 				List<User> login_user_permission=userimp.single_select_user_permission(email, upwd);
 				session.setAttribute("login_user_permission",login_user_permission);
@@ -91,21 +88,22 @@ public class UserController {
 	@RequestMapping(value="/select_users_permissions",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> selectUsersPermissions(HttpServletRequest request){
-		List<User> selectUsersPermissions=userimp.select_users_permissions();
-		List<User> selectUsers=userimp.select_users();
-		Map<String, Object> map=new HashMap<>();
 		HttpSession session=request.getSession();
 		Integer level= (Integer) session.getAttribute("level");
-
-
-		if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("7ff491a585c47e0f0256280fa72930ea")) {
+		String email= ((User) session.getAttribute("user")).getEmail();
+		List<User> selectUsersPermissions=userimp.select_users_permissions(level);
+		List<User> selectUsers=userimp.select_users(level);
+		Map<String, Object> map=new HashMap<>();
+		if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("7ff491a585c47e0f0256280fa72930ea")||Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("d73110b578af2ba7967d866d754834a5")) {
 			//超级管理员
 			map.put("selectUsers",selectUsers);
 			map.put("selectUsersPermissions",selectUsersPermissions);
-		}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("d73110b578af2ba7967d866d754834a5")) {
-			//管理员
-			map.put("selectUsers",selectUsers);
-			map.put("selectUsersPermissions",selectUsersPermissions);
+			for(int i=0;i<selectUsers.size();i++){
+				if(selectUsers.get(i).getPermission_level()==level&&!selectUsers.get(i).getEmail().equals(email)){
+					selectUsers.remove(i);
+					selectUsersPermissions.remove(i);
+				}
+			}
 		}else if(Md5Utils.MD5("super"+"mwfDCCSx@ZI"+ Md5Utils.MD5(level.toString())).equals("9e922299fe554a767569a39735b6b5bf")) {
 			//用户
 			map.put("msg","RestrictedPermission");
@@ -184,6 +182,34 @@ public class UserController {
 			login_permission_session.put("msg","fail");
 		}
 		return login_permission_session;
+	}
+	@RequestMapping(value="/update_permissions",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatePermissions(HttpServletRequest request,String permission_code,int data_operation_value,int permission_id,String data_operation) throws IOException, JDOMException {
+		Map<String ,Object> map=new HashMap<String,Object>();
+		if(BaseController.updatePermissionController(request)){
+			int permission_insert=-1;
+			int permission_delete=-1;
+			int permission_update=-1;
+			int permission_select=-1;
+			if(data_operation.contains("insert")){
+				permission_insert=1;
+			}
+			if(data_operation.contains("delete")){
+				permission_delete=1;
+			}
+			if(data_operation.contains("update")){
+				permission_update=1;
+			}
+			if(data_operation.contains("select")){
+				permission_select=1;
+			}
+			userimp.updatePermissions(permission_code,data_operation_value,permission_id,permission_insert,permission_delete,permission_update,permission_select);
+			map.put("msg","success");
+		}else{
+			map.put("msg","ExceptionHandling");
+		}
+		return map;
 	}
 	/**
 	 * @退出当前登录的用户

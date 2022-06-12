@@ -86,6 +86,7 @@
 			PE.personnel_name,
 			PE.personnel_email,
 			PE.personnel_head_portrait,
+			PEM.permission_id,
 			PEM.permission_insert,
 			PEM.permission_delete,
 			PEM.permission_update,
@@ -98,10 +99,13 @@
 				INNER JOIN pointlisting AS PO ON PO.tid=PEM.permission_operate_table_num
 		WHERE
 			U.lockdoor=1
+		AND  <![CDATA[U.permission_level>=#{permission_level,jdbcType=INTEGER}]]>
 	</select>
 	<select id="select_users"  resultMap="BaseResultMap">
 		SELECT
 			U.permission,
+			U.email,
+			U.permission_level,
 			PE.pid,
 			PE.personnel_name,
 			PE.personnel_email,
@@ -111,5 +115,24 @@
 				INNER JOIN personnel AS PE ON PE.pid = U.uid
 		WHERE
 			U.lockdoor=1
+		AND  <![CDATA[U.permission_level>=#{permission_level,jdbcType=INTEGER}]]>
 	</select>
+	<update id="updatePermissions" parameterType="com.dcc.ProjectManagementSystem.entity.User">
+		update permission
+		<set>
+			<if test="permission_insert!=-1">
+				permission_insert=#{data_operation_value,jdbcType=VARCHAR}
+			</if>
+			<if test="permission_select!=-1">
+				permission_select=#{data_operation_value,jdbcType=VARCHAR}
+			</if>
+			<if test="permission_delete!=-1">
+				permission_delete=#{data_operation_value,jdbcType=VARCHAR}
+			</if>
+			<if test="permission_update!=-1">
+				permission_update=#{data_operation_value,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where permission_id = #{permission_id,jdbcType=INTEGER} and permission_code=#{permission_code,jdbcType=VARCHAR}
+	</update>
 </mapper>

@@ -34,12 +34,22 @@ public class UserImp implements UserService {
 	}
 
 	@Override
-	public List<User> select_users_permissions() {
-		return userMapper.select_users_permissions();
+	public List<User> select_users_permissions(int permission_level) {
+		return userMapper.select_users_permissions(permission_level);
 	}
 
 	@Override
-	public List<User> select_users() {
-		return userMapper.select_users();
+	public List<User> select_users(int permission_level) {
+		return userMapper.select_users(permission_level);
+	}
+
+	@Override
+	public int updatePermissions(String permission_code, int data_operation_value, int permission_id,int permission_insert,int permission_delete,int permission_update,int permission_select) {
+		return userMapper.updatePermissions(permission_code,
+				data_operation_value,permission_id,
+				permission_insert,
+				permission_delete,
+				permission_update,
+				permission_select);
 	}
 }
